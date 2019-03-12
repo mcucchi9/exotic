@@ -10,7 +10,7 @@ times = [0]
 a = point.coords
 
 
-for k in np.arange(0, 100, 0.01):
+for k in np.arange(0, 1000, 0.01):
     times.append(k)
     traj.integrate()
     a = np.vstack((a, point.coords))
@@ -24,4 +24,8 @@ data.to_netcdf('/home/cucchi/phd/prova.nc')
 pd_data = data.to_pandas()
 
 pd_data.to_csv('/home/cucchi/phd/prova.csv')
-pd_data.to_feather('/home/cucchi/phd/prova.feather')
+
+pd_data.columns = pd_data.columns.astype(str)
+
+pd_data.reset_index().to_feather('/home/cucchi/phd/prova.feather')
+
