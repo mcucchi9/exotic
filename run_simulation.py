@@ -31,5 +31,6 @@ for chunk in np.arange(0, chunks):
         t.append(point.time)
         traj.integrate()
     data_array = xr.DataArray(data_nparray, dims=('time', 'node'), coords={'time': t, 'node': [0, 1, 2, 3, 4, 5]})
+    #data_array = xr.DataArray(data_nparray)
     print(data_array)
     data_array.to_netcdf('/home/cucchi/phd/prova.nc', mode='a')
