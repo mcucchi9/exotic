@@ -36,13 +36,8 @@ def lorenz_96(x, forcing):
 
     d = np.zeros(n)
 
-    # first the 3 edge cases: i=1,2,N
-    d[0] = (x[1] - x[n-2]) * x[n-1] - x[0]
-    d[1] = (x[2] - x[n-1]) * x[0] - x[1]
-    d[n-1] = (x[0] - x[n-3]) * x[n-2] - x[n-1]
-    # then the general case
-    for i in range(2, n-1):
-        d[i] = (x[i+1] - x[i-2]) * x[i-1] - x[i]
+    for i in range(0, n):
+        d[i] = (x[(i+1) % n] - x[i-2]) * x[i-1] - x[i]
 
     d = d + forcing
 
