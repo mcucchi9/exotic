@@ -1,5 +1,4 @@
 import numpy as np
-import xarray as xr
 
 
 def runge_kutta_4(x: list, f: float, fx, hs: float):
