@@ -36,9 +36,7 @@ def lorenz_96(x, forcing):
     d = np.zeros(n)
 
     for i in range(0, n):
-        d[i] = (x[(i+1) % n] - x[i-2]) * x[i-1] - x[i]
-
-    d = d + forcing
+        d[i] = (x[(i+1) % n] - x[i-2]) * x[i-1] - x[i] + forcing
 
     return d
 
