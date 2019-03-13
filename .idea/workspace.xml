@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f5f68f78-3143-4113-82aa-92e2b7c2d047" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/size_tets.py" beforeDir="false" afterPath="$PROJECT_DIR$/size_tets.py" afterDir="false" />
-    </list>
+    <list default="true" id="f5f68f78-3143-4113-82aa-92e2b7c2d047" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -189,7 +187,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="46" width="1611" height="1022" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.10453401" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
