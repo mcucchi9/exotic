@@ -91,7 +91,7 @@ dependencies:
   - testpath=0.4.2=py37_0
   - thrift-cpp=0.11.0=h02b749d_3
   - tk=8.6.8=hbc83047_0
-  - tornado=6.0.1=py37h7b6447c_0
+  - tornado=5.1.1=py37h7b6447c_0
   - traitlets=4.3.2=py37_0
   - wcwidth=0.1.7=py37_0
   - webencodings=0.5.1=py37_1
