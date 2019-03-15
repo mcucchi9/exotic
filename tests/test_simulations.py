@@ -37,10 +37,20 @@ def test_lorenz_96(input_coord, input_forcing, expected):
     assert all([a == b for a, b in zip(result, expected)])
 
 
-def test_energy_SystemState():
+def test_SystemState_repr():
+
+    point = simulation.SystemState(coords=[1, 2, 3], time=2)
+    result = point.__repr__()
+    expected = 'coordinates: [1, 2, 3]\n' \
+               'time: 2'
+
+
+def test_SystemState_energy():
 
     point = simulation.SystemState(coords=[1, 1, 1])
     result = point.energy
     expected = 1.5
 
     assert result == expected
+
+
