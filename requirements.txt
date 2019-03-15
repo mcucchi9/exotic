@@ -12,6 +12,7 @@ libstdcxx-ng=8.2.0=hdf63c60_1
 more-itertools=6.0.0=pypi_0
 numpy-base=1.16.2=py37hde5b4d6_0
 parquet-cpp=1.5.1=3
+pytest-cov=2.6.1=pypi_0
 python-dateutil=2.8.0=py_0
 python-graphviz=0.10.1=py_0
 thrift-cpp=0.11.0=h02b749d_3

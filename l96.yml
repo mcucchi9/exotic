@@ -124,6 +124,7 @@ dependencies:
     - cftime==1.0.3.4
     - click==7.0
     - cloudpickle==0.8.0
+    - coverage==4.5.3
     - dask==1.1.4
     - distributed==1.26.0
     - heapdict==1.0.0
@@ -137,6 +138,7 @@ dependencies:
     - py==1.8.0
     - pyarrow==0.12.1
     - pytest==4.3.0
+    - pytest-cov==2.6.1
     - pyyaml==3.13
     - scipy==1.2.1
     - six==1.12.0
