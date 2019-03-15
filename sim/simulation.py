@@ -26,7 +26,6 @@ def runge_kutta_4(x: list, f: float, fx, hs: float):
 
 
 def lorenz_96(x, forcing):
-
     """
     This method implement Lorenz-96 first-order differential equations system.
     :param x: coordinates at time t0
@@ -132,7 +131,7 @@ class Simulator:
         for _ in np.arange(0, integration_steps):
             self.system_state.coords = self.int_method(self.system_state.coords, self.forcing,
                                                        self.system, self.increment)
-            self.system_state.time = self.system_state.time + self.increment
+            self.system_state.time = round(self.system_state.time + self.increment, 2)
 
 
 class SimulationRunner:
