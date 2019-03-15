@@ -64,7 +64,7 @@ class SystemState:
     def energy(self):
         return np.sum(0.5*(np.square(self.coords)))
 
-    def perturb(self, intensity=0.05):
+    def perturbate(self, intensity=0.05):
 
         random_seed = 1234
 
