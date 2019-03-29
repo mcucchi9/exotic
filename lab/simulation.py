@@ -1,6 +1,7 @@
 import numpy as np
 import netCDF4 as nc
 import os
+import math
 
 
 def runge_kutta_4(x: list, f: float, fx, hs: float):
@@ -44,10 +45,7 @@ def lorenz_96(x, forcing):
 
 class SystemState:
 
-    def __init__(self,
-                 coords=(0, 0, 0),
-                 time=0
-                 ):
+    def __init__(self, coords=(0, 0, 0), time=0):
         """
 
         :param coords: coordinates
@@ -74,18 +72,98 @@ class SystemState:
         self.coords += perturbation
 
 
+class ConstantForcing:
+    """
+    Define constant forcing, equal to **force_intensity**
+    """
+
+    def __init__(
+            self,
+            force_intensity: float = 8,
+    ):
+        """
+        :param force_intensity: intensity of force
+        """
+        self.force_intensity = force_intensity
+
+    def __call__(
+            self,
+            time: float
+    ):
+        return self.force_intensity
+
+
+class DeltaForcing:
+    """
+    Define delta forcing. A constant forcing **force_intensity_base** is applied throughout the whole dynamic,
+    except for t=**activation_time**, at which a force equal to **force_intensity_base** + **force_intensity_delta**
+    is applied.
+    """
+    def __init__(
+            self,
+            activation_time: float,
+            force_intensity_base: float = 8,
+            force_intensity_delta: float = 0.5
+    ):
+        """
+        :param activation_time: time at which force_intensity_delta is activated
+        :param force_intensity_base: base constant forcing
+        :param force_intensity_delta: force spike applied at activation_time
+        """
+        self.activation_time = activation_time
+        self.force_intensity_base = force_intensity_base
+        self.force_intensity_delta = force_intensity_delta
+
+    def __call__(
+            self,
+            time: float
+    ):
+        force = self.force_intensity_base + self.force_intensity_delta*math.isclose(time, self.activation_time)
+        return force
+
+
+class StepForcing:
+    """
+    Define step forcing. A constant forcing **force_intensity_base** is applied till before **activation_time**,
+    while from t=**activation_time** a force equal to **force_intensity_base** + **force_intensity_delta**
+    is applied.
+    """
+    def __init__(
+            self,
+            activation_time: float,
+            force_intensity_base: float = 8,
+            force_intensity_delta: float = 0.5
+    ):
+        """
+        :param activation_time: time at which force_intensity_delta is activated
+        :param force_intensity_base: base constant forcing
+        :param force_intensity_delta: force spike applied at activation_time
+        """
+        self.activation_time = activation_time
+        self.force_intensity_base = force_intensity_base
+        self.force_intensity_delta = force_intensity_delta
+
+    def __call__(
+            self,
+            time: float
+    ):
+        force = self.force_intensity_base + self.force_intensity_delta*(time >= self.activation_time)
+        return force
+
+
 class Simulator:
     """
     Integrate point and system information,
     """
 
-    def __init__(self,
-                 system=lorenz_96,
-                 int_method=runge_kutta_4,
-                 system_state=SystemState(),
-                 increment=0.01,
-                 forcing=0
-                 ):
+    def __init__(
+            self,
+            system=lorenz_96,
+            int_method=runge_kutta_4,
+            system_state=SystemState(),
+            increment: float = 0.01,
+            forcing=ConstantForcing()
+    ):
         """
         :param system: first-order differential equations system
         :param int_method: integration method
@@ -108,17 +186,18 @@ class Simulator:
                "forcing: {}\n\n" \
                "--- system state ---\n" \
                "coordinates: {}\n" \
-               "time: {}\n".format(self.system,
-                                   self.int_method,
-                                   self.increment,
-                                   self.forcing,
-                                   self.system_state.coords,
-                                   self.system_state.time
-                                   )
+               "time: {}\n".format(
+            self.system,
+            self.int_method,
+            self.increment,
+            self.forcing,
+            self.system_state.coords,
+            self.system_state.time
+        )
 
     def integrate(self, integration_time=None):
         """
-        Evolve the state of system_state, which automatically update the state of point.
+        Evolve the state of system_state till **integration_time**, which automatically update the state of point.
 
         :param integration_time: total time of integration. If None, integrate to the next time step.
         :return: None
@@ -129,22 +208,45 @@ class Simulator:
         integration_steps = int(integration_time/self.increment)
 
         for _ in np.arange(0, integration_steps):
-            self.system_state.coords = self.int_method(self.system_state.coords, self.forcing,
-                                                       self.system, self.increment)
+            self.system_state.coords = self.int_method(
+                self.system_state.coords,
+                self.forcing(self.system_state.time),
+                self.system,
+                self.increment
+            )
             self.system_state.time = round(self.system_state.time + self.increment, 2)
+
+    def integrate_one_step(self):
+        """
+        Evolve the state of system_state till the next time step, which automatically update the state of point.
+
+        :return: None
+        """
+
+        self.system_state.coords = self.int_method(
+            self.system_state.coords,
+            self.forcing(self.system_state.time),
+            self.system,
+            self.increment
+        )
+        self.system_state.time = round(self.system_state.time + self.increment, 2)
 
 
 class SimulationRunner:
 
-    def __init__(self,
-                 simulator: Simulator,
-                 integration_time: int,
-                 chunk_length: int,
-                 out_file: str):
+    def __init__(
+            self,
+            out_file: str,
+            simulator: Simulator = Simulator(),
+            integration_time: int = 10000,
+            chunk_length: int = 1000,
+            write_all: bool = False
+    ):
         """
         :param simulator: Simulator() instance
         :param integration_time: total time of integration
         :param chunk_length: length of each chunk (computed before saving to file), in terms of integration steps
+        :param write_all: if True, write data from all nodes. If False, write data only from node 0
         :param out_file: path to output file
         :return
         """
@@ -154,20 +256,30 @@ class SimulationRunner:
         self.out_file = out_file
         self.integration_steps = int(self.integration_time / simulator.increment)
         self.chunks = int(self.integration_steps / self.chunk_length)
+        self.write_all = write_all
 
-    def __init_netcdf(self,
-                      dataset):
+    def __init_netcdf(self, dataset):
 
         dim = len(self.simulator.system_state.coords)
 
-        dataset.createDimension('node', dim)
-        dataset.createDimension('time', None)
+        if self.write_all:
+            dataset.createDimension('node', dim)
+            dataset.createDimension('time', None)
 
-        times = dataset.createVariable('time', np.float64, ('time',))
-        nodes = dataset.createVariable('node', np.int32, ('node',))
+            times = dataset.createVariable('time', np.float64, ('time',))
+            nodes = dataset.createVariable('node', np.int32, ('node',))
 
-        var = dataset.createVariable('var', np.float32, ('time', 'node'))
-        nodes[:] = np.arange(0, dim)
+            var = dataset.createVariable('var', np.float32, ('time', 'node'))
+            nodes[:] = np.arange(0, dim)
+        else:
+            dataset.createDimension('node', 1)
+            dataset.createDimension('time', None)
+
+            times = dataset.createVariable('time', np.float64, ('time',))
+            nodes = dataset.createVariable('node', np.int32, ('node',))
+
+            var = dataset.createVariable('var', np.float32, ('time', 'node'))
+            nodes[:] = np.arange(0, 1)
 
         return var, times, dim
 
@@ -189,7 +301,11 @@ class SimulationRunner:
                 for i in np.arange(0, self.chunk_length):
                     data_array[i, :] = self.simulator.system_state.coords
                     t.append(self.simulator.system_state.time)
-                    self.simulator.integrate()
+                    self.simulator.integrate_one_step()
                 # write
-                var[(self.chunk_length * chunk):(self.chunk_length * (chunk + 1)), :] = data_array
+                if self.write_all:
+                    var[(self.chunk_length * chunk):(self.chunk_length * (chunk + 1)), :] = data_array
+                else:
+                    var[(self.chunk_length * chunk):(self.chunk_length * (chunk + 1)), 0] = data_array[:, 0]
                 times[(self.chunk_length * chunk):(self.chunk_length * (chunk + 1))] = t
+
