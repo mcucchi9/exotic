@@ -236,33 +236,19 @@ class SimulationRunner:
 
     def __init__(
             self,
-            out_file: str,
             simulator: Simulator = Simulator(),
-            integration_time: int = 10000,
-            chunk_length: int = 1000,
-            write_all: bool = False
     ):
         """
         :param simulator: Simulator() instance
-        :param integration_time: total time of integration
-        :param chunk_length: length of each chunk (computed before saving to file), in terms of integration steps
-        :param write_all: if True, write data from all nodes. If False, write data only from node 0
-        :param out_file: path to output file
         :return
         """
         self.simulator = simulator
-        self.integration_time = integration_time
-        self.chunk_length = chunk_length
-        self.out_file = out_file
-        self.integration_steps = int(self.integration_time / simulator.increment)
-        self.chunks = int(self.integration_steps / self.chunk_length)
-        self.write_all = write_all
 
-    def __init_netcdf(self, dataset):
+    def __init_netcdf(self, dataset, write_all):
 
         dim = len(self.simulator.system_state.coords)
 
-        if self.write_all:
+        if write_all:
             dataset.createDimension('node', dim)
             dataset.createDimension('time', None)
 
@@ -283,29 +269,46 @@ class SimulationRunner:
 
         return var, times, dim
 
-    def run(self):
+    def run(
+            self,
+            out_file: str,
+            integration_time: int = 10000,
+            chunk_length: int = 1000,
+            write_all: bool = False,
+    ):
+        """
+        Run the simulation
+        :param out_file: path to output file
+        :param integration_time:
+        :param chunk_length:
+        :param write_all:
+        :return:
+        """
+
+        integration_steps = int(integration_time / self.simulator.increment)
+        chunks = int(integration_steps / chunk_length)
 
         # remove out file if already exists
-        if os.path.exists(self.out_file):
-            os.remove(self.out_file)
+        if os.path.exists(out_file):
+            os.remove(out_file)
 
-        with nc.Dataset(self.out_file, 'w') as dataset:
+        with nc.Dataset(out_file, 'w') as dataset:
 
-            var, times, dim = self.__init_netcdf(dataset)
+            var, times, dim = self.__init_netcdf(dataset, write_all)
 
-            for chunk in np.arange(0, self.chunks):
+            for chunk in np.arange(0, chunks):
                 # initialize chunk numpy array
                 t = []
-                data_array = np.empty((self.chunk_length, dim))
+                data_array = np.empty((chunk_length, dim))
                 # simulate one chunk
-                for i in np.arange(0, self.chunk_length):
+                for i in np.arange(0, chunk_length):
                     data_array[i, :] = self.simulator.system_state.coords
                     t.append(self.simulator.system_state.time)
                     self.simulator.integrate_one_step()
                 # write
-                if self.write_all:
-                    var[(self.chunk_length * chunk):(self.chunk_length * (chunk + 1)), :] = data_array
+                if write_all:
+                    var[(chunk_length * chunk):(chunk_length * (chunk + 1)), :] = data_array
                 else:
-                    var[(self.chunk_length * chunk):(self.chunk_length * (chunk + 1)), 0] = data_array[:, 0]
-                times[(self.chunk_length * chunk):(self.chunk_length * (chunk + 1))] = t
+                    var[(chunk_length * chunk):(chunk_length * (chunk + 1)), 0] = data_array[:, 0]
+                times[(chunk_length * chunk):(chunk_length * (chunk + 1))] = t
 
