@@ -274,14 +274,14 @@ class SimulationRunner:
             out_file: str,
             integration_time: int = 10000,
             chunk_length: int = 1000,
-            write_all: bool = False,
+            write_all_every: int = 0,
     ):
         """
         Run the simulation
         :param out_file: path to output file
         :param integration_time:
         :param chunk_length:
-        :param write_all:
+        :param write_all_every:
         :return:
         """
 
@@ -294,7 +294,7 @@ class SimulationRunner:
 
         with nc.Dataset(out_file, 'w') as dataset:
 
-            var, times, dim = self.__init_netcdf(dataset, write_all)
+            var, times, dim = self.__init_netcdf(dataset, write_all_every)
 
             for chunk in np.arange(0, chunks):
                 # initialize chunk numpy array
@@ -306,7 +306,7 @@ class SimulationRunner:
                     t.append(self.simulator.system_state.time)
                     self.simulator.integrate_one_step()
                 # write
-                if write_all:
+                if write_all_every:
                     var[(chunk_length * chunk):(chunk_length * (chunk + 1)), :] = data_array
                 else:
                     var[(chunk_length * chunk):(chunk_length * (chunk + 1)), 0] = data_array[:, 0]
