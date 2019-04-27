@@ -16,6 +16,7 @@ pytest-cov=2.6.1=pypi_0
 python-dateutil=2.8.0=py_0
 python-graphviz=0.10.1=py_0
 thrift-cpp=0.11.0=h02b749d_3
+websocket-client=0.54.0=pypi_0
 xorg-kbproto=1.0.7=h14c3975_1002
 xorg-libice=1.0.9=h14c3975_1004
 xorg-libsm=1.2.2=h470a237_5
