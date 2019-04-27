@@ -1,6 +1,6 @@
 import pytest
-from sim import simulation
 import numpy as np
+from lab import simulation
 
 
 def toy_system(x, forcing):
