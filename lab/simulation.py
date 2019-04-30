@@ -153,7 +153,7 @@ class StepForcing:
 
 class Simulator:
     """
-    Integrate point and system information,
+    Integrate point and system information, include functionality to integrate trajectory.
     """
 
     def __init__(
@@ -244,11 +244,20 @@ class SimulationRunner:
         """
         self.simulator = simulator
 
-    def __init_netcdf(self, dataset, write_all):
+    def __init_netcdf(self,
+                      dataset: nc.Dataset,
+                      write_all_nodes: bool,
+                      ):
+        """
+        Initialize netcdf to write output.
+        :param dataset: netCDF dataset
+        :param write_all_nodes: if True, write all nodes; else, write only node 0.
+        :return:
+        """
 
         dim = len(self.simulator.system_state.coords)
 
-        if write_all:
+        if write_all_nodes:
             dataset.createDimension('node', dim)
             dataset.createDimension('time', None)
 
@@ -274,14 +283,15 @@ class SimulationRunner:
             out_file: str,
             integration_time: int = 10000,
             chunk_length: int = 1000,
+            write_all_nodes: bool = False,
             write_all_every: int = 0,
     ):
         """
         Run the simulation
         :param out_file: path to output file
-        :param integration_time:
-        :param chunk_length:
-        :param write_all_every:
+        :param integration_time: total time of integration
+        :param chunk_length: integration steps after which write on netcdf and free memory.
+        :param write_all_nodes: if True, write all nodes; else, write only node 0.
         :return:
         """
 
@@ -294,7 +304,7 @@ class SimulationRunner:
 
         with nc.Dataset(out_file, 'w') as dataset:
 
-            var, times, dim = self.__init_netcdf(dataset, write_all_every)
+            var, times, dim = self.__init_netcdf(dataset, write_all_nodes, write_all_every)
 
             for chunk in np.arange(0, chunks):
                 # initialize chunk numpy array
