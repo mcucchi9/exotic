@@ -244,46 +244,67 @@ class SimulationRunner:
         """
         self.simulator = simulator
 
+    def __create_dataset(self,
+                         outfile_name: str,
+                         nodes: int,
+                         ):
+        """
+        This method create writeable netcdf dataset
+        :param outfile_name: name of the file
+        :return:
+        """
+        dataset = nc.Dataset(outfile_name, 'w')
+
+        dataset.createDimension('node', nodes)
+        dataset.createDimension('time', None)
+
+        dataset.createVariable('time', np.float64, ('time',))
+        dataset.createVariable('node', np.int32, ('node',))
+
+        dataset.createVariable('var', np.float32, ('time', 'node'))
+
+        dataset.variables['node'][:] = np.arange(0, nodes)
+
+        return dataset
+
     def __init_netcdf(self,
-                      dataset: nc.Dataset,
-                      write_all_nodes: bool,
+                      write_all_every: float = 0,
                       ):
         """
         Initialize netcdf to write output.
-        :param dataset: netCDF dataset
-        :param write_all_nodes: if True, write all nodes; else, write only node 0.
+        :param write_all_every: if 0, write only node 0; else, write all every **write_all_every** iterations.
         :return:
         """
 
-        dim = len(self.simulator.system_state.coords)
+        if write_all_every == 0:
 
-        if write_all_nodes:
-            dataset.createDimension('node', dim)
-            dataset.createDimension('time', None)
+            # write only one node
 
-            times = dataset.createVariable('time', np.float64, ('time',))
-            nodes = dataset.createVariable('node', np.int32, ('node',))
+            outfile_name = ''
+            dataset = self.__create_dataset(outfile_name, 1)
 
-            var = dataset.createVariable('var', np.float32, ('time', 'node'))
-            nodes[:] = np.arange(0, dim)
+            dataset = [dataset]
+
         else:
-            dataset.createDimension('node', 1)
-            dataset.createDimension('time', None)
 
-            times = dataset.createVariable('time', np.float64, ('time',))
-            nodes = dataset.createVariable('node', np.int32, ('node',))
+            # write always one node and all nodes every time **time** is multiple of **write_all_every**
+            # (need two output datasets)
 
-            var = dataset.createVariable('var', np.float32, ('time', 'node'))
-            nodes[:] = np.arange(0, 1)
+            dim = len(self.simulator.system_state.coords)
+            outfile_name_all = ''
+            dataset_all = self.__create_dataset(outfile_name_all, dim)
+            outfile_name_one = ''
+            dataset_one = self.__create_dataset(outfile_name_one, 1)
 
-        return var, times, dim
+            dataset = [dataset_one, dataset_all]
+
+        return dataset
 
     def run(
             self,
             out_file: str,
             integration_time: int = 10000,
             chunk_length: int = 1000,
-            write_all_nodes: bool = False,
             write_all_every: int = 0,
     ):
         """
@@ -291,7 +312,8 @@ class SimulationRunner:
         :param out_file: path to output file
         :param integration_time: total time of integration
         :param chunk_length: integration steps after which write on netcdf and free memory.
-        :param write_all_nodes: if True, write all nodes; else, write only node 0.
+        :param write_all_every: if 0, write only node 0; else, write all nodes when time is multiple of
+        **write_all_every**.
         :return:
         """
 
@@ -302,23 +324,24 @@ class SimulationRunner:
         if os.path.exists(out_file):
             os.remove(out_file)
 
-        with nc.Dataset(out_file, 'w') as dataset:
+        dataset = self.__init_netcdf(write_all_every)
 
-            var, times, dim = self.__init_netcdf(dataset, write_all_nodes, write_all_every)
+        for chunk in np.arange(0, chunks):
+            dim = len(self.simulator.system_state.coords)
+            t = []
+            data_array = np.empty((chunk_length, dim))
+            # simulate one chunk
+            for i in np.arange(0, chunk_length):
+                data_array[i, :] = self.simulator.system_state.coords
+                t.append(self.simulator.system_state.time)
+                self.simulator.integrate_one_step()
+            # write
+            dataset[0].variables['var'][(chunk_length * chunk):(chunk_length * (chunk + 1)), 0] = data_array[:, 0]
+            dataset[0].variables['time'][(chunk_length * chunk):(chunk_length * (chunk + 1))] = t
 
-            for chunk in np.arange(0, chunks):
-                # initialize chunk numpy array
-                t = []
-                data_array = np.empty((chunk_length, dim))
-                # simulate one chunk
-                for i in np.arange(0, chunk_length):
-                    data_array[i, :] = self.simulator.system_state.coords
-                    t.append(self.simulator.system_state.time)
-                    self.simulator.integrate_one_step()
-                # write
-                if write_all_every:
-                    var[(chunk_length * chunk):(chunk_length * (chunk + 1)), :] = data_array
-                else:
-                    var[(chunk_length * chunk):(chunk_length * (chunk + 1)), 0] = data_array[:, 0]
-                times[(chunk_length * chunk):(chunk_length * (chunk + 1))] = t
-
+            if write_all_every:
+                indices = [i for i in range(0, chunk_length, write_all_every)]
+                data_array_all = data_array_all[indices, :]
+                t_all = t[indices]
+                dataset[1].variables['var'][0][(len(indices) * chunk):(len(indices) * (chunk + 1)), :] = data_array_all
+                dataset[1].variables['time'][(len(indices) * chunk):(len(indices) * (chunk + 1))] = t_all
