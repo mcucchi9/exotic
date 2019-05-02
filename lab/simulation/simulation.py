@@ -6,6 +6,7 @@ from . import forcings
 from . import integrators
 from . import systems
 
+DATA_BASE_PATH = '../../../../data/'
 
 class SystemState:
 
@@ -75,7 +76,7 @@ class Simulator:
             self.system.long_name,
             self.int_method.long_name,
             self.increment,
-            self.forcing,
+            self.forcing.long_name,
             self.system_state.coords,
             self.system_state.time
         )
@@ -129,10 +130,11 @@ class SimulationRunner:
         """
         self.simulator = simulator
 
-    def __create_dataset(self,
-                         outfile_name: str,
-                         nodes: int,
-                         ):
+    def __create_dataset(
+            self,
+            outfile_name: str,
+            nodes: int,
+    ):
         """
         This method create writeable netcdf dataset
         :param outfile_name: name of the file
@@ -152,10 +154,30 @@ class SimulationRunner:
 
         return dataset
 
-    def __init_netcdf(self,
-                      out_file: str,
-                      write_all_every: float = 0,
-                      ):
+    def __create_outfile_name(
+            self,
+            write_all_every
+    ):
+
+        outfile_name_base = 'sim_{system}_{integrator}_{forcing}'.format(
+            system=self.simulator.system.short_name,
+            integrator=self.simulator.int_method.short_name,
+            forcing=self.simulator.forcing.short_name
+        )
+        outfile_name_one = '{}_one.nc'.format(outfile_name_base)
+        if write_all_every:
+            outfile_name_all = '{}_all.nc'.format(outfile_name_base)
+            outfile_name = [outfile_name_one, outfile_name_all]
+        else:
+            outfile_name = [outfile_name_one]
+
+        return outfile_name
+
+    def __init_netcdf(
+            self,
+            outfile_name: list,
+            write_all_every: float = 0,
+    ):
         """
         Initialize netcdf to write output.
         :param write_all_every: if 0, write only node 0; else, write all every **write_all_every** iterations.
@@ -166,8 +188,7 @@ class SimulationRunner:
 
             # write only one node
 
-            outfile_name = out_file
-            dataset = self.__create_dataset(outfile_name, 1)
+            dataset = self.__create_dataset(outfile_name[0], 1)
 
             dataset = [dataset]
 
@@ -177,10 +198,8 @@ class SimulationRunner:
             # (need two output datasets)
 
             dim = len(self.simulator.system_state.coords)
-            outfile_name_all = 'all_' + out_file
-            dataset_all = self.__create_dataset(outfile_name_all, dim)
-            outfile_name_one = out_file
-            dataset_one = self.__create_dataset(outfile_name_one, 1)
+            dataset_one = self.__create_dataset(outfile_name[0], 1)
+            dataset_all = self.__create_dataset(outfile_name[1], dim)
 
             dataset = [dataset_one, dataset_all]
 
@@ -188,10 +207,10 @@ class SimulationRunner:
 
     def run(
             self,
-            out_file: str,
             integration_time: int = 10000,
             chunk_length: int = 1000,
             write_all_every: int = 0,
+            data_base_path: str = DATA_BASE_PATH
     ):
         """
         Run the simulation
@@ -200,21 +219,24 @@ class SimulationRunner:
         :param chunk_length: integration steps after which write on netcdf and free memory.
         :param write_all_every: if 0, write only node 0; else, write all nodes when time is multiple of
         **write_all_every**.
+        :param data_base_path: base path were data are going to be saved
         :return:
         """
 
         integration_steps = int(integration_time / self.simulator.increment)
         chunks = int(integration_steps / chunk_length)
 
-        # remove out file if already exists
-        if os.path.exists(out_file):
-            os.remove(out_file)
+        outfiles = self.__create_outfile_name(write_all_every)
+        outfiles = [os.path.join(data_base_path, outfile) for outfile in outfiles]
 
-        print(out_file)
+        # remove out file if already exists
+        for file_path in outfiles:
+            if os.path.exists(file_path):
+                os.remove(file_path)
 
         dataset = self.__init_netcdf(
-            out_file=out_file,
-            write_all_every=write_all_every
+            write_all_every=write_all_every,
+            outfile_name=outfiles
         )
 
         for chunk in np.arange(0, chunks):
@@ -237,4 +259,5 @@ class SimulationRunner:
                 dataset[1].variables['var'][0][(len(indices) * chunk):(len(indices) * (chunk + 1)), :] = data_array_all
                 dataset[1].variables['time'][(len(indices) * chunk):(len(indices) * (chunk + 1))] = t_all
 
-        dataset[0].close()
+        for d in dataset:
+            d.close()
