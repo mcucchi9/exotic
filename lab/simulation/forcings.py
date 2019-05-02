@@ -1,6 +1,18 @@
 import math
 
-class ConstantForcing:
+
+class Forcing:
+
+    @property
+    def short_name(self):
+        return self._short_name
+
+    @property
+    def long_name(self):
+        return self._long_name
+
+
+class ConstantForcing(Forcing):
     """
     Define constant forcing, equal to **force_intensity**
     """
@@ -14,22 +26,17 @@ class ConstantForcing:
         """
         self.force_intensity = force_intensity
 
+        self._short_name = 'CF_{}'.format(force_intensity)
+        self._long_name = 'Constant Forcing ({})'.format(force_intensity)
+
     def __call__(
             self,
             time: float
     ):
         return self.force_intensity
 
-    @property
-    def short_name(self):
-        return 'CF_{}'.format(self.force_intensity)
 
-    @property
-    def long_name(self):
-        return 'Constant Forcing ({})'.format(self.force_intensity)
-
-
-class DeltaForcing:
+class DeltaForcing(Forcing):
     """
     Define delta forcing. A constant forcing **force_intensity_base** is applied throughout the whole dynamic,
     except for t=**activation_time**, at which a force equal to **force_intensity_base** + **force_intensity_delta**
@@ -50,6 +57,17 @@ class DeltaForcing:
         self.force_intensity_base = force_intensity_base
         self.force_intensity_delta = force_intensity_delta
 
+        self._short_name = 'DF_{}_{}_{}'.format(
+            self.force_intensity_base,
+            self.force_intensity_delta,
+            self.activation_time,
+        )
+        self._long_name = 'Delta Forcing ({}+{} at t={})'.format(
+            self.force_intensity_base,
+            self.force_intensity_delta,
+            self.activation_time,
+        )
+
     def __call__(
             self,
             time: float
@@ -57,24 +75,8 @@ class DeltaForcing:
         force = self.force_intensity_base + self.force_intensity_delta*math.isclose(time, self.activation_time)
         return force
 
-    @property
-    def short_name(self):
-        return 'DF_{}_{}_{}'.format(
-            self.force_intensity_base,
-            self.force_intensity_delta,
-            self.activation_time,
-        )
 
-    @property
-    def long_name(self):
-        return 'Delta Forcing ({}+{} at t={})'.format(
-            self.force_intensity_base,
-            self.force_intensity_delta,
-            self.activation_time,
-        )
-
-
-class StepForcing:
+class StepForcing(Forcing):
     """
     Define step forcing. A constant forcing **force_intensity_base** is applied till before **activation_time**,
     while from t=**activation_time** a force equal to **force_intensity_base** + **force_intensity_delta**
@@ -95,25 +97,20 @@ class StepForcing:
         self.force_intensity_base = force_intensity_base
         self.force_intensity_delta = force_intensity_delta
 
+        self._short_name = 'SF_{}_{}_{}'.format(
+            self.force_intensity_base,
+            self.force_intensity_delta,
+            self.activation_time,
+        )
+        self._long_name = 'Step Forcing ({}+{} at t={})'.format(
+            self.force_intensity_base,
+            self.force_intensity_delta,
+            self.activation_time,
+        )
+
     def __call__(
             self,
             time: float
     ):
         force = self.force_intensity_base + self.force_intensity_delta*(time >= self.activation_time)
         return force
-
-    @property
-    def short_name(self):
-        return 'SF_{}_{}_{}'.format(
-            self.force_intensity_base,
-            self.force_intensity_delta,
-            self.activation_time,
-        )
-
-    @property
-    def long_name(self):
-        return 'Step Forcing ({}+{} at t={})'.format(
-            self.force_intensity_base,
-            self.force_intensity_delta,
-            self.activation_time,
-        )
