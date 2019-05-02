@@ -4,47 +4,7 @@ import os
 
 from . import forcings
 from . import integrators
-
-
-#TODO: REMOVE
-def runge_kutta_4(x: list, f: float, fx, hs: float):
-    """
-    This method implement 4th order Runge-Kutta integration method.
-    :param x: coordinates at time t0
-    :param f: external forcing
-    :param fx: first-order differential equations system.
-    :param hs: time increment (dt)
-    :return: coordinates at time t1 = t0 + hs
-    """
-    k1 = fx(x, f) * hs
-    xk = x + k1 * 0.5
-    k2 = fx(xk, f) * hs
-    xk = x + k2 * 0.5
-    k3 = fx(xk, f) * hs
-    xk = x + k3
-    k4 = fx(xk, f) * hs
-
-    x = x + (k1 + 2 * (k2 + k3) + k4) / 6
-
-    return x
-
-
-#TODO: REMOVE
-def lorenz_96(x, forcing):
-    """
-    This method implement Lorenz-96 first-order differential equations system.
-    :param x: coordinates at time t0
-    :param forcing: (constant) forcing term
-    :return: state derivatives at time t0
-    """
-    n = len(x)
-
-    d = np.zeros(n)
-
-    for i in range(0, n):
-        d[i] = (x[(i+1) % n] - x[i-2]) * x[i-1] - x[i] + forcing
-
-    return d
+from . import systems
 
 
 class SystemState:
@@ -83,7 +43,7 @@ class Simulator:
 
     def __init__(
             self,
-            system=lorenz_96,
+            system=systems.Lorenz96(),
             int_method=integrators.RungeKutta4(),
             system_state=SystemState(),
             increment: float = 0.01,
@@ -112,8 +72,8 @@ class Simulator:
                "--- system state ---\n" \
                "coordinates: {}\n" \
                "time: {}\n".format(
-            self.system,
-            self.int_method,
+            self.system.long_name,
+            self.int_method.long_name,
             self.increment,
             self.forcing,
             self.system_state.coords,
@@ -193,6 +153,7 @@ class SimulationRunner:
         return dataset
 
     def __init_netcdf(self,
+                      out_file: str,
                       write_all_every: float = 0,
                       ):
         """
@@ -205,7 +166,7 @@ class SimulationRunner:
 
             # write only one node
 
-            #outfile_name = ''
+            outfile_name = out_file
             dataset = self.__create_dataset(outfile_name, 1)
 
             dataset = [dataset]
@@ -216,9 +177,9 @@ class SimulationRunner:
             # (need two output datasets)
 
             dim = len(self.simulator.system_state.coords)
-            #outfile_name_all = ''
+            outfile_name_all = 'all_' + out_file
             dataset_all = self.__create_dataset(outfile_name_all, dim)
-            #outfile_name_one = ''
+            outfile_name_one = out_file
             dataset_one = self.__create_dataset(outfile_name_one, 1)
 
             dataset = [dataset_one, dataset_all]
@@ -249,7 +210,12 @@ class SimulationRunner:
         if os.path.exists(out_file):
             os.remove(out_file)
 
-        dataset = self.__init_netcdf(write_all_every)
+        print(out_file)
+
+        dataset = self.__init_netcdf(
+            out_file=out_file,
+            write_all_every=write_all_every
+        )
 
         for chunk in np.arange(0, chunks):
             dim = len(self.simulator.system_state.coords)
@@ -270,3 +236,5 @@ class SimulationRunner:
                 t_all = t[indices]
                 dataset[1].variables['var'][0][(len(indices) * chunk):(len(indices) * (chunk + 1)), :] = data_array_all
                 dataset[1].variables['time'][(len(indices) * chunk):(len(indices) * (chunk + 1))] = t_all
+
+        dataset[0].close()
