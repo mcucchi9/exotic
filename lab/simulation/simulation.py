@@ -1,12 +1,14 @@
 import numpy as np
 import netCDF4 as nc
 import os
+import datetime
 
 from . import forcings
 from . import integrators
 from . import systems
 
 DATA_BASE_PATH = '../../../../data/'
+
 
 class SystemState:
 
@@ -140,7 +142,7 @@ class SimulationRunner:
         :param outfile_name: name of the file
         :return:
         """
-        dataset = nc.Dataset(outfile_name, 'w')
+        dataset = nc.Dataset(outfile_name, 'w', format='NETCDF4_CLASSIC')
 
         dataset.createDimension('node', nodes)
         dataset.createDimension('time', None)
@@ -148,9 +150,15 @@ class SimulationRunner:
         dataset.createVariable('time', np.float64, ('time',))
         dataset.createVariable('node', np.int32, ('node',))
 
-        dataset.createVariable('var', np.float32, ('time', 'node'))
+        var = dataset.createVariable('var', np.float32, ('time', 'node'))
 
         dataset.variables['node'][:] = np.arange(0, nodes)
+
+        # Attributes
+        var.system = self.simulator.system.long_name
+        var.integration_method = self.simulator.int_method.long_name
+        var.forcing = self.simulator.forcing.long_name
+        var.created = str(datetime.datetime.now())
 
         return dataset
 
@@ -214,7 +222,6 @@ class SimulationRunner:
     ):
         """
         Run the simulation
-        :param out_file: path to output file
         :param integration_time: total time of integration
         :param chunk_length: integration steps after which write on netcdf and free memory.
         :param write_all_every: if 0, write only node 0; else, write all nodes when time is multiple of
@@ -260,4 +267,5 @@ class SimulationRunner:
                 dataset[1].variables['time'][(len(indices) * chunk):(len(indices) * (chunk + 1))] = t_all
 
         for d in dataset:
+            print(d)
             d.close()
