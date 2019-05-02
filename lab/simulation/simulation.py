@@ -168,7 +168,7 @@ class SimulationRunner:
             custom_suffix
     ):
 
-        outfile_name_base = 'sim_{system}_{integrator}_{forcing}'.format(
+        outfile_name_base = 'sim/{system}/{integrator}/{forcing}/sim_{system}_{integrator}_{forcing}'.format(
             system=self.simulator.system.short_name,
             integrator=self.simulator.int_method.short_name,
             forcing=self.simulator.forcing.short_name
@@ -240,6 +240,10 @@ class SimulationRunner:
 
         outfiles = self.__create_outfile_name(write_all_every, custom_suffix)
         outfiles = [os.path.join(data_base_path, outfile) for outfile in outfiles]
+
+        # check if dir exists. if not, create it.
+
+        
 
         # remove out file if already exists
         for file_path in outfiles:
