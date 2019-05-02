@@ -273,3 +273,5 @@ class SimulationRunner:
 
         for d in dataset:
             d.close()
+
+        return outfiles
