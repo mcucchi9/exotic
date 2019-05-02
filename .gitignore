@@ -5,3 +5,4 @@ htmlcov
 .coverage
 Untitled.ipynb
 .cache
+set_environ_var.sh
