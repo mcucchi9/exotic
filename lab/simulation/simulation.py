@@ -254,9 +254,9 @@ class SimulationRunner:
 
             if write_all_every:
                 indices = [i for i in range(0, chunk_length, write_all_every)]
-                data_array_all = data_array_all[indices, :]
-                t_all = t[indices]
-                dataset[1].variables['var'][0][(len(indices) * chunk):(len(indices) * (chunk + 1)), :] = data_array_all
+                data_array_all = data_array[indices, :]
+                t_all = [t[i] for i in indices]
+                dataset[1].variables['var'][(len(indices) * chunk):(len(indices) * (chunk + 1)), :] = data_array_all
                 dataset[1].variables['time'][(len(indices) * chunk):(len(indices) * (chunk + 1))] = t_all
 
         for d in dataset:
