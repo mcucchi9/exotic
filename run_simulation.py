@@ -7,7 +7,7 @@ import lab.simulation.integrators as integrators
 
 sys.path.append('../')
 
-DATA_PATH = '../../data/'
+DATA_PATH = '../data/'
 
 point_const = sim.SystemState(coords=[8]*32)
 point_const.perturbate()
