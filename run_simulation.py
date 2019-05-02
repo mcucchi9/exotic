@@ -41,7 +41,7 @@ outfiles = runner.run(
 for outfile in outfiles:
     sc.api_call(
         "chat.postMessage",
-        channel="#general",
+        channel="#l96lrt",
         text="Simulation {} done!".format(outfile)
     )
 
