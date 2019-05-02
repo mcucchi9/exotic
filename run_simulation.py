@@ -32,9 +32,9 @@ runner = sim.SimulationRunner(
 )
 
 outfiles = runner.run(
-    integration_time=10000,
+    integration_time=1000000,
     chunk_length=10000,
-    write_all_every=1000,
+    write_all_every=100,
     data_base_path=DATA_PATH
 )
 
