@@ -2,6 +2,9 @@ import numpy as np
 import netCDF4 as nc
 import os
 
+from . import forcings
+from . import integrators
+
 
 #TODO: REMOVE
 def runge_kutta_4(x: list, f: float, fx, hs: float):
@@ -81,10 +84,10 @@ class Simulator:
     def __init__(
             self,
             system=lorenz_96,
-            int_method=runge_kutta_4,
+            int_method=integrators.RungeKutta4(),
             system_state=SystemState(),
             increment: float = 0.01,
-            forcing=ConstantForcing()
+            forcing=forcings.ConstantForcing()
     ):
         """
         :param system: first-order differential equations system
