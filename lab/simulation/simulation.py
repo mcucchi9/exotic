@@ -164,7 +164,8 @@ class SimulationRunner:
 
     def __create_outfile_name(
             self,
-            write_all_every
+            write_all_every,
+            custom_suffix
     ):
 
         outfile_name_base = 'sim_{system}_{integrator}_{forcing}'.format(
@@ -172,9 +173,9 @@ class SimulationRunner:
             integrator=self.simulator.int_method.short_name,
             forcing=self.simulator.forcing.short_name
         )
-        outfile_name_one = '{}_one.nc'.format(outfile_name_base)
+        outfile_name_one = '{}_one_{}.nc'.format(outfile_name_base, custom_suffix)
         if write_all_every:
-            outfile_name_all = '{}_all.nc'.format(outfile_name_base)
+            outfile_name_all = '{}_all_{}.nc'.format(outfile_name_base, custom_suffix)
             outfile_name = [outfile_name_one, outfile_name_all]
         else:
             outfile_name = [outfile_name_one]
@@ -217,8 +218,9 @@ class SimulationRunner:
             self,
             integration_time: int = 10000,
             chunk_length: int = 1000,
-            write_all_every: int = 0,
-            data_base_path: str = DATA_BASE_PATH
+            write_all_every: float = 0,
+            data_base_path: str = DATA_BASE_PATH,
+            custom_suffix: str = '00000',
     ):
         """
         Run the simulation
@@ -233,7 +235,10 @@ class SimulationRunner:
         integration_steps = int(integration_time / self.simulator.increment)
         chunks = int(integration_steps / chunk_length)
 
-        outfiles = self.__create_outfile_name(write_all_every)
+        # write_all_every from time to iterations
+        write_all_every = int(write_all_every / self.simulator.increment)
+
+        outfiles = self.__create_outfile_name(write_all_every, custom_suffix)
         outfiles = [os.path.join(data_base_path, outfile) for outfile in outfiles]
 
         # remove out file if already exists
@@ -267,5 +272,4 @@ class SimulationRunner:
                 dataset[1].variables['time'][(len(indices) * chunk):(len(indices) * (chunk + 1))] = t_all
 
         for d in dataset:
-            print(d)
             d.close()
