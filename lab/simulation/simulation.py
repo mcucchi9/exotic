@@ -4,6 +4,51 @@ import os
 import math
 
 
+class IntegrationMethod:
+
+    # def __init__(self, x, f, fx, hs):
+    #     """
+    #     Initialize integration method
+    #     :param x: coordinates at time t0
+    #     :param f: external forcing
+    #     :param fx: first-order differential equations system.
+    #     :param hs: time increment (dt)
+    #     """
+    #     self.x = x
+    #     self.f = f
+    #     self.fx = fx
+    #     self.hs = hs
+
+    pass
+
+class RungeKutta4(IntegrationMethod):
+
+    @property
+    def short_name(self):
+        return 'rk4'
+
+    @property
+    def long_name(self):
+        return 'Runge-Kutta 4th order'
+
+    def __call__(self, x, f, fx, hs):
+        """
+        This method implement 4th order Runge-Kutta integration method.
+        :return: coordinates at time t1 = t0 + hs
+        """
+        k1 = fx(x, f) * hs
+        xk = x + k1 * 0.5
+        k2 = fx(xk, f) * hs
+        xk = x + k2 * 0.5
+        k3 = fx(xk, f) * hs
+        xk = x + k3
+        k4 = fx(xk, f) * hs
+
+        x = x + (k1 + 2 * (k2 + k3) + k4) / 6
+
+        return x
+
+
 def runge_kutta_4(x: list, f: float, fx, hs: float):
     """
     This method implement 4th order Runge-Kutta integration method.
@@ -24,6 +69,50 @@ def runge_kutta_4(x: list, f: float, fx, hs: float):
     x = x + (k1 + 2 * (k2 + k3) + k4) / 6
 
     return x
+
+class System:
+
+    # def __init__(self, x, f, fx, hs):
+    #     """
+    #     Initialize integration method
+    #     :param x: coordinates at time t0
+    #     :param f: external forcing
+    #     :param fx: first-order differential equations system.
+    #     :param hs: time increment (dt)
+    #     """
+    #     self.x = x
+    #     self.f = f
+    #     self.fx = fx
+    #     self.hs = hs
+
+    pass
+
+
+class Lorenz96(System):
+
+    @property
+    def short_name(self):
+        return 'lorenz96'
+
+    @property
+    def long_name(self):
+        return 'Lorenz 96'
+
+    def __call__(self, x, forcing):
+        """
+        This method implement Lorenz-96 first-order differential equations system.
+        :param x: coordinates at time t0
+        :param forcing: (constant) forcing term
+        :return: state derivatives at time t0
+        """
+        n = len(x)
+
+        d = np.zeros(n)
+
+        for i in range(0, n):
+            d[i] = (x[(i + 1) % n] - x[i - 2]) * x[i - 1] - x[i] + forcing
+
+        return d
 
 
 def lorenz_96(x, forcing):
@@ -280,7 +369,7 @@ class SimulationRunner:
 
             # write only one node
 
-            outfile_name = ''
+            #outfile_name = ''
             dataset = self.__create_dataset(outfile_name, 1)
 
             dataset = [dataset]
@@ -291,9 +380,9 @@ class SimulationRunner:
             # (need two output datasets)
 
             dim = len(self.simulator.system_state.coords)
-            outfile_name_all = ''
+            #outfile_name_all = ''
             dataset_all = self.__create_dataset(outfile_name_all, dim)
-            outfile_name_one = ''
+            #outfile_name_one = ''
             dataset_one = self.__create_dataset(outfile_name_one, 1)
 
             dataset = [dataset_one, dataset_all]
