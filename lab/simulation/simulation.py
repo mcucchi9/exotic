@@ -136,6 +136,7 @@ class SimulationRunner:
             self,
             outfile_name: str,
             nodes: int,
+            custom_attrs: dict = {},
     ):
         """
         This method create writeable netcdf dataset
@@ -159,6 +160,9 @@ class SimulationRunner:
         var.integration_method = self.simulator.int_method.long_name
         var.forcing = self.simulator.forcing.long_name
         var.created = str(datetime.datetime.now())
+
+        for attr_key, attr_value in custom_attrs.items():
+            var.setncattr(attr_key, attr_value)
 
         return dataset
 
@@ -186,6 +190,7 @@ class SimulationRunner:
             self,
             outfile_name: list,
             write_all_every: float = 0,
+            custom_attrs: dict = {},
     ):
         """
         Initialize netcdf to write output.
@@ -197,7 +202,7 @@ class SimulationRunner:
 
             # write only one node
 
-            dataset = self.__create_dataset(outfile_name[0], 1)
+            dataset = self.__create_dataset(outfile_name[0], 1, custom_attrs)
 
             dataset = [dataset]
 
@@ -207,8 +212,8 @@ class SimulationRunner:
             # (need two output datasets)
 
             dim = len(self.simulator.system_state.coords)
-            dataset_one = self.__create_dataset(outfile_name[0], 1)
-            dataset_all = self.__create_dataset(outfile_name[1], dim)
+            dataset_one = self.__create_dataset(outfile_name[0], 1, custom_attrs)
+            dataset_all = self.__create_dataset(outfile_name[1], dim, custom_attrs)
 
             dataset = [dataset_one, dataset_all]
 
@@ -221,6 +226,7 @@ class SimulationRunner:
             write_all_every: float = 0,
             data_base_path: str = DATA_BASE_PATH,
             custom_suffix: str = '00000',
+            custom_attrs: dict = {},
     ):
         """
         Run the simulation
@@ -229,6 +235,8 @@ class SimulationRunner:
         :param write_all_every: if 0, write only node 0; else, write all nodes when time is multiple of
         **write_all_every**.
         :param data_base_path: base path were data are going to be saved
+        :param custom_suffix: suffix to the out file name
+        :param custom_attrs: attributes to be added to the netcdf
         :return:
         """
 
@@ -253,7 +261,8 @@ class SimulationRunner:
 
         dataset = self.__init_netcdf(
             write_all_every=write_all_every,
-            outfile_name=outfiles
+            outfile_name=outfiles,
+            custom_attrs=custom_attrs
         )
 
         for chunk in np.arange(0, chunks):
