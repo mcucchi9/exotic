@@ -243,9 +243,8 @@ class SimulationRunner:
 
         # check if dir exists. if not, create it.
         for outfile in outfiles:
-            if os.path.exists(os.path.dirname(outfile)) == False:
+            if not os.path.exists(os.path.dirname(outfile)):
                 os.makedirs(os.path.dirname(outfile))
-
 
         # remove out file if already exists
         for file_path in outfiles:
