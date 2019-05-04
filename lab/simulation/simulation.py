@@ -146,18 +146,19 @@ class SimulationRunner:
         dataset = nc.Dataset(outfile_name, 'w', format='NETCDF4_CLASSIC')
 
         dataset.createDimension('node', nodes)
-        dataset.createDimension('time', None)
+        dataset.createDimension('time_step', None)
 
-        dataset.createVariable('time', np.float64, ('time',))
         dataset.createVariable('node', np.int32, ('node',))
+        dataset.createVariable('time_step', np.int32, ('time_step',))
 
-        var = dataset.createVariable('var', np.float32, ('time', 'node'))
+        var = dataset.createVariable('var', np.float32, ('time_step', 'node'))
 
         dataset.variables['node'][:] = np.arange(0, nodes)
 
         # Attributes
         var.system = self.simulator.system.long_name
         var.integration_method = self.simulator.int_method.long_name
+        var.integration_step = self.simulator.increment
         var.forcing = self.simulator.forcing.long_name
         var.created = str(datetime.datetime.now())
 
@@ -272,18 +273,18 @@ class SimulationRunner:
             # simulate one chunk
             for i in np.arange(0, chunk_length):
                 data_array[i, :] = self.simulator.system_state.coords
-                t.append(self.simulator.system_state.time)
+                t.append(i+chunk*chunk_length)
                 self.simulator.integrate_one_step()
             # write
             dataset[0].variables['var'][(chunk_length * chunk):(chunk_length * (chunk + 1)), 0] = data_array[:, 0]
-            dataset[0].variables['time'][(chunk_length * chunk):(chunk_length * (chunk + 1))] = t
+            dataset[0].variables['time_step'][(chunk_length * chunk):(chunk_length * (chunk + 1))] = t
 
             if write_all_every:
                 indices = [i for i in range(0, chunk_length, write_all_every)]
                 data_array_all = data_array[indices, :]
                 t_all = [t[i] for i in indices]
                 dataset[1].variables['var'][(len(indices) * chunk):(len(indices) * (chunk + 1)), :] = data_array_all
-                dataset[1].variables['time'][(len(indices) * chunk):(len(indices) * (chunk + 1))] = t_all
+                dataset[1].variables['time_step'][(len(indices) * chunk):(len(indices) * (chunk + 1))] = t_all
 
         for d in dataset:
             d.close()
