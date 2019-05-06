@@ -114,3 +114,55 @@ class StepForcing(Forcing):
     ):
         force = self.force_intensity_base + self.force_intensity_delta*(time >= self.activation_time)
         return force
+
+
+class LinearForcing(Forcing):
+    """
+    Define linear forcing. A constant forcing **force_intensity_base** is applied till before **activation_time**,
+    while from t=**activation_time** a linear force of the form F = **linear_coefficient** * t +
+    **force_intensity_base** is applied till **deactivation_time**.
+    """
+    def __init__(
+            self,
+            activation_time: float = 0,
+            deactivation_time: float = 100,
+            force_intensity_base: float = 8,
+            linear_coefficient: float = 0.001
+    ):
+        """
+        :param activation_time: time at which force_intensity_delta is activated
+        :param force_intensity_base: base constant forcing
+        :param force_intensity_delta: force spike applied at activation_time
+        """
+        self.activation_time = activation_time
+        self.deactivation_time = deactivation_time
+        self.force_intensity_base = force_intensity_base
+        self.linear_coefficient = linear_coefficient
+
+        self._short_name = 'LF_{}_{}_{}'.format(
+            self.force_intensity_base,
+            self.linear_coefficient,
+            self.activation_time,
+            self.deactivation_time
+        )
+        self._long_name = 'Linear Forcing ({}+{} at t={})'.format(
+            self.force_intensity_base,
+            self.linear_coefficient,
+            self.activation_time,
+            self.deactivation_time
+        )
+
+    def __call__(
+            self,
+            time: float
+    ):
+
+        if time <= self.activation_time:
+            force = self.force_intensity_base
+        elif self.activation_time < time <= self.deactivation_time:
+            force = self.force_intensity_base + self.linear_coefficient * time
+        else:
+            force = self.force_intensity_base + self.linear_coefficient * \
+                    (self.deactivation_time - self.activation_time)
+
+        return force
