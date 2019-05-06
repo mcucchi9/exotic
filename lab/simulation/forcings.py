@@ -84,7 +84,7 @@ class StepForcing(Forcing):
     """
     def __init__(
             self,
-            activation_time: float,
+            activation_time: float = 0,
             force_intensity_base: float = 8,
             force_intensity_delta: float = 0.5
     ):
