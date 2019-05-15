@@ -23,15 +23,19 @@ class Bin:
 
     def __init__(
             self,
-            threshold: T.List[float]
+            threshold: T.List[float],
+            observable
     ):
 
         self.threshold = threshold
+        self.observable = observable
 
     def __call__(
             self,
             data=xr.DataArray
     ):
+
+        data = self.observable(data)
 
         if len(self.threshold) == 1:
             obs = data.where(data > self.threshold[0], 0)
@@ -46,6 +50,10 @@ class Bin:
     def short_name(self):
 
         if len(self.threshold) == 1:
-            return 'exceed_{}'.format(round(self.threshold[0], 1))
+            return '{}_exceed_{}'.format(self.observable.short_name, round(self.threshold[0], 1))
         else:
-            return 'bin_{}_{}'.format(round(self.threshold[0], 1), round(self.threshold[1], 1))
+            return '{}_bin_{}_{}'.format(
+                self.observable.short_name,
+                round(self.threshold[0], 1),
+                round(self.threshold[1], 1)
+            )
