@@ -39,13 +39,15 @@ class Bin:
     ):
 
         data = self.observable(data)
+        ones = xr.ones_like(data)
 
         if len(self.threshold) == 1:
-            obs = data.where(data > self.threshold[0], 0)
-            obs = obs.where(obs == 0, 1)
+            obs = ones.where(data > self.threshold[0], 0)
         else:
-            obs = data.where(self.threshold[0] < data < self.threshold[1], 0)
-            obs = obs.where(obs == 0, 1)
+            obs1 = ones.where(data > self.threshold[0], 0)
+            obs2 = ones.where(data < self.threshold[1], 0)
+
+            obs = obs1 * obs2
 
         return obs
 
