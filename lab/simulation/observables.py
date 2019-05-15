@@ -45,7 +45,7 @@ class Bin:
             obs = ones.where(data > self.threshold[0], 0)
         else:
             obs1 = ones.where(data > self.threshold[0], 0)
-            obs2 = ones.where(data < self.threshold[1], 0)
+            obs2 = ones.where(data <= self.threshold[1], 0)
 
             obs = obs1 * obs2
 
