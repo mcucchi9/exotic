@@ -1,5 +1,6 @@
 import xarray as xr
 import typing as T
+import numpy as np
 
 
 class Energy:
@@ -24,10 +25,12 @@ class Bin:
     def __init__(
             self,
             threshold: T.List[float],
+            threshold_q: T.List[float],
             observable
     ):
 
         self.threshold = threshold
+        self.threshold_q = threshold_q
         self.observable = observable
 
     def __call__(
@@ -50,10 +53,10 @@ class Bin:
     def short_name(self):
 
         if len(self.threshold) == 1:
-            return '{}_exceed_{}'.format(self.observable.short_name, round(self.threshold[0], 1))
+            return '{}_exceed_{}q'.format(self.observable.short_name, np.round(self.threshold_q[0], 1))
         else:
-            return '{}_bin_{}_{}'.format(
+            return '{}_bin_{}q_{}q'.format(
                 self.observable.short_name,
-                round(self.threshold[0], 1),
-                round(self.threshold[1], 1)
+                np.round(self.threshold_q[0], 1),
+                np.round(self.threshold_q[1], 1)
             )
