@@ -216,7 +216,29 @@ Results are shown in Fig. \ref{fig:shape_mom} and \ref{fig:modscale_mom}.
 
 \section{LRT and the Lorenz-96 model}
 
-Aim of this work is to study the possibility of applying LRT to extremes of observables of the Lorenz-96 model
+We aim to apply Ruelle response theory \cite{Ruelle}\cite{Bodai} to predict the response of different observables to the action of both constant and time-dependent forcings to our Lorenz-96 model.
+Among these observables, we will focus our efforts on ones describing statistics of extreme events.
+
+\subsection{Background}
+
+Given a \textit{nonautonomous dissipative dynamical system} in the form
+\begin{equation}
+\dot{x}=F(x)+\epsilon g(x) f(t)
+\end{equation}
+and a scalar observable $\Psi(x)$, Ruelle's response theory \cite{Ruelle} asserts that its mean $\langle\Psi\rangle=\int \mu_{t}(d x) \Psi(x)$ can be decomposed as
+\begin{equation}
+\langle\Psi\rangle(t)=\sum_{j=1}^{\infty} \epsilon^{j}\langle\Psi\rangle^{(j)} +\langle\Psi\rangle_{0}
+\end{equation}
+where the $\langle\Psi\rangle$ can be expressed as multiple convolution integrals involving the pertinent Green's functions \cite{LucariniClimateChange}. In the linear (first-order) approximation, we can thus express the response to the forcing $f(t)$ as
+\begin{equation}
+\Delta\langle\Psi\rangle(t)=\langle\Psi\rangle^{(1)}(t)=G_{\Psi}^{(1)}(t) * f(t)=\int_{-\infty}^{\infty} d \tau G_{\Psi}^{(1)}(\tau) f(t-\tau)
+\end{equation}
+where the Green's function has been established by Ruelle to take the form of
+\begin{equation}
+G_{\Psi}^{(1)}(t)=\int d x \Psi(x)\left(\exp \left[t L_{f}\right]\left[L_{g} \overline{\mu}\right]\right)(x)
+\end{equation}
+where $\overline{\mu}(d x)$ is the natural invariant measure/probability distribution of the autonomous system $(f = 0)$, and operators are defined as $L_{f} \mu=-\operatorname{div}(f \mu)$ and $L_{g} \mu=-\operatorname{div}(g \mu)$, in the notation of \cite{Abramov}.
+
 
 \newpage
 \bibliography{bibliography}

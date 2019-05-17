@@ -5,8 +5,9 @@ V.~Lucarini, {\em Extremes and Recurrence in Dynamical Systems}.
 \newblock Wiley, 2016.
 
 \bibitem{Galfi}
-M.~Galfi, T.~Bòdai, and V.~Lucarini, ``Convergence of extreme value statistics
-  in a two-layer quasi-geostrophic atmospheric model,'' {\em Complexity}, 2017.
+M.~Galfi, T.~B\`odai, and V.~Lucarini, ``Convergence of extreme value
+  statistics in a two-layer quasi-geostrophic atmospheric model,'' {\em
+  Complexity}, 2017.
 
 \bibitem{Coles}
 S.~Coles, {\em An Introduction to Statistical Modeling of Extreme Values}.
@@ -15,5 +16,23 @@ S.~Coles, {\em An Introduction to Statistical Modeling of Extreme Values}.
 \bibitem{Ott}
 E.~Ott, {\em Chaos in Dynamical Systems}.
 \newblock Cambridge University Press, 2002.
+
+\bibitem{Ruelle}
+D.~Ruelle, ``A review of linear response theory for general differentiable
+  dynamical systems,'' {\em Nonlinearity}, 2009.
+
+\bibitem{Bodai}
+T.~B\`odai, V.~Lucarini, and F.~Lunkeit, ``Linear response theory applied to
+  geoengineering,'' {\em ???}, 2018.
+
+\bibitem{LucariniClimateChange}
+V.~Lucarini, F.~Ragone, and F.~Lunkeit, ``Predicting climate change using
+  response theory: Global averages and spatial patterns,'' {\em Journal of
+  Statistical Physics}, 2017.
+
+\bibitem{Abramov}
+R.~V. Abramov and A.~J. Majda, ``New approximations and tests of linear
+  fluctuation-response for chaotic nonlinear forced-dissipative dynamical
+  systems,'' {\em Journal of Nonlinear Science}, 2008.
 
 \end{thebibliography}
