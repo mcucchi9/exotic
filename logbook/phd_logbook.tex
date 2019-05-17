@@ -1,0 +1,225 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\makeatletter
+\newcommand\footnoteref[1]{\protected@xdef\@thefnmark{\ref{#1}}\@footnotemark}
+\makeatother
+\title{PhD Progress}
+\author{Marco Cucchi}
+\date{\today}
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+
+\section{Introduction}
+
+This document is a log-book for all the work done during my PhD project.
+All code used con be found on github repository \url{https://github.com/marco-cucchi/L96gev}.
+
+\section{EVT and the Lorenz-96 model}
+
+Aim of this work is to find EVT parameters for observables of the Lorenz-96 (L96) model, and compare them with the bounds provided in \cite{LucariniExtremesBook}.
+
+\subsection{Lorenz-96 model simulations} \label{gev_sim}
+
+As a first step, a number of independent simulations of the L96 model are performed.
+The L96 model is defined as follows. For $i=1,...,N$:
+
+\begin{equation}
+\frac{dx_i}{dt} = (x_{i+1}-x_{i-2})x_{i-1} - x_i + F
+\end{equation}
+
+where it is assumed that $x_{-1}=x_{N-1}$, $x_0 = x_N$ and $x_{N+1}=x_1$. Here $x_i$ is the state of the system on the $i$-th coordinate, and $F$ is the forcing constant.
+For this set of simulations, values of $F$ and $N$ have been set to $F=8$ and $N=32$.\\
+Integration has been conducted using 4-\textit{th} order Runge-Kutta scheme, with integration step $dt=10^{-2}$. Initial conditions for each simulation have been set equal to
+
+\begin{equation}
+x_i^0 = 8 + \epsilon, \quad \epsilon \sim U([-0.05,+0.05])
+\end{equation}
+
+Different levels of spatial aggregation, defined as $A=32,16,8,4,2,1$, have been considered:
+
+\begin{itemize}
+	\item For $A=32$ no aggregation is performed, and each value $x_i$ is treated independently;
+	\item For $A=1$ all original $N$ $x_i$ values are spatially averaged into one single value $\overline{x}$ for each time-step;
+	\item More in general, for $A=K$ the $N$ spatial coordinates indicated by the index $i$ are divided into $K$ non-overlapping clusters $c_j$ fixed in time, and corresponding $x_i$ values belonging to the same cluster are averaged at each time-step.
+\end{itemize}
+
+As observable, the local energy of the system for different levels af aggregation
+
+\begin{equation}
+E_j=\frac{1}{2}x_j^2, \quad x_j=
+	\begin{cases}
+   		x_i, & A=32\\
+   		\overline{x} = \frac{1}{N} \sum_{i=1}^{N} x_i & A=1 \\
+		\frac{1}{\#c_j} \sum_{i \in c_{j, K}} x_i & A=K
+	\end{cases}
+\end{equation}
+
+is considered.
+
+In order to extract information on the statistics of extremes, very long simulations have to be performed. In order to find a good compromise between this requirement and the limited amount of disk space, a similar procedure to the one adopted in \cite{Galfi} has been followed: instead of keeping all values of each simulation, only block-maxima are retained, with block size $\Delta t = 0.5$. It is important to highlight that block-maxima are computed \textit{after} aggregation (spatial average).
+
+Following this procedure, for each simulation (initial condition) 6 different files are obtained, each corresponding to one particular aggregation level $A$: each of these files, then, contain $A$ time-series of block-maxima, one for each of the $A$ clusters.
+
+Script: \href{https://github.com/marco-cucchi/L96gev/commit/f3614ce9369484bc5d1f06613fbea6fe26a7dd87#diff-bdb8a6ca7f3a8d1a4753b03a3b753204}{c003e11}.
+
+\subsection{Statistics of Extreme Events}
+\label{subsec:StatExtrEv}
+
+Parameters defining GEV distribution are estimated using three different approaches:
+
+\begin{itemize}
+	\item Direct fit using \textit{block-maxima} approach;
+	\item Direct fit using \textit{POT} approach (still not described hear);
+	\item Method of \textit{moments} described in \cite{LucariniExtremesBook}.
+\end{itemize}
+Finally, estimates derived with these approaches are compared among them and with bounds related to attractor's dimensions described in \cite{Galfi}.
+
+\subsubsection{Block-maxima approach}
+
+In this approach, each time-series for each different cluster of each simulation is fitted against GEV family of distribution separately. More specifically, for each cluster time-series belonging to a different simulation the following procedure is carried out:
+
+\begin{enumerate}
+	\item Percentiles' orders $p$ of interest are fixed (e.g. 0.99, 0.995, ...), and corresponding percentiles (thresholds) $T_p$ are computed; \footnote{This could be something to think upon; in this way I have (slightly?) different percentiles for different time-series in the same simulation and for different simulations. Is this right? The underlying assumption in this procedure should is that all time-series belonging to all simulations should come from the same distribution. So shouldn't the percentiles be the same for all of them?\label{fn1}}
+	\item Time-series is divided in $n$ blocks, where $n=length(\text{time-series})(1-p)$;
+	\item Compute maxima for each block;
+	\item Fit GEVD family to the block-maxima series.
+\end{enumerate}
+
+The fit is performed with the R function \texttt{gevFit} from the package \texttt{fExtremes}, using MLE approach. As a result estimations of shape parameter $\xi$, location parameter $\mu$ and scale parameter $\sigma$ are returned, with respective uncertainties as computed via MLE.\\
+Location parameter $\mu$ is actually assigned the value $T_p$; the \textit{absolute maximum} from each time-series is also kept; \textit{modified scale parameter} $\sigma^*$ is computed as
+
+\begin{equation} \label{sigma_mod}
+\sigma^*=\sigma-\xi T_p
+\end{equation}
+Error on $\sigma^*$ is estimated via propagation of error.\\
+As explained in \cite{Coles}, in order to find a valid threshold value $T_0$ for excess to follow generalized Pareto distribution (and, consequently, GEV distribution), it is a good practice to plot $\xi$ and $\sigma^*$ against $T_p$ and look for the value where both start to be approximately constant: that value is $T_0$.\\
+Once parameters have been estimated for all clusters in a simulation, a single estimation of each parameter is saved as the average among all estimates.\footnote{The \textit{absolute maximum} is also averaged, and this could be an error. The average of the \textit{location parameter} $\mu$ is also a little disturbing, but this could be solved following reasoning in footnote \ref{1}. Error computation should be checked.\label{fn2}}
+Furthermore, the following parameters are estimated for each simulation:
+
+\begin{itemize}
+	\item \textit{scale parameter} $\sigma$ is computed with inverse of equation \ref{sigma_mod}, and relative error is computed via propagation of errors; \footnote{This sounds very stupid, since $\sigma$ was originally estimated (but not saved) via MLE fit to GEVD.\label{fn3}}
+	\item \textit{upper end-point} is computed as\footnote{Find reference}
+	\begin{equation}
+	\hat{uep}=\hat{\mu}-\frac{\hat{\sigma}}{\hat{\xi}}
+	\end{equation}
+	and the relative error is computed via propagation of errors.
+	
+\end{itemize}
+Finally, for each different aggregation, ensemble averages of \textit{shape} and \textit{modified scale} among all simulations are computed.
+
+\subsubsection{Method of Moments}
+
+Following theory described in \cite{LucariniExtremesBook}, we want to estimate \textit{shape} and \textit{scale} parameters using the following equations (Par 8.2.6 in \cite{LucariniExtremesBook}):
+
+\begin{equation}
+\xi_A^{T} = \frac{1}{2}\left(1-\frac{(\langle\tilde{A}_1^{T}\rangle)^2}{\langle\tilde{A}_0^T\rangle \langle\tilde{A}_2^T\rangle - (\langle\tilde{A}_1^{T}\rangle)^2} \right) \label{shape_mom}
+\end{equation}
+\begin{equation}
+\sigma_A^{T} = \frac{1}{2} \frac{\langle\tilde{A}_1^T\rangle \langle\tilde{A}_2^T\rangle} {\langle\tilde{A}_2^T\rangle \langle\tilde{A}_0^T\rangle - \langle\tilde{A}_1^{T}\rangle^2}
+\end{equation}
+where $A(x)$ is an observable of the system, $T$ is a threshold value and
+\begin{equation}
+\langle\tilde{A}_n^T\rangle = \int\mu(dx)\Theta(A(x)-T)(A(x)-T)^n,
+\end{equation}
+being $\Theta$ the Heaviside distribution. This results are exact in the limit for $T \rightarrow A_{max}$.\\
+In order to perform this computation, the following procedure has been adopted. First, for each cluster time-series belonging to a different simulation:
+\begin{enumerate}
+	\item Percentiles' orders $p$ of interest are fixed, and corresponding percentile (thresholds) $T_p$ are computed (footnote \ref{fn1});
+	\item $\langle\tilde{A}_n^{T_p}\rangle$ for $n=0,1,2$ are computed, using temporal average in place of ensemble average (assuming ergodicity).\footnote{No standard deviation has been computed at this stage!}
+\end{enumerate}
+Once moments have been estimated for all clusters in a simulation, a single estimation of each moment is saved as the average among all estimates, and relative standard deviations are computed.\\
+Using these estimates, \textit{shape} parameter is computed through equation \ref{shape_mom} and estimation of uncertainty is computed via propagation of error. Finally, for each different aggregation, ensemble averages among all simulations are computed.
+
+\subsubsection{Bounds to the \textit{shape} parameter from the attractor's dimensions}
+
+We want to verify relation (8.2.15) in \cite{LucariniExtremesBook}, which states that
+
+\begin{equation}
+\left(d_s +d_u + d_n\right)/2 \leq \delta \leq d_s + \left(d_u + d_n\right)/2,  
+\end{equation}
+where
+\begin{itemize}
+	\item $d_u$ is equal to the number of positive Lyapunov exponents of the system \cite{Ott};
+	\item $d_n$ is equal to the number of zero Lyapunov exponents of the system, and in particular it is 1 for Axiom A systems \footnote{We are taking this for true in our system};
+	\item $d_s = n + \sum_{k=1}^n \lambda_k / \vert \lambda_{n+1} \vert - d_u - d_n$ \cite{Galfi}, with $\lambda_k$ denoting the Lyapunov exponents of the system, in a descending order, and $n$ is such that $\sum_{k=1}^n \lambda_k$ is positive and $\sum_{k=1}^{n+1} \lambda_k$ is negative;
+	\item $\xi = -1/\delta$;
+	\item $\sigma = \left( A_{max} - T\right)/\delta$, with $A_{max}$ and $T$ denoting the maximum observed value of the observable\footnote{or the \textit{upper end point}?} and the threshold value.
+\end{itemize}
+
+Lyapunov exponents have been computed using Benettin algorithm with QR decomposition. Bounds have been computed and averaged over 50 iterations (simulations).
+\\Script:
+\begin{itemize}
+	\item Lyapunov exponents computation: \href{https://github.com/marco-cucchi/L96gev/commit/136afd42b03778e04fe515e517c3e63c406b2043#diff-2a3c128ef27f1e284787331bae1833ea}{136afd4}
+	\item Average bounds computation:
+	
+\end{itemize}
+
+\subsection{Statistics of Extreme Events: Corrections and Results}
+
+In this section results of the analyses reported in Sec. \ref{subsec:StatExtrEv} are described, after issues highlighted in the footnotes \ref{fn1},\ref{fn2},\ref{fn3}.
+\\Script:
+\begin{itemize}
+	\item quantiles computation: \href{https://github.com/marco-cucchi/L96gev/commit/6880d207820a5b5919b3bbd0a034782f34c7bb49#diff-3b01235fe20ba4105fab7b053c2dadfb}{6880d20}
+\end{itemize}
+
+\subsubsection{Block-maxima approach}
+
+The following corrections have been applied:
+
+\begin{itemize}
+	\item Percentiles are computed once, concatenating the first 80 simulations of the first clusters for each aggregation;
+	\item Shape, scale and location parameters from fit procedures are saved for each cluster in each simulation. Averages and computation of derived parameters come after;	
+\end{itemize}
+Results are shown in Fig. \ref{fig:shape_mle} and \ref{fig:modscale_mle}.
+\\Script:
+\begin{itemize}
+	\item fit: \href{https://github.com/marco-cucchi/L96gev/commit/240d6d0471ddc3fc53789e43e03a87013d032b86#diff-9576f7ab149830e9a08339b0fc9f2569}{240d6d0}
+	\item parameters derivation and plots: \href{https://github.com/marco-cucchi/L96gev/commit/97925ef80db61ade1851bb7c41948d7f13f3b91f#diff-9ecb506d1ae86460add99c76d6c9961a}{97925ef}
+\end{itemize}
+
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{fig/shape_gev_mle_RK401_1e7_maxt05_1e7.png}
+	\caption{Ensemble average of \textit{shape} parameter over 92 simulations. Each cluster is treated separately.}
+	\label{fig:shape_mle}
+\end{figure}
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{fig/modscale_gev_mle_RK401_1e7_maxt05_1e7.png}
+	\caption{Ensemble average of \textit{modified scale} parameter over 92 simulations. Each cluster is treated separately.}
+	\label{fig:modscale_mle}
+\end{figure}
+
+\subsubsection{Method of Moments}
+Results are shown in Fig. \ref{fig:shape_mom} and \ref{fig:modscale_mom}.
+\\Script:
+\begin{itemize}
+	\item moments computation: \href{https://github.com/marco-cucchi/L96gev/commit/240d6d0471ddc3fc53789e43e03a87013d032b86#diff-9576f7ab149830e9a08339b0fc9f2569}{240d6d0}
+	\item parameters derivation and plots: \href{https://github.com/marco-cucchi/L96gev/commit/97925ef80db61ade1851bb7c41948d7f13f3b91f#diff-503bcadc356f924b6a536c1b0796b054}{97925ef}
+\end{itemize}
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{fig/shape_mom_RK401_1e7_maxt05_1e7.png}
+	\caption{Ensemble average of \textit{shape} parameter over 92 simulations. Each cluster is treated separately.}
+	\label{fig:shape_mom}
+\end{figure}
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{fig/modscale_mom_RK401_1e7_maxt05_1e7.png}
+	\caption{Ensemble average of \textit{modified scale} parameter over 92 simulations. Each cluster is treated separately.}
+	\label{fig:modscale_mom}
+\end{figure}
+
+\section{LRT and the Lorenz-96 model}
+
+Aim of this work is to study the possibility of applying LRT to extremes of observables of the Lorenz-96 model
+
+\newpage
+\bibliography{bibliography}
+\bibliographystyle{ieeetr}
+
+\end{document}

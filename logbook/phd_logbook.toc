@@ -1,0 +1,11 @@
+\contentsline {section}{\numberline {1}Introduction}{2}{section.1}
+\contentsline {section}{\numberline {2}EVT and the Lorenz-96 model}{2}{section.2}
+\contentsline {subsection}{\numberline {2.1}Lorenz-96 model simulations}{2}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Statistics of Extreme Events}{3}{subsection.2.2}
+\contentsline {subsubsection}{\numberline {2.2.1}Block-maxima approach}{3}{subsubsection.2.2.1}
+\contentsline {subsubsection}{\numberline {2.2.2}Method of Moments}{4}{subsubsection.2.2.2}
+\contentsline {subsubsection}{\numberline {2.2.3}Bounds to the \textit {shape} parameter from the attractor's dimensions}{5}{subsubsection.2.2.3}
+\contentsline {subsection}{\numberline {2.3}Statistics of Extreme Events: Corrections and Results}{6}{subsection.2.3}
+\contentsline {subsubsection}{\numberline {2.3.1}Block-maxima approach}{6}{subsubsection.2.3.1}
+\contentsline {subsubsection}{\numberline {2.3.2}Method of Moments}{6}{subsubsection.2.3.2}
+\contentsline {section}{\numberline {3}LRT and the Lorenz-96 model}{6}{section.3}
