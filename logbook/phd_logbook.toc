@@ -10,3 +10,6 @@
 \contentsline {subsubsection}{\numberline {2.3.2}Method of Moments}{6}{subsubsection.2.3.2}
 \contentsline {section}{\numberline {3}LRT and the Lorenz-96 model}{6}{section.3}
 \contentsline {subsection}{\numberline {3.1}Background}{10}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}The Experiment}{11}{subsection.3.2}
+\contentsline {subsubsection}{\numberline {3.2.1}Energy}{11}{subsubsection.3.2.1}
+\contentsline {subsubsection}{\numberline {3.2.2}Above threshold occurrence of energy values}{11}{subsubsection.3.2.2}

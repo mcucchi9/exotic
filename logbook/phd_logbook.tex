@@ -239,6 +239,70 @@ G_{\Psi}^{(1)}(t)=\int d x \Psi(x)\left(\exp \left[t L_{f}\right]\left[L_{g} \ov
 \end{equation}
 where $\overline{\mu}(d x)$ is the natural invariant measure/probability distribution of the autonomous system $(f = 0)$, and operators are defined as $L_{f} \mu=-\operatorname{div}(f \mu)$ and $L_{g} \mu=-\operatorname{div}(g \mu)$, in the notation of \cite{Abramov}.
 
+Following \cite{Bodai}, in a discrete-time scenario sample values of the response with he sampling $\Psi[n]=\Psi(t=(n+\nu) T)$ at any phase $\nu \in[0,1]$ obey:
+
+\begin{equation}
+\langle\hat{\Psi}\rangle^{(1)}[n]=\sum_{k=-\infty}^{\infty} h_{\Psi}[k] f[n-k]=h_{\Psi}[n] * f[n]
+\end{equation}
+where the discrete-time (DT) impulse response or DT Green's function $h_{\Psi}[n]$ is the response $\langle\hat{\Psi}_{\perp}\rangle$ to a Kronecker delta function forcing: $f[n]=\delta[n]=1$ if $n=0$ and 0 otherwise. Unlike the Dirac delta \footnote{Never mentioned before.\label{fn8}}, the Kronecker delta can be realised for numerical purposes. It is equivalent to applying a step forcing and taking the difference: 
+
+\begin{equation} \label{eq:differencing}
+h_{\Psi}[n]=\langle\hat{\Psi}_{\Gamma}\rangle[n]-\langle\hat{\Psi}_{\Gamma}\rangle[n-1]
+\end{equation}
+In the case of a \textit{finite} time-series, $f[l]$ and $h_{\Psi}[l]$, $l=0, \dots, L-1$, the response $h_{\Psi} * f[l], l=0, \dots, L-1$ can be computed as:
+
+\begin{equation}
+\left(h * f_{N}\right)[n=0, \ldots, N-1]=\sum_{k=0}^{N-1} h[k] f_{N}[n-k]=\mathrm{DFT}^{-1}\{\mathrm{DFT}\{h\} \mathrm{DFT}\{f\}\},
+\end{equation}
+where DFT is the discrete Fourier transform.
+
+\subsection{The Experiment}
+
+We want to make predictions on the average response of observables of the Lorenz-96 system to different forcings.
+
+We use as identification forcing \footnote{Never mentioned before. See Par. 2.2 in \cite{Bodai}.\label{fn9}} a \textit{step forcing of unit intensity}, activated at time $t_0=0$. An ensemble of 10000 simulations of length $T=100$ is generated with this forcing and for the system at rest ($F=8$), and responses for the different observables are averaged among ensemble members.
+
+The same procedure is repeated using as identification forcing a \textit{step forcing of negative unit intensity}. The semi-difference of the two average responses is then used to compute the DT Green's function $h_{\Psi}[n]$ as described in \ref{eq:differencing} \footnote{This procedure less noisy (and more accurate?) results. \textbf{Ask Valerio for reference}. }
+
+For each simulation, only one node is considered.
+ 
+Two observables are taken into considerations:
+
+\begin{itemize}
+	\item Energy
+	\item Above threshold (between thresholds) occurrence of energy values
+\end{itemize}
+
+\subsubsection{Energy}
+
+Energy is computed at single locations, as
+
+\begin{equation}
+e_n=\frac{1}{2} x_n^{2}
+\end{equation}
+
+\subsubsection{Above threshold occurrence of energy values}
+
+Starting from energy values $e_n$, this observable $o_{n, e_t}$ is computed as
+
+\begin{equation}
+o_{n, t}=H[e_n - e_t],
+\end{equation}
+where $H$ is the Heaviside step function
+
+\begin{equation}
+H[x]=\left\{\begin{array}{ll}{0,} & {x<0} \\ {1,} & {x \geq 0}\end{array}\right
+\end{equation}
+and $e_t$ is some energy value.
+
+Once averaged over ensemble members, this observable yields the average frequency of energy values above a certain threshold. Using as thresholds $e_t$ high quantiles of the energy distribution for the system at rest, if LRT works we could use it to predict changes in the frequency of extreme (above high thresholds) events.
+
+More generally, we can look at \textbf{between-thresholds occurrence}, computed as
+
+\begin{equation}
+o_{n, t_1, t_2}=H[e_n - e_{t_1}] - H[e_n - e_{t_2}],
+\end{equation}
+with $e_{t_1} < e_{t_2}$. Again, averaging this observable over ensemble members yields the average frequency of energy values between the two thresholds $e_{t_1}$ and $e_{t_2}$. Using LRT, we could thus theoretically predict changes in the shape of the energy values probability distribution.
 
 \newpage
 \bibliography{bibliography}
