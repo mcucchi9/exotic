@@ -139,13 +139,13 @@ class LinearForcing(Forcing):
         self.force_intensity_base = force_intensity_base
         self.linear_coefficient = linear_coefficient
 
-        self._short_name = 'LF_{}_{}_{}'.format(
+        self._short_name = 'LF_{}_{}_{}_{}'.format(
             self.force_intensity_base,
             self.linear_coefficient,
             self.activation_time,
             self.deactivation_time
         )
-        self._long_name = 'Linear Forcing ({}+{} at t={})'.format(
+        self._long_name = 'Linear Forcing ({}+{}, starting at t={} and ending at t={})'.format(
             self.force_intensity_base,
             self.linear_coefficient,
             self.activation_time,
