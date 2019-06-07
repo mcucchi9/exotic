@@ -13,3 +13,4 @@
 \contentsline {subsection}{\numberline {3.2}The Experiment}{11}{subsection.3.2}
 \contentsline {subsubsection}{\numberline {3.2.1}Energy}{11}{subsubsection.3.2.1}
 \contentsline {subsubsection}{\numberline {3.2.2}Above threshold occurrence of energy values}{11}{subsubsection.3.2.2}
+\contentsline {subsection}{\numberline {3.3}Results}{12}{subsection.3.3}

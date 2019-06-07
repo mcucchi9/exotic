@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.5.17)  24 MAY 2019 17:07
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.5.17)  7 JUN 2019 09:58
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -362,23 +362,29 @@ al Mod-el-ing of Ex-treme Val-ues\OT1/cmr/m/n/10 .
  []
 
 )
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 311.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 313.
  [13]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 311.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 313.
  (./phd_logbook.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 311.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 311.
-Package rerunfilecheck Info: File `phd_logbook.out' has not changed.
-(rerunfilecheck)             Checksum: 989128E1A0FBF1CE1D5F91EC07CB87F4;1153.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 313.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 313.
 
+
+Package rerunfilecheck Warning: File `phd_logbook.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `phd_logbook.out':
+(rerunfilecheck)             Before: 989128E1A0FBF1CE1D5F91EC07CB87F4;1153
+(rerunfilecheck)             After:  D15574208D18914594333AF6325D19C3;1210.
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 311.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 313.
  ) 
 Here is how much of TeX's memory you used:
- 5778 strings out of 494847
- 84096 string characters out of 6179080
+ 5780 strings out of 494847
+ 84122 string characters out of 6179080
  168078 words of memory out of 5000000
  8978 multiletter control sequences out of 15000+600000
  10557 words of font info for 38 fonts, out of 8000000 for 9000
@@ -404,10 +410,10 @@ ts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type
 1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
 ic/amsfonts/cm/cmti8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
 onts/cm/cmtt10.pfb>
-Output written on phd_logbook.pdf (13 pages, 814495 bytes).
+Output written on phd_logbook.pdf (13 pages, 814961 bytes).
 PDF statistics:
- 351 PDF objects out of 1000 (max. 8388607)
- 303 compressed objects within 4 object streams
- 79 named destinations out of 1000 (max. 500000)
+ 354 PDF objects out of 1000 (max. 8388607)
+ 306 compressed objects within 4 object streams
+ 81 named destinations out of 1000 (max. 500000)
  141 words of extra memory for PDF output out of 10000 (max. 10000000)
 

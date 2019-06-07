@@ -260,9 +260,9 @@ where DFT is the discrete Fourier transform.
 
 We want to make predictions on the average response of observables of the Lorenz-96 system to different forcings.
 
-We use as identification forcing \footnote{Never mentioned before. See Par. 2.2 in \cite{Bodai}.\label{fn9}} a \textit{step forcing of unit intensity}, activated at time $t_0=0$. An ensemble of 10000 simulations of length $T=100$ is generated with this forcing and for the system at rest ($F=8$), and responses for the different observables are averaged among ensemble members.
+We use as identification forcing \footnote{Never mentioned before. See Par. 2.2 in \cite{Bodai}.\label{fn9}} a \textit{step forcing of unit intensity}, activated at time $t_0=0$. An ensemble of 10000 simulations of length $T=100$ is generated \footnote{Describe more how simulations are generated} with this forcing and for the system at rest ($F=8$), and responses for the different observables are averaged among ensemble members.
 
-The same procedure is repeated using as identification forcing a \textit{step forcing of negative unit intensity}. The semi-difference of the two average responses is then used to compute the DT Green's function $h_{\Psi}[n]$ as described in \ref{eq:differencing} \footnote{This procedure less noisy (and more accurate?) results. \textbf{Ask Valerio for reference}. }
+The same procedure is repeated using as identification forcing a \textit{step forcing of negative unit intensity}. The semi-difference of the two average responses is then used to compute the DT Green's function $h_{\Psi}[n]$ as described in \eqref{eq:differencing} \footnote{This procedure less noisy (and more accurate?) results. \textbf{Ask Valerio for reference}. }
 
 For each simulation, only one node is considered.
  
@@ -302,7 +302,9 @@ More generally, we can look at \textbf{between-thresholds occurrence}, computed 
 \begin{equation}
 o_{n, t_1, t_2}=H[e_n - e_{t_1}] - H[e_n - e_{t_2}],
 \end{equation}
-with $e_{t_1} < e_{t_2}$. Again, averaging this observable over ensemble members yields the average frequency of energy values between the two thresholds $e_{t_1}$ and $e_{t_2}$. Using LRT, we could thus theoretically predict changes in the shape of the energy values probability distribution.
+with $e_{t_1} < e_{t_2}$. Again, averaging this observable over ensemble members yields the average frequency of energy values between the two thresholds $e_{t_1}$ and $e_{t_2}$. Using LRT, we could thus theoretically predict changes in the shape of energy values probability distribution.
+
+\subsection{Results}
 
 \newpage
 \bibliography{bibliography}
