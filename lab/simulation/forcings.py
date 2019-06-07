@@ -130,9 +130,10 @@ class LinearForcing(Forcing):
             linear_coefficient: float = 0.001
     ):
         """
-        :param activation_time: time at which force_intensity_delta is activated
-        :param force_intensity_base: base constant forcing
-        :param force_intensity_delta: force spike applied at activation_time
+        :param activation_time: time at which forcing is activated
+        :param deactivation_time: time at which forcing is deactivated
+        :param force_intensity_base: starting force
+        :param linear_coefficient: linear coefficient (referred to real simulation time)
         """
         self.activation_time = activation_time
         self.deactivation_time = deactivation_time
