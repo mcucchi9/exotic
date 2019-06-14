@@ -230,7 +230,9 @@ class SimulationRunner:
             custom_attrs: dict = {},
     ):
         """
-        Run the simulation
+        Run the simulation and write the output to a netcdf file.
+        The two functions are blend together because I make use of the ability to write while running (writing every
+        N iterations). Maybe it would be better to split the functions in different methods.
         :param integration_time: total time of integration
         :param chunk_length: integration steps after which write on netcdf and free memory.
         :param write_all_every: if 0, write only node 0; else, write all nodes when time is multiple of
