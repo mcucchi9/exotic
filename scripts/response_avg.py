@@ -25,9 +25,9 @@ obs_sn = sys.argv[2]
 if obs_sn == 'bin':
 
     threshold_q = []
-    threshold_q.append(round(float(sys.argv[3]), 1))
+    threshold_q.append(round(float(sys.argv[3]), 2))
     try:
-        threshold_q.append(round(float(sys.argv[4]), 1))
+        threshold_q.append(round(float(sys.argv[4]), 2))
     except:
         print('only one threshold selected')
 
