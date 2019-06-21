@@ -56,10 +56,11 @@ for i in np.arange(1, sim_num + 1):
 
     counter += 1
 
-    try:
-        pbar.pos = round(i / (sim_num) * 100)
-    except:
-        pass
+    if counter%10 == 0:
+        try:
+            pbar.pos = round(counter / (sim_num) * 100)
+        except:
+            pass
 
 sc.api_call(
     "chat.postMessage",
