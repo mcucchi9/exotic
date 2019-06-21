@@ -8,9 +8,12 @@ sys.path.append('../devel/phd/')
 
 from lab.simulation import observables
 
-# instantiate Slack client
-sc = SlackClient(os.environ.get('SLACK_BOT_TOKEN'))
-sp = SlackProgress(os.environ.get('SLACK_BOT_TOKEN'), '#l96lrt')
+try:
+    # instantiate Slack client
+    sc = SlackClient(os.environ.get('SLACK_BOT_TOKEN'))
+    sp = SlackProgress(os.environ.get('SLACK_BOT_TOKEN'), '#l96lrt')
+except:
+    pass
 
 DATA_PATH = os.environ.get('BASE_DATA_PATH')
 
@@ -54,12 +57,15 @@ data_forcing_path = os.path.join(
 
 num_forcing_sim = len(os.listdir(data_forcing_path))
 
-sc.api_call(
-    "chat.postMessage",
-    channel="#l96lrt",
-    text="Computing Average Response {} {}".format(forcing_sn, observable.short_name)
-)
-pbar = sp.new(total=100)
+try:
+    sc.api_call(
+        "chat.postMessage",
+        channel="#l96lrt",
+        text="Computing Average Response {} {}".format(forcing_sn, observable.short_name)
+    )
+    pbar = sp.new(total=100)
+except:
+    pass
 
 counter = 0
 for i in range(1, num_forcing_sim):
