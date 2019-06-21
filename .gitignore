@@ -8,3 +8,4 @@ Untitled.ipynb
 set_environ_var.sh
 run_simulation.py
 run_simulation_forcing.py
+scripts/*.out
