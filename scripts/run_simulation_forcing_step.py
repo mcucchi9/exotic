@@ -65,6 +65,9 @@ for i in range(0, sim_num):
         custom_attrs={'time_step_0_real': time_step_real}
     )
 
-    pbar.pos = round(i/sim_num*100)
+    try:
+        pbar.pos = round(i/sim_num*100)
+    except:
+        pass
 	
 
