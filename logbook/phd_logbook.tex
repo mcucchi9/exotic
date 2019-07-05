@@ -2,6 +2,7 @@
 \usepackage{amsmath}
 \usepackage{graphicx}
 \usepackage{hyperref}
+\usepackage[margin=1in]{geometry}
 \makeatletter
 \newcommand\footnoteref[1]{\protected@xdef\@thefnmark{\ref{#1}}\@footnotemark}
 \makeatother
@@ -239,7 +240,7 @@ G_{\Psi}^{(1)}(t)=\int d x \Psi(x)\left(\exp \left[t L_{f}\right]\left[L_{g} \ov
 \end{equation}
 where $\overline{\mu}(d x)$ is the natural invariant measure/probability distribution of the autonomous system $(f = 0)$, and operators are defined as $L_{f} \mu=-\operatorname{div}(f \mu)$ and $L_{g} \mu=-\operatorname{div}(g \mu)$, in the notation of \cite{Abramov}.
 
-Following \cite{Bodai}, in a discrete-time scenario sample values of the response with he sampling $\Psi[n]=\Psi(t=(n+\nu) T)$ at any phase $\nu \in[0,1]$ obey:
+Following \cite{Bodai}, in a discrete-time scenario sample values of the response with the sampling $\Psi[n]=\Psi(t=(n+\nu) T)$ at any phase $\nu \in[0,1]$ obey:
 
 \begin{equation}
 \langle\hat{\Psi}\rangle^{(1)}[n]=\sum_{k=-\infty}^{\infty} h_{\Psi}[k] f[n-k]=h_{\Psi}[n] * f[n]
@@ -262,7 +263,9 @@ We want to make predictions on the average response of observables of the Lorenz
 
 We use as identification forcing \footnote{Never mentioned before. See Par. 2.2 in \cite{Bodai}.\label{fn9}} a \textit{step forcing of unit intensity}, activated at time $t_0=0$. An ensemble of 10000 simulations of length $T=100$ is generated \footnote{Describe more how simulations are generated} with this forcing and for the system at rest ($F=8$), and responses for the different observables are averaged among ensemble members.
 
-The same procedure is repeated using as identification forcing a \textit{step forcing of negative unit intensity}. The semi-difference of the two average responses is then used to compute the DT Green's function $h_{\Psi}[n]$ as described in \eqref{eq:differencing} \footnote{This procedure less noisy (and more accurate?) results. \textbf{Ask Valerio for reference}. }
+The same procedure is repeated using as identification forcing a \textit{step forcing of negative unit intensity}. The semi-difference of the two average responses is then used to compute the DT Green's function $h_{\Psi}[n]$ as described in \eqref{eq:differencing} \footnote{This procedure less noisy (and more accurate?) results. \textbf{Ask Valerio for reference}.}
+
+Results are compared with the ones obtained using only response to the (positive) unit step forcing to compute response function.
 
 For each simulation, only one node is considered.
  
@@ -291,7 +294,7 @@ o_{n, t}=H[e_n - e_t],
 where $H$ is the Heaviside step function
 
 \begin{equation}
-H[x]=\left\{\begin{array}{ll}{0,} & {x<0} \\ {1,} & {x \geq 0}\end{array}\right
+	H[x]=\left\{\begin{array}{ll}{0,} & {x<0} \\ {1,} & {x \geq 0}\end{array}\right.
 \end{equation}
 and $e_t$ is some energy value.
 
@@ -302,10 +305,53 @@ More generally, we can look at \textbf{between-thresholds occurrence}, computed 
 \begin{equation}
 o_{n, t_1, t_2}=H[e_n - e_{t_1}] - H[e_n - e_{t_2}],
 \end{equation}
-with $e_{t_1} < e_{t_2}$. Again, averaging this observable over ensemble members yields the average frequency of energy values between the two thresholds $e_{t_1}$ and $e_{t_2}$. Using LRT, we could thus theoretically predict changes in the shape of energy values probability distribution.
+with $e_{t_1} < e_{t_2}$. Again, averaging this observable over ensemble members yields the average frequency of energy values between the two thresholds $e_{t_1}$ and $e_{t_2}$. Using LRT, \textbf{we could thus theoretically predict changes in the shape of energy values probability distribution}.
 
 \subsection{Results}
 
+In this section, comparisons between actual and predicted (via LRT) responses are shown for \textbf{above} and \textbf{between-thresholds occurrences} observables.
+As thresholds, energy percentiles (computed on the system at rest) have been taken (see Figures' titles).
+The following forcings have been considered:
+
+\begin{itemize}
+	\item \textbf{Step forcing}
+		\begin{equation}
+		F[t]=\left\{\begin{array}{ll}{8,} & {t \leq 0} \\ {11,} & {t > 0}\end{array}\right.
+		\end{equation}		
+	\item \textbf{Linearly increasing forcing}
+		\begin{equation}
+		F[t]=\left\{\begin{array}{ll}{F_0 + C t,} & {t \leq t_f} \\ {F_0 + C t_f,} & {t > t_f}\end{array}\right.
+		\end{equation}
+		with two sets of parameters $(F_0, C, t_f)$, namely $(8, 0.03, 100)$ and $(8, 0.3, 10)$.
+\end{itemize}
+
+\begin{figure}[!htb]
+	\centering
+	\textbf{Step Forcing - $\Delta F=3$}\par\medskip
+	\includegraphics[width=0.9\linewidth]{fig/pred_bin_S_30.png}
+	\caption{Real vs. predicted average responses of \textbf{occurrence observables} for \textbf{step forcing}, activated at time $t=0$ with intensity $\Delta F = 3$.}
+	\label{fig:pred_bin_S_30}
+\end{figure}
+
+\begin{figure}[!h]
+	\centering
+	\textbf{Linear Forcing - $(F_0=8, C=0.03, t_f=100)$}\par\medskip
+	\includegraphics[width=0.9\linewidth]{fig/pred_bin_L_003_100.png}
+	\caption{Real vs. predicted average responses of \textbf{occurrence observables} for \textbf{linear forcing}, activated at time $t_i=0$, deactivated at time $t_f=100$, with linear coefficient $C=0.03$.}
+	\label{fig:pred_bin_L_003_100}
+\end{figure}
+
+\begin{figure}[!h]
+	\centering
+	\textbf{Linear Forcing - $(F_0=8, C=0.3, t_f=10)$}\par\medskip
+	\includegraphics[width=0.9\linewidth]{fig/pred_bin_L_03_10.png}
+	\caption{Real vs. predicted average responses of \textbf{occurrence observables} for \textbf{linear forcing}, activated at time $t_i=0$, deactivated at time $t_f=10$, with linear coefficient $C=0.3$.}
+	\label{fig:pred_bin_L_03_10}
+\end{figure}
+
+\subsection{Comments}
+
+Why predicted responses in linear forcing cases are so much less noisy than in the step forcing case?
 
 
 \newpage

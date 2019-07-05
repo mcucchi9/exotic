@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.5.17)  7 JUN 2019 09:58
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.5.17)  5 JUL 2019 16:30
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -218,37 +218,52 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip46
 )
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2010/09/12 v5.6 Page Geometry
+\Gm@cnth=\count109
+\Gm@cntv=\count110
+\c@Gm@tempcnt=\count111
+\Gm@bindingoffset=\dimen118
+\Gm@wd@mp=\dimen119
+\Gm@odd@mp=\dimen120
+\Gm@even@mp=\dimen121
+\Gm@layoutwidth=\dimen122
+\Gm@layoutheight=\dimen123
+\Gm@layouthoffset=\dimen124
+\Gm@layoutvoffset=\dimen125
+\Gm@dimlist=\toks20
+)
 (./phd_logbook.aux)
 \openout1 = `phd_logbook.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count109
-\scratchdimen=\dimen118
+\scratchcounter=\count112
+\scratchdimen=\dimen126
 \scratchbox=\box28
-\nofMPsegments=\count110
-\nofMParguments=\count111
-\everyMPshowfont=\toks20
-\MPscratchCnt=\count112
-\MPscratchDim=\dimen119
-\MPnumerator=\count113
-\makeMPintoPDFobject=\count114
-\everyMPtoPDFconversion=\toks21
+\nofMPsegments=\count113
+\nofMParguments=\count114
+\everyMPshowfont=\toks21
+\MPscratchCnt=\count115
+\MPscratchDim=\dimen127
+\MPnumerator=\count116
+\makeMPintoPDFobject=\count117
+\everyMPtoPDFconversion=\toks22
 ) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
@@ -267,7 +282,7 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 \AtBeginShipoutBox=\box29
-Package hyperref Info: Link coloring OFF on input line 11.
+Package hyperref Info: Link coloring OFF on input line 12.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
@@ -275,121 +290,155 @@ Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count115
+\c@section@level=\count118
 )
-LaTeX Info: Redefining \ref on input line 11.
-LaTeX Info: Redefining \pageref on input line 11.
-LaTeX Info: Redefining \nameref on input line 11.
+LaTeX Info: Redefining \ref on input line 12.
+LaTeX Info: Redefining \pageref on input line 12.
+LaTeX Info: Redefining \nameref on input line 12.
 
 (./phd_logbook.out) (./phd_logbook.out)
 \@outlinefile=\write3
 \openout3 = `phd_logbook.out'.
 
- (./phd_logbook.toc)
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: <default>
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(72.26999pt, 469.75502pt, 72.26999pt)
+* v-part:(T,H,B)=(72.26999pt, 650.43001pt, 72.26999pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=469.75502pt
+* \textheight=650.43001pt
+* \oddsidemargin=0.0pt
+* \evensidemargin=0.0pt
+* \topmargin=-37.0pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=10.0pt
+* \footskip=30.0pt
+* \marginparwidth=65.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+(./phd_logbook.toc)
 \tf@toc=\write4
 \openout4 = `phd_logbook.toc'.
 
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-Overfull \hbox (13.11pt too wide) in paragraph at lines 18--20
-\OT1/cmr/m/n/10 code used con be found on github repos-i-tory []$\OT1/cmtt/m/n/
-10 https : / / github . com / marco-[]cucchi /
- []
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 46.
 
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 45.
 (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 45.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 46.
  [2]
-Overfull \hbox (0.69307pt too wide) in paragraph at lines 92--94
-[]\OT1/cmr/m/n/10 The fit is per-formed with the R func-tion \OT1/cmtt/m/n/10 g
-evFit \OT1/cmr/m/n/10 from the pack-age \OT1/cmtt/m/n/10 fExtremes\OT1/cmr/m/n/
-10 ,
- []
 
-[3]
+LaTeX Warning: Reference `1' on page 3 undefined on input line 101.
 
-LaTeX Warning: Reference `1' on page 4 undefined on input line 100.
-
-[4] [5]
-<fig/shape_gev_mle_RK401_1e7_maxt05_1e7.png, id=182, 512.6352pt x 384.4764pt>
+[3] [4]
+<fig/shape_gev_mle_RK401_1e7_maxt05_1e7.png, id=186, 512.6352pt x 384.4764pt>
 File: fig/shape_gev_mle_RK401_1e7_maxt05_1e7.png Graphic file (type png)
 <use fig/shape_gev_mle_RK401_1e7_maxt05_1e7.png>
 Package pdftex.def Info: fig/shape_gev_mle_RK401_1e7_maxt05_1e7.png  used on in
-put line 186.
-(pdftex.def)             Requested size: 345.0pt x 258.75357pt.
-<fig/modscale_gev_mle_RK401_1e7_maxt05_1e7.png, id=183, 512.6352pt x 384.4764pt
+put line 187.
+(pdftex.def)             Requested size: 469.75502pt x 352.32045pt.
+<fig/modscale_gev_mle_RK401_1e7_maxt05_1e7.png, id=187, 512.6352pt x 384.4764pt
 >
 File: fig/modscale_gev_mle_RK401_1e7_maxt05_1e7.png Graphic file (type png)
 <use fig/modscale_gev_mle_RK401_1e7_maxt05_1e7.png>
 Package pdftex.def Info: fig/modscale_gev_mle_RK401_1e7_maxt05_1e7.png  used on
- input line 192.
-(pdftex.def)             Requested size: 345.0pt x 258.75357pt.
-<fig/shape_mom_RK401_1e7_maxt05_1e7.png, id=188, 569.0058pt x 375.5631pt>
+ input line 193.
+(pdftex.def)             Requested size: 469.75502pt x 352.32045pt.
+<fig/shape_mom_RK401_1e7_maxt05_1e7.png, id=192, 569.0058pt x 375.5631pt>
 File: fig/shape_mom_RK401_1e7_maxt05_1e7.png Graphic file (type png)
 <use fig/shape_mom_RK401_1e7_maxt05_1e7.png>
 Package pdftex.def Info: fig/shape_mom_RK401_1e7_maxt05_1e7.png  used on input 
-line 206.
-(pdftex.def)             Requested size: 345.0pt x 227.71207pt.
-<fig/modscale_mom_RK401_1e7_maxt05_1e7.png, id=189, 569.0058pt x 375.5631pt>
+line 207.
+(pdftex.def)             Requested size: 469.75502pt x 310.0554pt.
+<fig/modscale_mom_RK401_1e7_maxt05_1e7.png, id=193, 569.0058pt x 375.5631pt>
 File: fig/modscale_mom_RK401_1e7_maxt05_1e7.png Graphic file (type png)
 <use fig/modscale_mom_RK401_1e7_maxt05_1e7.png>
 Package pdftex.def Info: fig/modscale_mom_RK401_1e7_maxt05_1e7.png  used on inp
-ut line 212.
-(pdftex.def)             Requested size: 345.0pt x 227.71207pt.
- [6] [7 <./fig/shape_gev_mle_RK401_1e7_maxt05_1e7.png>] [8 <./fig/modscale_gev_
-mle_RK401_1e7_maxt05_1e7.png>] [9 <./fig/shape_mom_RK401_1e7_maxt05_1e7.png> <.
-/fig/modscale_mom_RK401_1e7_maxt05_1e7.png>] [10]
-! Missing delimiter (. inserted).
-<to be read again> 
-                   \gdef 
-l.295 \end{equation}
-                    
-I was expecting to see something like `(' or `\{' or
-`\}' here. If you typed, e.g., `{' instead of `\{', you
-should probably delete the `{' by typing `1' now, so that
-braces don't get unbalanced. Otherwise just proceed.
-Acceptable delimiters are characters whose \delcode is
-nonnegative, or you can use `\delimiter <delimiter code>'.
+ut line 213.
+(pdftex.def)             Requested size: 469.75502pt x 310.0554pt.
+ [5] [6 <./fig/shape_gev_mle_RK401_1e7_maxt05_1e7.png>] [7 <./fig/modscale_gev_
+mle_RK401_1e7_maxt05_1e7.png>] [8 <./fig/shape_mom_RK401_1e7_maxt05_1e7.png>] [
+9 <./fig/modscale_mom_RK401_1e7_maxt05_1e7.png>] [10]
+<fig/pred_bin_S_30.png, id=255, 1084.05pt x 1445.4pt>
+File: fig/pred_bin_S_30.png Graphic file (type png)
+<use fig/pred_bin_S_30.png>
+Package pdftex.def Info: fig/pred_bin_S_30.png  used on input line 331.
+(pdftex.def)             Requested size: 422.77664pt x 563.70374pt.
+<fig/pred_bin_L_003_100.png, id=257, 1084.05pt x 1445.4pt>
+File: fig/pred_bin_L_003_100.png Graphic file (type png)
+<use fig/pred_bin_L_003_100.png>
+Package pdftex.def Info: fig/pred_bin_L_003_100.png  used on input line 339.
+(pdftex.def)             Requested size: 422.77664pt x 563.70374pt.
 
-[11] [12] (./phd_logbook.bbl
-Underfull \hbox (badness 1048) in paragraph at lines 13--15
-[]\OT1/cmr/m/n/10 S. Coles, \OT1/cmr/m/it/10 An In-tro-duc-tion to Sta-tis-ti-c
-al Mod-el-ing of Ex-treme Val-ues\OT1/cmr/m/n/10 .
- []
 
-)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 313.
- [13]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 313.
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<fig/pred_bin_L_03_10.png, id=258, 1084.05pt x 1445.4pt>
+File: fig/pred_bin_L_03_10.png Graphic file (type png)
+<use fig/pred_bin_L_03_10.png>
+Package pdftex.def Info: fig/pred_bin_L_03_10.png  used on input line 347.
+(pdftex.def)             Requested size: 422.77664pt x 563.70374pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[11]
+
+LaTeX Warning: Text page 12 contains only floats.
+
+[12 <./fig/pred_bin_S_30.png>]
+
+LaTeX Warning: Text page 13 contains only floats.
+
+[13 <./fig/pred_bin_L_003_100.png>]
+
+LaTeX Warning: Text page 14 contains only floats.
+
+[14 <./fig/pred_bin_L_03_10.png>] (./phd_logbook.bbl)
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 361.
+ [15]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 361.
  (./phd_logbook.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 313.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 313.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 361.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 361.
+Package rerunfilecheck Info: File `phd_logbook.out' has not changed.
+(rerunfilecheck)             Checksum: 1517070C0DE5310669951C11C168AE5B;1268.
 
-
-Package rerunfilecheck Warning: File `phd_logbook.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `phd_logbook.out':
-(rerunfilecheck)             Before: 989128E1A0FBF1CE1D5F91EC07CB87F4;1153
-(rerunfilecheck)             After:  D15574208D18914594333AF6325D19C3;1210.
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 313.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 361.
  ) 
 Here is how much of TeX's memory you used:
- 5780 strings out of 494847
- 84122 string characters out of 6179080
- 168078 words of memory out of 5000000
- 8978 multiletter control sequences out of 15000+600000
+ 6243 strings out of 494847
+ 90984 string characters out of 6179080
+ 181536 words of memory out of 5000000
+ 9426 multiletter control sequences out of 15000+600000
  10557 words of font info for 38 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
- 28i,8n,28p,587b,376s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 28i,8n,32p,587b,386s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texli
@@ -410,10 +459,10 @@ ts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type
 1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
 ic/amsfonts/cm/cmti8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
 onts/cm/cmtt10.pfb>
-Output written on phd_logbook.pdf (13 pages, 814961 bytes).
+Output written on phd_logbook.pdf (15 pages, 1523102 bytes).
 PDF statistics:
- 354 PDF objects out of 1000 (max. 8388607)
- 306 compressed objects within 4 object streams
- 81 named destinations out of 1000 (max. 500000)
- 141 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 382 PDF objects out of 1000 (max. 8388607)
+ 326 compressed objects within 4 object streams
+ 89 named destinations out of 1000 (max. 500000)
+ 172 words of extra memory for PDF output out of 10000 (max. 10000000)
 

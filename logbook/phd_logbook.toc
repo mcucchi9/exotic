@@ -4,13 +4,14 @@
 \contentsline {subsection}{\numberline {2.2}Statistics of Extreme Events}{3}{subsection.2.2}
 \contentsline {subsubsection}{\numberline {2.2.1}Block-maxima approach}{3}{subsubsection.2.2.1}
 \contentsline {subsubsection}{\numberline {2.2.2}Method of Moments}{4}{subsubsection.2.2.2}
-\contentsline {subsubsection}{\numberline {2.2.3}Bounds to the \textit {shape} parameter from the attractor's dimensions}{5}{subsubsection.2.2.3}
-\contentsline {subsection}{\numberline {2.3}Statistics of Extreme Events: Corrections and Results}{6}{subsection.2.3}
-\contentsline {subsubsection}{\numberline {2.3.1}Block-maxima approach}{6}{subsubsection.2.3.1}
-\contentsline {subsubsection}{\numberline {2.3.2}Method of Moments}{6}{subsubsection.2.3.2}
-\contentsline {section}{\numberline {3}LRT and the Lorenz-96 model}{6}{section.3}
-\contentsline {subsection}{\numberline {3.1}Background}{10}{subsection.3.1}
-\contentsline {subsection}{\numberline {3.2}The Experiment}{11}{subsection.3.2}
-\contentsline {subsubsection}{\numberline {3.2.1}Energy}{11}{subsubsection.3.2.1}
+\contentsline {subsubsection}{\numberline {2.2.3}Bounds to the \textit {shape} parameter from the attractor's dimensions}{4}{subsubsection.2.2.3}
+\contentsline {subsection}{\numberline {2.3}Statistics of Extreme Events: Corrections and Results}{5}{subsection.2.3}
+\contentsline {subsubsection}{\numberline {2.3.1}Block-maxima approach}{5}{subsubsection.2.3.1}
+\contentsline {subsubsection}{\numberline {2.3.2}Method of Moments}{5}{subsubsection.2.3.2}
+\contentsline {section}{\numberline {3}LRT and the Lorenz-96 model}{5}{section.3}
+\contentsline {subsection}{\numberline {3.1}Background}{5}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}The Experiment}{10}{subsection.3.2}
+\contentsline {subsubsection}{\numberline {3.2.1}Energy}{10}{subsubsection.3.2.1}
 \contentsline {subsubsection}{\numberline {3.2.2}Above threshold occurrence of energy values}{11}{subsubsection.3.2.2}
-\contentsline {subsection}{\numberline {3.3}Results}{12}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.3}Results}{11}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}Comments}{11}{subsection.3.4}
