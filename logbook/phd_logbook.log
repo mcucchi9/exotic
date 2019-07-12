@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.5.17)  5 JUL 2019 16:30
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.5.17)  12 JUL 2019 12:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -218,51 +218,88 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip46
 )
+(/usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty
+Package: subcaption 2016/05/22 v1.1-161 Sub-captions (AR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2016/02/21 v3.3-144 Customizing captions (AR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2016/05/22 v1.7-166 caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 67.
+\captionmargin=\dimen118
+\captionmargin@=\dimen119
+\captionwidth=\dimen120
+\caption@tempdima=\dimen121
+\caption@indent=\dimen122
+\caption@parindent=\dimen123
+\caption@hangindent=\dimen124
+)
+\c@ContinuedFloat=\count109
+Package caption Info: hyperref package is loaded.
+)
+\c@subfigure=\count110
+\c@subtable=\count111
+)
+(/usr/share/texlive/texmf-dist/tex/latex/cleveref/cleveref.sty
+Package: cleveref 2018/02/08 v0.21.1 Intelligent cross-referencing
+Package cleveref Info: `hyperref' support loaded on input line 2301.
+LaTeX Info: Redefining \cref on input line 2301.
+LaTeX Info: Redefining \Cref on input line 2301.
+LaTeX Info: Redefining \crefrange on input line 2301.
+LaTeX Info: Redefining \Crefrange on input line 2301.
+LaTeX Info: Redefining \cpageref on input line 2301.
+LaTeX Info: Redefining \Cpageref on input line 2301.
+LaTeX Info: Redefining \cpagerefrange on input line 2301.
+LaTeX Info: Redefining \Cpagerefrange on input line 2301.
+LaTeX Info: Redefining \labelcref on input line 2301.
+LaTeX Info: Redefining \labelcpageref on input line 2301.
+)
 (/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2010/09/12 v5.6 Page Geometry
-\Gm@cnth=\count109
-\Gm@cntv=\count110
-\c@Gm@tempcnt=\count111
-\Gm@bindingoffset=\dimen118
-\Gm@wd@mp=\dimen119
-\Gm@odd@mp=\dimen120
-\Gm@even@mp=\dimen121
-\Gm@layoutwidth=\dimen122
-\Gm@layoutheight=\dimen123
-\Gm@layouthoffset=\dimen124
-\Gm@layoutvoffset=\dimen125
+\Gm@cnth=\count112
+\Gm@cntv=\count113
+\c@Gm@tempcnt=\count114
+\Gm@bindingoffset=\dimen125
+\Gm@wd@mp=\dimen126
+\Gm@odd@mp=\dimen127
+\Gm@even@mp=\dimen128
+\Gm@layoutwidth=\dimen129
+\Gm@layoutheight=\dimen130
+\Gm@layouthoffset=\dimen131
+\Gm@layoutvoffset=\dimen132
 \Gm@dimlist=\toks20
 )
 (./phd_logbook.aux)
 \openout1 = `phd_logbook.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count112
-\scratchdimen=\dimen126
+\scratchcounter=\count115
+\scratchdimen=\dimen133
 \scratchbox=\box28
-\nofMPsegments=\count113
-\nofMParguments=\count114
+\nofMPsegments=\count116
+\nofMParguments=\count117
 \everyMPshowfont=\toks21
-\MPscratchCnt=\count115
-\MPscratchDim=\dimen127
-\MPnumerator=\count116
-\makeMPintoPDFobject=\count117
+\MPscratchCnt=\count118
+\MPscratchDim=\dimen134
+\MPnumerator=\count119
+\makeMPintoPDFobject=\count120
 \everyMPtoPDFconversion=\toks22
 ) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
@@ -282,7 +319,7 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 \AtBeginShipoutBox=\box29
-Package hyperref Info: Link coloring OFF on input line 12.
+Package hyperref Info: Link coloring OFF on input line 14.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
@@ -290,16 +327,18 @@ Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count118
+\c@section@level=\count121
 )
-LaTeX Info: Redefining \ref on input line 12.
-LaTeX Info: Redefining \pageref on input line 12.
-LaTeX Info: Redefining \nameref on input line 12.
+LaTeX Info: Redefining \ref on input line 14.
+LaTeX Info: Redefining \pageref on input line 14.
+LaTeX Info: Redefining \nameref on input line 14.
 
 (./phd_logbook.out) (./phd_logbook.out)
 \@outlinefile=\write3
 \openout3 = `phd_logbook.out'.
 
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: End \AtBeginDocument code.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -342,65 +381,104 @@ LaTeX Info: Redefining \nameref on input line 12.
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 46.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 48.
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 46.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 48.
  [2]
 
-LaTeX Warning: Reference `1' on page 3 undefined on input line 101.
+LaTeX Warning: Reference `1' on page 3 undefined on input line 103.
 
 [3] [4]
-<fig/shape_gev_mle_RK401_1e7_maxt05_1e7.png, id=186, 512.6352pt x 384.4764pt>
+<fig/shape_gev_mle_RK401_1e7_maxt05_1e7.png, id=191, 512.6352pt x 384.4764pt>
 File: fig/shape_gev_mle_RK401_1e7_maxt05_1e7.png Graphic file (type png)
 <use fig/shape_gev_mle_RK401_1e7_maxt05_1e7.png>
 Package pdftex.def Info: fig/shape_gev_mle_RK401_1e7_maxt05_1e7.png  used on in
-put line 187.
+put line 189.
 (pdftex.def)             Requested size: 469.75502pt x 352.32045pt.
-<fig/modscale_gev_mle_RK401_1e7_maxt05_1e7.png, id=187, 512.6352pt x 384.4764pt
+<fig/modscale_gev_mle_RK401_1e7_maxt05_1e7.png, id=192, 512.6352pt x 384.4764pt
 >
 File: fig/modscale_gev_mle_RK401_1e7_maxt05_1e7.png Graphic file (type png)
 <use fig/modscale_gev_mle_RK401_1e7_maxt05_1e7.png>
 Package pdftex.def Info: fig/modscale_gev_mle_RK401_1e7_maxt05_1e7.png  used on
- input line 193.
+ input line 195.
 (pdftex.def)             Requested size: 469.75502pt x 352.32045pt.
-<fig/shape_mom_RK401_1e7_maxt05_1e7.png, id=192, 569.0058pt x 375.5631pt>
+<fig/shape_mom_RK401_1e7_maxt05_1e7.png, id=197, 569.0058pt x 375.5631pt>
 File: fig/shape_mom_RK401_1e7_maxt05_1e7.png Graphic file (type png)
 <use fig/shape_mom_RK401_1e7_maxt05_1e7.png>
 Package pdftex.def Info: fig/shape_mom_RK401_1e7_maxt05_1e7.png  used on input 
-line 207.
+line 209.
 (pdftex.def)             Requested size: 469.75502pt x 310.0554pt.
-<fig/modscale_mom_RK401_1e7_maxt05_1e7.png, id=193, 569.0058pt x 375.5631pt>
+<fig/modscale_mom_RK401_1e7_maxt05_1e7.png, id=198, 569.0058pt x 375.5631pt>
 File: fig/modscale_mom_RK401_1e7_maxt05_1e7.png Graphic file (type png)
 <use fig/modscale_mom_RK401_1e7_maxt05_1e7.png>
 Package pdftex.def Info: fig/modscale_mom_RK401_1e7_maxt05_1e7.png  used on inp
-ut line 213.
+ut line 215.
 (pdftex.def)             Requested size: 469.75502pt x 310.0554pt.
  [5] [6 <./fig/shape_gev_mle_RK401_1e7_maxt05_1e7.png>] [7 <./fig/modscale_gev_
 mle_RK401_1e7_maxt05_1e7.png>] [8 <./fig/shape_mom_RK401_1e7_maxt05_1e7.png>] [
 9 <./fig/modscale_mom_RK401_1e7_maxt05_1e7.png>] [10]
-<fig/pred_bin_S_30.png, id=255, 1084.05pt x 1445.4pt>
+<fig/pred_bin_S_30.png, id=263, 1084.05pt x 1445.4pt>
 File: fig/pred_bin_S_30.png Graphic file (type png)
 <use fig/pred_bin_S_30.png>
-Package pdftex.def Info: fig/pred_bin_S_30.png  used on input line 331.
+Package pdftex.def Info: fig/pred_bin_S_30.png  used on input line 334.
 (pdftex.def)             Requested size: 422.77664pt x 563.70374pt.
-<fig/pred_bin_L_003_100.png, id=257, 1084.05pt x 1445.4pt>
+<fig/pred_bin_L_003_100.png, id=265, 1084.05pt x 1445.4pt>
 File: fig/pred_bin_L_003_100.png Graphic file (type png)
 <use fig/pred_bin_L_003_100.png>
-Package pdftex.def Info: fig/pred_bin_L_003_100.png  used on input line 339.
+Package pdftex.def Info: fig/pred_bin_L_003_100.png  used on input line 342.
 (pdftex.def)             Requested size: 422.77664pt x 563.70374pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<fig/pred_bin_L_03_10.png, id=258, 1084.05pt x 1445.4pt>
+<fig/pred_bin_L_03_10.png, id=266, 1084.05pt x 1445.4pt>
 File: fig/pred_bin_L_03_10.png Graphic file (type png)
 <use fig/pred_bin_L_03_10.png>
-Package pdftex.def Info: fig/pred_bin_L_03_10.png  used on input line 347.
+Package pdftex.def Info: fig/pred_bin_L_03_10.png  used on input line 350.
 (pdftex.def)             Requested size: 422.77664pt x 563.70374pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<fig/pred_energy_bin_098q_099q_S_30.png, id=275, 433.62pt x 289.08pt>
+File: fig/pred_energy_bin_098q_099q_S_30.png Graphic file (type png)
+<use fig/pred_energy_bin_098q_099q_S_30.png>
+Package pdftex.def Info: fig/pred_energy_bin_098q_099q_S_30.png  used on input 
+line 370.
+(pdftex.def)             Requested size: 225.4804pt x 150.32245pt.
+<fig/pred_energy_exceed_099q_S_30.png, id=276, 433.62pt x 289.08pt>
+File: fig/pred_energy_exceed_099q_S_30.png Graphic file (type png)
+<use fig/pred_energy_exceed_099q_S_30.png>
+Package pdftex.def Info: fig/pred_energy_exceed_099q_S_30.png  used on input li
+ne 375.
+(pdftex.def)             Requested size: 225.4804pt x 150.32245pt.
+<fig/pred_energy_bin_098q_099q_L_03_10.png, id=277, 433.62pt x 289.08pt>
+File: fig/pred_energy_bin_098q_099q_L_03_10.png Graphic file (type png)
+<use fig/pred_energy_bin_098q_099q_L_03_10.png>
+Package pdftex.def Info: fig/pred_energy_bin_098q_099q_L_03_10.png  used on inp
+ut line 380.
+(pdftex.def)             Requested size: 225.4804pt x 150.32245pt.
+<fig/pred_energy_exceed_099q_L_03_10.png, id=278, 433.62pt x 289.08pt>
+File: fig/pred_energy_exceed_099q_L_03_10.png Graphic file (type png)
+<use fig/pred_energy_exceed_099q_L_03_10.png>
+Package pdftex.def Info: fig/pred_energy_exceed_099q_L_03_10.png  used on input
+ line 385.
+(pdftex.def)             Requested size: 225.4804pt x 150.32245pt.
+<fig/pred_energy_bin_098q_099q_L_003_100.png, id=279, 433.62pt x 289.08pt>
+File: fig/pred_energy_bin_098q_099q_L_003_100.png Graphic file (type png)
+<use fig/pred_energy_bin_098q_099q_L_003_100.png>
+Package pdftex.def Info: fig/pred_energy_bin_098q_099q_L_003_100.png  used on i
+nput line 390.
+(pdftex.def)             Requested size: 225.4804pt x 150.32245pt.
+<fig/pred_energy_exceed_099q_L_003_100.png, id=280, 433.62pt x 289.08pt>
+File: fig/pred_energy_exceed_099q_L_003_100.png Graphic file (type png)
+<use fig/pred_energy_exceed_099q_L_003_100.png>
+Package pdftex.def Info: fig/pred_energy_exceed_099q_L_003_100.png  used on inp
+ut line 395.
+(pdftex.def)             Requested size: 225.4804pt x 150.32245pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
@@ -416,29 +494,33 @@ LaTeX Warning: Text page 13 contains only floats.
 
 LaTeX Warning: Text page 14 contains only floats.
 
-[14 <./fig/pred_bin_L_03_10.png>] (./phd_logbook.bbl)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 361.
- [15]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 361.
+[14 <./fig/pred_bin_L_03_10.png>] (./phd_logbook.bbl [15 <./fig/pred_energy_bin
+_098q_099q_S_30.png> <./fig/pred_energy_exceed_099q_S_30.png> <./fig/pred_energ
+y_bin_098q_099q_L_03_10.png> <./fig/pred_energy_exceed_099q_L_03_10.png> <./fig
+/pred_energy_bin_098q_099q_L_003_100.png> <./fig/pred_energy_exceed_099q_L_003_
+100.png>])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 409.
+ [16]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 409.
  (./phd_logbook.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 361.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 361.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 409.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 409.
 Package rerunfilecheck Info: File `phd_logbook.out' has not changed.
-(rerunfilecheck)             Checksum: 1517070C0DE5310669951C11C168AE5B;1268.
+(rerunfilecheck)             Checksum: C2220FFA55C26333496E7B6E13A4AA77;1384.
 
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 361.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 409.
  ) 
 Here is how much of TeX's memory you used:
- 6243 strings out of 494847
- 90984 string characters out of 6179080
- 181536 words of memory out of 5000000
- 9426 multiletter control sequences out of 15000+600000
- 10557 words of font info for 38 fonts, out of 8000000 for 9000
+ 9064 strings out of 494847
+ 151614 string characters out of 6179080
+ 247435 words of memory out of 5000000
+ 12221 multiletter control sequences out of 15000+600000
+ 11694 words of font info for 42 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
- 28i,8n,32p,587b,386s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 42i,8n,40p,587b,503s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texli
@@ -446,23 +528,25 @@ ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/texlive/t
 exmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-d
 ist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
-onts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.
-pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/
-texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type
-1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmti8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
-onts/cm/cmtt10.pfb>
-Output written on phd_logbook.pdf (15 pages, 1523102 bytes).
+e1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.
+pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></u
+sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texliv
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.p
+fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on phd_logbook.pdf (16 pages, 1688331 bytes).
 PDF statistics:
- 382 PDF objects out of 1000 (max. 8388607)
- 326 compressed objects within 4 object streams
- 89 named destinations out of 1000 (max. 500000)
- 172 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 428 PDF objects out of 1000 (max. 8388607)
+ 356 compressed objects within 4 object streams
+ 92 named destinations out of 1000 (max. 500000)
+ 210 words of extra memory for PDF output out of 10000 (max. 10000000)
 
