@@ -146,7 +146,7 @@ class LinearForcing(Forcing):
             self.activation_time,
             self.deactivation_time
         )
-        self._long_name = 'Linear Forcing ({}+{}, starting at t={} and ending at t={})'.format(
+        self._long_name = 'Linear Forcing ({}+{}*t, starting at t={} and ending at t={})'.format(
             self.force_intensity_base,
             self.linear_coefficient,
             self.activation_time,
@@ -161,9 +161,69 @@ class LinearForcing(Forcing):
         if time <= self.activation_time:
             force = self.force_intensity_base
         elif self.activation_time < time <= self.deactivation_time:
-            force = self.force_intensity_base + self.linear_coefficient * time
+            force = self.force_intensity_base + self.linear_coefficient * (time - self.activation_time)
         else:
             force = self.force_intensity_base + self.linear_coefficient * \
                     (self.deactivation_time - self.activation_time)
 
         return force
+
+
+class SinusoidalForcing(Forcing):
+    """
+    Define sinusoidal forcing. A constant forcing **force_intensity_base** is applied till before **activation_time**,
+    while from t=**activation_time** a sinusoidal force of the form
+    F = **epsilon** * sin(**omega** * t)
+    is applied till **deactivation_time**.
+    """
+    def __init__(
+            self,
+            activation_time: float = 0,
+            deactivation_time: float = 100,
+            force_intensity_base: float = 8,
+            epsilon: float = 1,
+            omega: float = 0.1,
+    ):
+        """
+        :param activation_time: time at which forcing is activated
+        :param deactivation_time: time at which forcing is deactivated
+        :param force_intensity_base: starting force
+        :param epsilon: sine amplitude
+        :param omega: angular frequency (referred to real simulation time)
+        """
+        self.activation_time = activation_time
+        self.deactivation_time = deactivation_time
+        self.force_intensity_base = force_intensity_base
+        self.epsilon = epsilon
+        self.omega = omega
+
+        self._short_name = 'SF_{}_{}_{}_{}_{}'.format(
+            self.force_intensity_base,
+            self.epsilon,
+            self.omega,
+            self.activation_time,
+            self.deactivation_time
+        )
+        self._long_name = 'Sinusoidal Forcing ({}*sin({}*t), starting at t={} and ending at t={})'.format(
+            self.force_intensity_base,
+            self.epsilon,
+            self.omega,
+            self.activation_time,
+            self.deactivation_time
+        )
+
+    def __call__(
+            self,
+            time: float
+    ):
+
+        if time <= self.activation_time:
+            force = self.force_intensity_base
+        elif self.activation_time < time <= self.deactivation_time:
+            force = self.epsilon * math.sin(self.omega * (time - self.activation_time))
+        else:
+            force = self.force_intensity_base + self.epsilon * \
+                    math.sin(self.omega * (self.deactivation_time - self.activation_time))
+
+        return force
+
