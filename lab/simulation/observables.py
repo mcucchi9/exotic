@@ -20,6 +20,23 @@ class Energy:
         return 'energy'
 
 
+class Position:
+
+    def __call__(
+            self,
+            data: xr.DataArray
+    ):
+
+        obs = data
+
+        return obs
+
+    @property
+    def short_name(self):
+
+        return 'position'
+    
+
 class Bin:
 
     def __init__(
