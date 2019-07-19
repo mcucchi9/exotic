@@ -15,4 +15,5 @@
 \contentsline {subsubsection}{\numberline {3.2.2}Above threshold occurrence of energy values}{11}{subsubsection.3.2.2}
 \contentsline {subsection}{\numberline {3.3}Results}{11}{subsection.3.3}
 \contentsline {subsubsection}{\numberline {3.3.1}Comments}{11}{subsubsection.3.3.1}
-\contentsline {subsection}{\numberline {3.4}A closer look at higher percentiles (and smaller bins)}{11}{subsection.3.4}
+\contentsline {subsection}{\numberline {3.4}A closer look at higher percentiles (and smaller bins)}{15}{subsection.3.4}
+\contentsline {subsection}{\numberline {3.5}Prediction of changes in Energy values distribution}{15}{subsection.3.5}
