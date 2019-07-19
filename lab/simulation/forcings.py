@@ -197,7 +197,7 @@ class SinusoidalForcing(Forcing):
         self.epsilon = epsilon
         self.omega = omega
 
-        self._short_name = 'SF_{}_{}_{}_{}_{}'.format(
+        self._short_name = 'SinF_{}_{}_{}_{}_{}'.format(
             self.force_intensity_base,
             self.epsilon,
             self.omega,
