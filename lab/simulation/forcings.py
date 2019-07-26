@@ -220,7 +220,7 @@ class SinusoidalForcing(Forcing):
         if time <= self.activation_time:
             force = self.force_intensity_base
         elif self.activation_time < time <= self.deactivation_time:
-            force = self.epsilon * math.sin(self.omega * (time - self.activation_time))
+            force = self.force_intensity_base + self.epsilon * math.sin(self.omega * (time - self.activation_time))
         else:
             force = self.force_intensity_base + self.epsilon * \
                     math.sin(self.omega * (self.deactivation_time - self.activation_time))
