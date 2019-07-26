@@ -311,7 +311,7 @@ with $e_{t_1} < e_{t_2}$. Again, averaging this observable over ensemble members
 
 \subsection{Results}\label{results}
 
-In this section, comparisons between actual and predicted (via LRT) responses are shown for \textbf{above} and \textbf{between-thresholds occurrences} observables.
+In this section, comparisons between actual and predicted (via LRT) responses are shown for \textbf{above} and \textbf{below-thresholds occurrences} observables.
 As thresholds, energy percentiles (computed on the system at rest) have been taken (see Figures' titles).
 The following forcings have been considered:
 
@@ -331,7 +331,7 @@ Results are shown in Figures \ref{fig:pred_bin_S_30}, \ref{fig:pred_bin_L_003_10
 \begin{figure}[!htb]
 	\centering
 	\textbf{Step Forcing - $\Delta F=3$}\par\medskip
-	\includegraphics[width=0.9\linewidth]{fig/pred_bin_S_30.png}
+	\includegraphics[width=0.9\linewidth]{fig/pred_below_S_30.png}
 	\caption{Real vs. predicted average responses of \textbf{occurrence observables} for \textbf{step forcing}, activated at time $t=0$ with intensity $\Delta F = 3$.}
 	\label{fig:pred_bin_S_30}
 \end{figure}
@@ -339,7 +339,7 @@ Results are shown in Figures \ref{fig:pred_bin_S_30}, \ref{fig:pred_bin_L_003_10
 \begin{figure}[!h]
 	\centering
 	\textbf{Linear Forcing - $(F_0=8, C=0.03, t_f=100)$}\par\medskip
-	\includegraphics[width=0.9\linewidth]{fig/pred_bin_L_003_100.png}
+	\includegraphics[width=0.9\linewidth]{fig/pred_below_L_003_100.png}
 	\caption{Real vs. predicted average responses of \textbf{occurrence observables} for \textbf{linear forcing}, activated at time $t_i=0$, deactivated at time $t_f=100$, with linear coefficient $C=0.03$.}
 	\label{fig:pred_bin_L_003_100}
 \end{figure}
@@ -347,7 +347,7 @@ Results are shown in Figures \ref{fig:pred_bin_S_30}, \ref{fig:pred_bin_L_003_10
 \begin{figure}[!h]
 	\centering
 	\textbf{Linear Forcing - $(F_0=8, C=0.3, t_f=10)$}\par\medskip
-	\includegraphics[width=0.9\linewidth]{fig/pred_bin_L_03_10.png}
+	\includegraphics[width=0.9\linewidth]{fig/pred_below_L_03_10.png}
 	\caption{Real vs. predicted average responses of \textbf{occurrence observables} for \textbf{linear forcing}, activated at time $t_i=0$, deactivated at time $t_f=10$, with linear coefficient $C=0.3$.}
 	\label{fig:pred_bin_L_03_10}
 \end{figure}
@@ -358,9 +358,9 @@ Why predicted responses in linear forcing cases are so much less noisy than in t
 
 \newpage
 
-\subsection{A closer look at higher percentiles (and smaller bins)}
+\subsection{A closer look at higher percentiles}
 
-In Figure \ref{fig:pred_energy_exceed_099q} results are shown for the same forcings explored in \ref{results}, but for exceedances above a higher percentile ($99^{th}$, Figs. \cref{fig:pred_energy_exceed_099q_S_30,fig:pred_energy_exceed_099q_L_03_10,fig:pred_energy_exceed_099q_L_003_100}) and occurrences inside smaller bin ($98^{th}$-$99^{th}$, Figs. \cref{fig:pred_energy_bin_098q_099q_S_30,fig:pred_energy_bin_098q_099q_L_03_10,fig:pred_energy_bin_098q_099q_L_003_100}). 
+In Figure \ref{fig:pred_energy_exceed_099q} results are shown for the same forcings explored in \ref{results}, but for frequency of values below and above a higher percentile ($99^{th}$). 
 
 From the plots \textit{a discrepancy is evident between observations and predictions}, which was not so obvious for larger percentiles' intervals. Furthermore, \textit{the discrepancy is bigger} (especially for exceedances of $99^{th}$ percentile) \textit{when using semi-difference of responses for computing response function}.
 
@@ -382,9 +382,9 @@ As a consequence, for the moment, \textbf{predictions will be made against forci
 \begin{figure}[!ht]
 	\centering
 	\begin{subfigure}[b]{0.48\textwidth}
-		\includegraphics[width=1\linewidth]{fig/pred_energy_bin_098q_099q_S_30.png}
+		\includegraphics[width=1\linewidth]{fig/pred_energy_bin_00q_099q_S_30.png}
 		\caption{Step forcing, $\Delta F=3$}
-		\label{fig:pred_energy_bin_098q_099q_S_30}
+		\label{fig:pred_energy_bin_00q_099q_S_30}
 	\end{subfigure}%
 	\begin{subfigure}[b]{0.48\textwidth}
 		\includegraphics[width=1\linewidth]{fig/pred_energy_exceed_099q_S_30.png}
@@ -392,9 +392,9 @@ As a consequence, for the moment, \textbf{predictions will be made against forci
 		\label{fig:pred_energy_exceed_099q_S_30}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.48\textwidth}
-		\includegraphics[width=1\linewidth]{fig/pred_energy_bin_098q_099q_L_03_10.png}
+		\includegraphics[width=1\linewidth]{fig/pred_energy_bin_00q_099q_L_03_10.png}
 		\caption{Linear Forcing - $(F_0=8, C=0.3, t_f=10)$}
-		\label{fig:pred_energy_bin_098q_099q_L_03_10}
+		\label{fig:pred_energy_bin_00q_099q_L_03_10}
 	\end{subfigure}%
 	\begin{subfigure}[b]{0.48\textwidth}
 		\includegraphics[width=1\linewidth]{fig/pred_energy_exceed_099q_L_03_10.png}
@@ -402,9 +402,9 @@ As a consequence, for the moment, \textbf{predictions will be made against forci
 		\label{fig:pred_energy_exceed_099q_L_03_10}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.48\textwidth}
-		\includegraphics[width=1\linewidth]{fig/pred_energy_bin_098q_099q_L_003_100.png}
+		\includegraphics[width=1\linewidth]{fig/pred_energy_bin_00q_099q_L_003_100.png}
 		\caption{Linear Forcing - $(F_0=8, C=0.03, t_f=100)$}
-		\label{fig:pred_energy_bin_098q_099q_L_003_100}
+		\label{fig:pred_energy_bin_00q_099q_L_003_100}
 	\end{subfigure}%
 	\begin{subfigure}[b]{0.48\textwidth}
 		\includegraphics[width=1\linewidth]{fig/pred_energy_exceed_099q_L_003_100.png}
@@ -447,9 +447,11 @@ As a consequence, for the moment, \textbf{predictions will be made against forci
 		\caption{Linear Forcing - $(F_0=8, C=0.01, t_f=100)$}
 		\label{fig:pred_energy_exceed_099q_L_001_100_comp}
 	\end{subfigure}
-	\caption{predictions for exceedance of $99^{th}$ percentile and occurrence between $98^{th}$ and $99^{th}$ percentiles}
+	\caption{predictions for exceedance of $99^{th}$ percentile for different linear forcings}
 	\label{fig:pred_energy_exceed_099q_L}
 \end{figure}
+
+\clearpage
 
 \subsection{Prediction of changes in Energy values distribution}
 
@@ -459,6 +461,59 @@ In this section predictions of changes in the Energy values distribution are sho
 	\item Linear Forcing - $F_0=8, C=0.01, t_f=100$
 	\item Linear Forcing - $F_0=8, C=0.02, t_f=100$
 \end{itemize}
+The plots are produced as follows:
+\begin{itemize}
+	\item \textbf{CDF} 
+	
+	on the $x$ axis, percentiles from the $1^{st}$ to the $100^{th}$ as computed from the \textit{unperturbed} system are reported; on the $y$ axis, frequency of observations below corresponding percentile in the \textit{unperturbed} and \textit{perturbed} (at $t=50$ and $t=100$) are reported.
+	  
+	\item \textbf{PDF}
+	
+	starting from arrays of values \textbf{x} and \textbf{y} used for CDF, \textbf{x'} and \textbf{y'} are computed as:
+	
+	\begin{itemize}
+		\item $x'_i = x_i + \frac{x_{i+1} - x_i}{2}$
+		\item $y'_i = \frac{y_{i+1} - y_i}{x_{i+1} - x_i}$
+	\end{itemize}
+	
+	
+\end{itemize}
+
+\begin{figure}[!ht]
+	\centering
+	\begin{subfigure}[b]{0.48\textwidth}
+		\includegraphics[width=1\linewidth]{fig/pred_cdf_energy_L_001_100.png}
+		\caption{Step forcing, $\Delta F=3$}
+		\label{fig:pred_cdf_energy_L_001_100}
+	\end{subfigure}%
+	\begin{subfigure}[b]{0.48\textwidth}
+		\includegraphics[width=1\linewidth]{fig/pred_cdf_energy_L_002_100.png}
+		\caption{Step forcing, $\Delta F=3$}
+		\label{fig:pred_cdf_energy_L_002_100}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.48\textwidth}
+		\includegraphics[width=1\linewidth]{fig/pred_pdf_energy_L_001_100.png}
+		\caption{Linear Forcing - $(F_0=8, C=0.3, t_f=10)$}
+		\label{fig:pred_pdf_energy_L_001_100}
+	\end{subfigure}%
+	\begin{subfigure}[b]{0.48\textwidth}
+		\includegraphics[width=1\linewidth]{fig/pred_pdf_energy_L_002_100.png}
+		\caption{Linear Forcing - $(F_0=8, C=0.3, t_f=10)$}
+		\label{fig:pred_pdf_energy_L_002_100}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.48\textwidth}
+		\includegraphics[width=1\linewidth]{fig/pred_pdf_zoom_energy_L_001_100.png}
+		\caption{Linear Forcing - $(F_0=8, C=0.03, t_f=100)$}
+		\label{fig:pred_pdf_zoom_energy_L_001_100}
+	\end{subfigure}%
+	\begin{subfigure}[b]{0.48\textwidth}
+		\includegraphics[width=1\linewidth]{fig/pred_pdf_zoom_energy_L_002_100.png}
+		\caption{Linear Forcing - $(F_0=8, C=0.03, t_f=100)$}
+		\label{fig:pred_pdf_zoom_energy_L_002_100}
+	\end{subfigure}
+	\caption{predictions for exceedance of $99^{th}$ percentile and occurrence between $98^{th}$ and $99^{th}$ percentiles}
+	\label{fig:pred_energy_cdf_pdf}
+\end{figure}
 
 
 \clearpage
