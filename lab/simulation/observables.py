@@ -35,7 +35,7 @@ class Position:
     def short_name(self):
 
         return 'position'
-    
+
 
 class Bin:
 
