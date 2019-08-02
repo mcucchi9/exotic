@@ -453,9 +453,72 @@ As a consequence, for the moment, \textbf{predictions will be made against forci
 
 \clearpage
 
-\subsection{Prediction of changes in Energy values distribution}
+\subsection{Sinusoidal forcing}
 
-In this section predictions of changes in the Energy values distribution are shown for the following forcings:
+In this section, comparisons between actual and predicted (via LRT) responses are shown for \textbf{above} and \textbf{below-thresholds occurrences of energy} observables.
+As thresholds, energy percentiles (computed on the system at rest) have been taken (see Figures' titles).
+A \textbf{sinusoidal forcing} has been considered, defined as:
+
+\begin{equation}
+F[t]=\left\{\begin{array}{ll}{F_0,} & {t \leq 0} \\ {F_0 + \epsilon\sin{\omega t},} & {t > 0}\end{array}\right.
+\end{equation}
+with parameters $F_0 = 8$, $\epsilon = 1$, $\omega = 0.1$.
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[height=1\linewidth]{fig/pred_energy_below_SinF_8_10_01_0_100.png}
+	\caption{Real vs. predicted average responses of \textbf{energy occurrence observables} for \textbf{sinusoidal forcing}, activated at time $t_i=0$, deactivated at time $t_f=100$, with coefficients $F_0 = 8$, $\epsilon = 1$, $\omega = 0.1$.}
+	\label{fig:pred_energy_below_SinF_8_10_01_0_100}
+\end{figure}
+
+\clearpage
+
+\subsection{Occurrence of position observable}
+
+In this section, comparisons between actual and predicted (via LRT) responses are shown for \textbf{above} and \textbf{below-thresholds occurrences} of position observable, defined as:
+
+\begin{equation}
+X = x
+\end{equation}
+
+As thresholds, position percentiles (computed on the system at rest) have been taken (see Figures' titles).
+The following forcings have been considered:
+
+\begin{itemize}	
+	\item \textbf{Linearly increasing forcing}
+	\begin{equation}
+	F[t]=\left\{\begin{array}{ll}{F_0 + C t,} & {t \leq t_f} \\ {F_0 + C t_f,} & {t > t_f}\end{array}\right.
+	\end{equation}
+	with parameters $(F_0, C, t_f) = (8, 0.01, 100)$.
+	\item \textbf{Sinusoidal forcing}
+	\begin{equation}
+	F[t]=\left\{\begin{array}{ll}{F_0,} & {t \leq 0} \\ {F_0 + \epsilon\sin{\omega t},} & {t > 0}\end{array}\right.
+	\end{equation}
+	with parameters $(F_0, \epsilon, \omega) = (8, 1, 0.1)$.
+\end{itemize}
+Results are shown in Figures \ref{fig:pred_position_below_LF_8_001_0_100} and \ref{fig:pred_below_SinF_8_10_01_0_100}.
+
+\begin{figure}[!htb]
+	\centering
+	\textbf{Linear Forcing - $(F_0=8, C=0.01, t_f=100)$}\par\medskip
+	\includegraphics[width=0.9\linewidth]{fig/pred_position_below_LF_8_001_0_100.png}
+	\caption{Real vs. predicted average responses of \textbf{position occurrence observables} for \textbf{linear forcing}, activated at time $t_i=0$, deactivated at time $t_f=100$, with linear coefficient $C=0.01$.}
+	\label{fig:pred_position_below_LF_8_001_0_100}
+\end{figure}
+
+\begin{figure}[!h]
+	\centering
+	\textbf{Sinusoidal Forcing - $(F_0=8, \epsilon=1, \omega=0.1)$}\par\medskip
+	\includegraphics[width=0.9\linewidth]{fig/pred_position_below_SinF_8_10_01_0_100.png}
+	\caption{Real vs. predicted average responses of \textbf{position occurrence observables} for \textbf{sinusoidal forcing}, activated at time $t_i=0$, deactivated at time $t_f=100$, , with coefficients $F_0 = 8$, $\epsilon = 1$, $\omega = 0.1$.}
+	\label{fig:pred_below_SinF_8_10_01_0_100}
+\end{figure}
+
+\clearpage
+
+\subsection{Prediction of changes in probability distributions}
+
+In this section predictions of changes in the \textbf{energy} and \textbf{position} values distributions are shown for the following forcings:
 
 \begin{itemize}
 	\item Linear Forcing - $F_0=8, C=0.01, t_f=100$
@@ -481,38 +544,66 @@ The plots are produced as follows:
 
 \begin{figure}[!ht]
 	\centering
+	\textbf{Energy}\par\medskip
 	\begin{subfigure}[b]{0.48\textwidth}
-		\includegraphics[width=1\linewidth]{fig/pred_cdf_energy_L_001_100.png}
-		\caption{Step forcing, $\Delta F=3$}
-		\label{fig:pred_cdf_energy_L_001_100}
+		\includegraphics[width=1\linewidth]{fig/pred_cdf_energy_bin_00q_10q_LF_8_001_0_100.png}
+		\caption{Linear Forcing - $(F_0=8, C=0.01, t_f=100)$}
+		\label{fig:pred_cdf_energy_bin_00q_10q_LF_8_001_0_100}
 	\end{subfigure}%
 	\begin{subfigure}[b]{0.48\textwidth}
-		\includegraphics[width=1\linewidth]{fig/pred_cdf_energy_L_002_100.png}
-		\caption{Step forcing, $\Delta F=3$}
-		\label{fig:pred_cdf_energy_L_002_100}
+		\includegraphics[width=1\linewidth]{fig/pred_cdf_energy_bin_00q_10q_LF_8_002_0_100.png}
+		\caption{Linear Forcing - $(F_0=8, C=0.02, t_f=100)$}
+		\label{fig:pred_cdf_energy_bin_00q_10q_LF_8_002_0_100}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.48\textwidth}
-		\includegraphics[width=1\linewidth]{fig/pred_pdf_energy_L_001_100.png}
-		\caption{Linear Forcing - $(F_0=8, C=0.3, t_f=10)$}
-		\label{fig:pred_pdf_energy_L_001_100}
+		\includegraphics[width=1\linewidth]{fig/pred_pdf_energy_bin_00q_10q_LF_8_001_0_100.png}
+		\caption{Linear Forcing - $(F_0=8, C=0.01, t_f=100)$}
+		\label{fig:pred_pdf_energy_bin_00q_10q_LF_8_001_0_100}
 	\end{subfigure}%
 	\begin{subfigure}[b]{0.48\textwidth}
-		\includegraphics[width=1\linewidth]{fig/pred_pdf_energy_L_002_100.png}
-		\caption{Linear Forcing - $(F_0=8, C=0.3, t_f=10)$}
-		\label{fig:pred_pdf_energy_L_002_100}
+		\includegraphics[width=1\linewidth]{fig/pred_pdf_energy_bin_00q_10q_LF_8_002_0_100.png}
+		\caption{Linear Forcing - $(F_0=8, C=0.02, t_f=100)$}
+		\label{fig:pred_pdf_energy_bin_00q_10q_LF_8_002_0_100}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.48\textwidth}
-		\includegraphics[width=1\linewidth]{fig/pred_pdf_zoom_energy_L_001_100.png}
-		\caption{Linear Forcing - $(F_0=8, C=0.03, t_f=100)$}
-		\label{fig:pred_pdf_zoom_energy_L_001_100}
+		\includegraphics[width=1\linewidth]{fig/pred_pdf_zoom_energy_bin_00q_10q_LF_8_001_0_100.png}
+		\caption{Linear Forcing - $(F_0=8, C=0.01, t_f=100)$}
+		\label{fig:pred_pdf_zoom_energy_bin_00q_10q_LF_8_001_0_100}
 	\end{subfigure}%
 	\begin{subfigure}[b]{0.48\textwidth}
-		\includegraphics[width=1\linewidth]{fig/pred_pdf_zoom_energy_L_002_100.png}
-		\caption{Linear Forcing - $(F_0=8, C=0.03, t_f=100)$}
-		\label{fig:pred_pdf_zoom_energy_L_002_100}
+		\includegraphics[width=1\linewidth]{fig/pred_pdf_zoom_energy_bin_00q_10q_LF_8_002_0_100.png}
+		\caption{Linear Forcing - $(F_0=8, C=0.02, t_f=100)$}
+		\label{fig:pred_pdf_zoom_energy_bin_00q_10q_LF_8_002_0_100}
 	\end{subfigure}
-	\caption{predictions for exceedance of $99^{th}$ percentile and occurrence between $98^{th}$ and $99^{th}$ percentiles}
+	\caption{Evolution of CDF and PDF of energy observable.}
 	\label{fig:pred_energy_cdf_pdf}
+\end{figure}
+
+\begin{figure}[!ht]
+	\centering
+	\textbf{Position}\par\medskip
+	\begin{subfigure}[b]{0.48\textwidth}
+		\includegraphics[width=1\linewidth]{fig/pred_cdf_position_bin_00q_10q_LF_8_001_0_100.png}
+		\caption{Linear Forcing - $(F_0=8, C=0.01, t_f=100)$}
+		\label{fig:pred_cdf_position_bin_00q_10q_LF_8_001_0_100}
+	\end{subfigure}%
+	\begin{subfigure}[b]{0.48\textwidth}
+		\includegraphics[width=1\linewidth]{fig/pred_cdf_position_bin_00q_10q_LF_8_002_0_100.png}
+		\caption{Linear Forcing - $(F_0=8, C=0.02, t_f=100)$}
+		\label{fig:pred_cdf_position_bin_00q_10q_LF_8_002_0_100}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.48\textwidth}
+		\includegraphics[width=1\linewidth]{fig/pred_pdf_position_bin_00q_10q_LF_8_001_0_100.png}
+		\caption{Linear Forcing - $(F_0=8, C=0.01, t_f=100)$}
+		\label{fig:pred_pdf_position_bin_00q_10q_LF_8_001_0_100}
+	\end{subfigure}%
+	\begin{subfigure}[b]{0.48\textwidth}
+		\includegraphics[width=1\linewidth]{fig/pred_pdf_position_bin_00q_10q_LF_8_002_0_100.png}
+		\caption{Linear Forcing - $(F_0=8, C=0.02, t_f=100)$}
+		\label{fig:pred_pdf_position_bin_00q_10q_LF_8_002_0_100}
+	\end{subfigure}
+	\caption{Evolution of CDF and PDF of position observable.}
+	\label{fig:pred_position_cdf_pdf}
 \end{figure}
 
 

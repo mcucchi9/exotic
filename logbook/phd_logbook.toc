@@ -16,4 +16,6 @@
 \contentsline {subsection}{\numberline {3.3}Results}{11}{subsection.3.3}
 \contentsline {subsubsection}{\numberline {3.3.1}Comments}{11}{subsubsection.3.3.1}
 \contentsline {subsection}{\numberline {3.4}A closer look at higher percentiles}{15}{subsection.3.4}
-\contentsline {subsection}{\numberline {3.5}Prediction of changes in Energy values distribution}{18}{subsection.3.5}
+\contentsline {subsection}{\numberline {3.5}Sinusoidal forcing}{18}{subsection.3.5}
+\contentsline {subsection}{\numberline {3.6}Occurrence of position observable}{19}{subsection.3.6}
+\contentsline {subsection}{\numberline {3.7}Prediction of changes in probability distributions}{22}{subsection.3.7}
