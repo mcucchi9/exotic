@@ -79,3 +79,35 @@ class Bin:
                 np.round(self.threshold_q[0], 3),
                 np.round(self.threshold_q[1], 3)
             )
+
+
+class Below:
+
+    def __init__(
+            self,
+            threshold: float,
+            threshold_q: float,
+            observable
+    ):
+
+        self.threshold = threshold
+        self.threshold_q = threshold_q
+        self.observable = observable
+
+    def __call__(
+            self,
+            data=xr.DataArray
+    ):
+
+        data = self.observable(data)
+        ones = xr.ones_like(data)
+
+        obs = ones.where(data < self.threshold[0], 0)
+
+        return obs
+
+    @property
+    def short_name(self):
+
+        if len(self.threshold) == 1:
+            return '{}_below_{}q'.format(self.observable.short_name, np.round(self.threshold_q[0], 3))
