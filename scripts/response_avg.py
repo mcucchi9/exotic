@@ -21,7 +21,10 @@ OBS_DICT = {
 forcing_sn = sys.argv[1]
 obs_sn = sys.argv[2]
 
-if obs_sn.split('_')[0] in ('bin', 'below'):
+obs_main = obs_sn.split('_')[0]
+obs_stat = obs_sn.split('_')[1]
+
+if obs_stat in ('bin', 'below'):
 
     threshold_q = []
     threshold_q.append(round(float(sys.argv[3]), 2))
@@ -32,15 +35,15 @@ if obs_sn.split('_')[0] in ('bin', 'below'):
 
     quantiles = xr.open_dataarray(os.path.join(
         DATA_PATH,
-        'obs/lorenz96/rk4/CF_8/quantiles/obs_lorenz96_rk4_CF_8_quantiles_{}.nc'.format(obs_sn.split('_')[1]))
+        'obs/lorenz96/rk4/CF_8/quantiles/obs_lorenz96_rk4_CF_8_quantiles_{}.nc'.format(obs_main))
     )
     quantile_orders = np.round(quantiles.quantile_order.values, 2)
     quantiles.quantile_order.values = quantile_orders
     threshold = [quantiles.sel(quantile_order=tq).values for tq in threshold_q]
 
-observable_class = OBS_DICT[obs_sn.split('_')[0]]
-if obs_sn.split('_')[0] in ('bin', 'below'):
-    observable = observable_class(threshold, threshold_q, OBS_DICT[obs_sn.split('_')[1]]())
+observable_class = OBS_DICT[obs_stat]
+if obs_stat in ('bin', 'below'):
+    observable = observable_class(threshold, threshold_q, OBS_DICT[obs_main]())
 else:
     observable = observable_class()
 
@@ -85,7 +88,7 @@ response_avg.attrs['ensemble'] = num_forcing_sim - 1
 
 out_name = os.path.join(
     DATA_PATH,
-    'response/lorenz96/rk4/{}/'.format(forcing_sn),
+    'response/lorenz96/rk4/{}/{}/{}'.format(forcing_sn, obs_main, obs_stat),
     'response_lorenz96_rk4_{}_{}.nc'.format(observable.short_name, forcing_sn)
 )
 
