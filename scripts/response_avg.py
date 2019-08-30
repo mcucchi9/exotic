@@ -23,7 +23,8 @@ DATA_PATH = os.environ.get('BASE_DATA_PATH')
 
 OBS_DICT = {
     'energy': observables.Energy,
-    'bin': observables.Bin
+    'bin': observables.Bin,
+    'below': observables.Below
 }
 
 forcing_sn = sys.argv[2]
