@@ -72,9 +72,9 @@ class Bin:
     def short_name(self):
 
         if len(self.threshold) == 1:
-            return '{}_exceed_{}q'.format(self.observable.short_name, np.round(self.threshold_q[0], 3))
+            return '{}_exceed_{:.2f}q'.format(self.observable.short_name, np.round(self.threshold_q[0], 3))
         else:
-            return '{}_bin_{}q_{}q'.format(
+            return '{}_bin_{:.2f}q_{:.2f}q'.format(
                 self.observable.short_name,
                 np.round(self.threshold_q[0], 3),
                 np.round(self.threshold_q[1], 3)
@@ -110,4 +110,4 @@ class Below:
     def short_name(self):
 
         if len(self.threshold) == 1:
-            return '{}_below_{}q'.format(self.observable.short_name, np.round(self.threshold_q[0], 3))
+            return '{}_below_{:.2f}q'.format(self.observable.short_name, np.round(self.threshold_q[0], 3))
