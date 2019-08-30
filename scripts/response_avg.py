@@ -13,6 +13,7 @@ DATA_PATH = os.environ.get('BASE_DATA_PATH')
 
 OBS_DICT = {
     'energy': observables.Energy,
+    'position': observables.Position,
     'bin': observables.Bin,
     'below': observables.Below
 }
