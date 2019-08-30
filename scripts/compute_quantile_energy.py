@@ -10,21 +10,13 @@ DATA_PATH = os.environ.get('BASE_DATA_PATH')
 
 from lab.simulation import observables
 
-OBS_DICT = {
-   'energy': observables.Energy,
-   'position': observables.Position
-}
-
 # instantiate Slack client
 sc = SlackClient(os.environ.get('SLACK_BOT_TOKEN'))
 sp = SlackProgress(os.environ.get('SLACK_BOT_TOKEN'), '#l96lrt')
 
-obs = sys.argv[1]
-q_start = float(sys.argv[2])
-q_stop = float(sys.argv[3])
-q_step = float(sys.argv[4])
-
-obs_class = OBS_DICT[obs]
+q_start = float(sys.argv[1])
+q_stop = float(sys.argv[2])
+q_step = float(sys.argv[3])
 
 quantile_orders = [q for q in np.arange(q_start, q_stop, q_step)]
 sim_num = 1000
@@ -32,7 +24,7 @@ sim_num = 1000
 sc.api_call(
     "chat.postMessage",
     channel="#l96lrt",
-    text="Computing {} Quantiles, from {} to {} by {}".format(obs, q_start, q_stop, q_step)
+    text="Computing {} Quantiles, from {} to {} by {}".format('energy', q_start, q_stop, q_step)
 )
 
 sc.api_call(
@@ -53,14 +45,14 @@ for i in np.arange(1, sim_num + 1):
     )
 
     data = xr.open_dataarray(file_path)
-    observable = obs_class()
+    energy_obs = observables.Energy()
 
-    observable_values = observable(data)
+    energy = energy_obs(data)
 
     if counter == 0:
-        observable_values_arr = observable_values.values.squeeze()
+        energy_arr = energy.values.squeeze()
     else:
-        observable_values_arr = np.concatenate((observable_values_arr, observable_values.values.squeeze()))
+        energy_arr = np.concatenate((energy_arr, energy.values.squeeze()))
 
     counter += 1
 
@@ -82,7 +74,7 @@ counter = 0
 
 for q in quantile_orders:
 
-    quantile = np.quantile(observable_values_arr, q)
+    quantile = np.quantile(energy_arr, q)
     quantiles.append(quantile)
 
     counter += 1
@@ -96,12 +88,12 @@ quantiles_dataarray = xr.DataArray(quantiles, coords=[quantile_orders], dims=['q
 
 out_path = os.path.join(
     DATA_PATH,
-    'obs/lorenz96/rk4/CF_8/quantiles/obs_lorenz96_rk4_CF_8_quantiles_{}.nc'.format(obs)
+    'obs/lorenz96/rk4/CF_8/quantiles/obs_lorenz96_rk4_CF_8_quantiles_energy.nc'
 )
 
 out_path_new = os.path.join(
     DATA_PATH,
-    'obs/lorenz96/rk4/CF_8/quantiles/obs_lorenz96_rk4_CF_8_quantiles_{}_new.nc'.format(obs)
+    'obs/lorenz96/rk4/CF_8/quantiles/obs_lorenz96_rk4_CF_8_quantiles_energy_new.nc'
 )
 
 

@@ -9,46 +9,38 @@ sys.path.append('../devel/phd/')
 
 from lab.simulation import observables
 
-slack_enable = bool(sys.argv[1])
-
-if slack_enable:
-    try:
-        # instantiate Slack client
-        sc = SlackClient(os.environ.get('SLACK_BOT_TOKEN'))
-        sp = SlackProgress(os.environ.get('SLACK_BOT_TOKEN'), '#l96lrt')
-    except:
-        pass
-
 DATA_PATH = os.environ.get('BASE_DATA_PATH')
 
 OBS_DICT = {
     'energy': observables.Energy,
-    'bin': observables.Bin
+    'position': observables.Position,
+    'bin': observables.Bin,
+    'below': observables.Below
 }
 
-forcing_sn = sys.argv[2]
-obs_sn = sys.argv[3]
+forcing_sn = sys.argv[1]
+obs_sn = sys.argv[2]
 
-if obs_sn == 'bin':
+if obs_sn.split('_')[0] in ('bin', 'below'):
 
     threshold_q = []
-    threshold_q.append(round(float(sys.argv[4]), 2))
+    threshold_q.append(round(float(sys.argv[3]), 2))
     try:
-        threshold_q.append(round(float(sys.argv[5]), 2))
+        threshold_q.append(round(float(sys.argv[4]), 2))
     except:
         print('only one threshold selected')
 
     quantiles = xr.open_dataarray(os.path.join(
         DATA_PATH,
-        'obs/lorenz96/rk4/CF_8/quantiles/obs_lorenz96_rk4_CF_8_quantiles_energy.nc')
+        'obs/lorenz96/rk4/CF_8/quantiles/obs_lorenz96_rk4_CF_8_quantiles_{}.nc'.format(obs_sn.split('_')[1]))
     )
     quantile_orders = np.round(quantiles.quantile_order.values, 2)
     quantiles.quantile_order.values = quantile_orders
     threshold = [quantiles.sel(quantile_order=tq).values for tq in threshold_q]
 
-observable_class = OBS_DICT[obs_sn]
-if obs_sn == 'bin':
-    observable = observable_class(threshold, threshold_q, observables.Energy())
+observable_class = OBS_DICT[obs_sn.split('_')[0]]
+if obs_sn.split('_')[0] in ('bin', 'below'):
+    observable = observable_class(threshold, threshold_q, OBS_DICT[obs_sn.split('_')[1]]())
 else:
     observable = observable_class()
 
@@ -62,17 +54,6 @@ data_forcing_path = os.path.join(
 )
 
 num_forcing_sim = len(os.listdir(data_forcing_path))
-
-if slack_enable:
-    try:
-        sc.api_call(
-            "chat.postMessage",
-            channel="#l96lrt",
-            text="Computing Average Response {} {}".format(forcing_sn, observable.short_name)
-        )
-        pbar = sp.new(total=100)
-    except:
-        pass
 
 counter = 0
 for i in range(1, num_forcing_sim):
@@ -93,12 +74,6 @@ for i in range(1, num_forcing_sim):
     else:
         response_avg += response  
     counter += 1
-
-    if slack_enable:
-        try:
-            pbar.pos = round(i / (num_forcing_sim - 1) * 100)
-        except:
-            pass
 
 response_avg = response_avg/counter
 
