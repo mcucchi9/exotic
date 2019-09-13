@@ -125,14 +125,31 @@ class SimulationRunner:
     def __init__(
             self,
             simulator: Simulator = Simulator(),
+            integration_time: int = 10000,
+            chunk_length: int = 1000,
+            write_all_every: float = 0,
+            write_one_every: float = None,
     ):
         """
         :param simulator: Simulator() instance
+        :param integration_time: total time of integration
+        :param chunk_length: integration steps after which write on netcdf and free memory.
+        :param write_all_every: if 0, never write all nodes; else, write all nodes when time is multiple of
+        **write_all_every**.
+        :param write_one_every: if 0, never write one node; else, write one nodee when time is multiple of
+        **write_all_every**.
         :return
         """
         self.simulator = simulator
+        self.integration_time = integration_time
+        self.chunk_length = chunk_length
+        self.write_all_every = write_all_every
+        self.write_one_every = write_one_every
+        # write_all_* from time to iterations
+        self.write_all_every_iter = int(self.write_all_every / self.simulator.increment)
+        self.write_one_every_iter = int(self.write_one_every / self.simulator.increment)
 
-    def __create_dataset(
+    def _create_dataset(
             self,
             outfile_name: str,
             nodes: int,
@@ -167,64 +184,52 @@ class SimulationRunner:
 
         return dataset
 
-    def __create_outfile_name(
+    def _create_outfile_name(
             self,
-            write_all_every,
-            custom_suffix
-    ):
+            custom_suffix: str = '00000'
+    ) -> dict:
 
-        outfile_name_base = 'sim/{system}/{integrator}/{forcing}/sim_{system}_{integrator}_{forcing}'.format(
+        outfile_name_base = 'sim/{system}/{integrator}/{forcing}/t_1_00/sim_{system}_{integrator}_{forcing}'.format(
             system=self.simulator.system.short_name,
             integrator=self.simulator.int_method.short_name,
             forcing=self.simulator.forcing.short_name
         )
-        outfile_name_one = '{}_one_{}.nc'.format(outfile_name_base, custom_suffix)
-        if write_all_every:
+
+        outfile_name = {}
+
+        if self.write_one_every_iter:
+            outfile_name_one = '{}_one_{}.nc'.format(outfile_name_base, custom_suffix)
+            outfile_name['one'] = outfile_name_one
+        if self.write_all_every_iter:
             outfile_name_all = '{}_all_{}.nc'.format(outfile_name_base, custom_suffix)
-            outfile_name = [outfile_name_one, outfile_name_all]
-        else:
-            outfile_name = [outfile_name_one]
+            outfile_name['all'] = outfile_name_all
 
         return outfile_name
 
-    def __init_netcdf(
+    def _init_netcdf(
             self,
-            outfile_name: list,
-            write_all_every: float = 0,
+            outfile_names: dict,
             custom_attrs: dict = {},
-    ):
+    ) -> dict:
         """
         Initialize netcdf to write output.
-        :param write_all_every: if 0, write only node 0; else, write all every **write_all_every** iterations.
         :return:
         """
 
-        if write_all_every == 0:
+        datasets = {}
 
-            # write only one node
-
-            dataset = self.__create_dataset(outfile_name[0], 1, custom_attrs)
-
-            dataset = [dataset]
-
-        else:
-
-            # write always one node and all nodes every time **time** is multiple of **write_all_every**
-            # (need two output datasets)
-
+        if self.write_one_every_iter:
+            dataset_one = self._create_dataset(outfile_names['one'], 1, custom_attrs)
+            datasets['one'] = dataset_one
+        if self.write_all_every_iter:
             dim = len(self.simulator.system_state.coords)
-            dataset_one = self.__create_dataset(outfile_name[0], 1, custom_attrs)
-            dataset_all = self.__create_dataset(outfile_name[1], dim, custom_attrs)
+            dataset_all = self._create_dataset(outfile_names['all'], dim, custom_attrs)
+            datasets['all'] = dataset_all
 
-            dataset = [dataset_one, dataset_all]
-
-        return dataset
+        return datasets
 
     def run(
             self,
-            integration_time: int = 10000,
-            chunk_length: int = 1000,
-            write_all_every: float = 0,
             data_base_path: str = DATA_BASE_PATH,
             custom_suffix: str = '00000',
             custom_attrs: dict = {},
@@ -233,62 +238,61 @@ class SimulationRunner:
         Run the simulation and write the output to a netcdf file.
         The two functions are blend together because I make use of the ability to write while running (writing every
         N iterations). Maybe it would be better to split the functions in different methods.
-        :param integration_time: total time of integration
-        :param chunk_length: integration steps after which write on netcdf and free memory.
-        :param write_all_every: if 0, write only node 0; else, write all nodes when time is multiple of
-        **write_all_every**.
         :param data_base_path: base path were data are going to be saved
         :param custom_suffix: suffix to the out file name
         :param custom_attrs: attributes to be added to the netcdf
         :return:
         """
 
-        integration_steps = int(integration_time / self.simulator.increment)
-        chunks = int(integration_steps / chunk_length)
+        if self.write_one_every is None:
+            self.write_one_every = self.simulator.increment
 
-        # write_all_every from time to iterations
-        write_all_every = int(write_all_every / self.simulator.increment)
+        integration_steps = int(self.integration_time / self.simulator.increment)
+        chunks = int(integration_steps / self.chunk_length)
 
-        outfiles = self.__create_outfile_name(write_all_every, custom_suffix)
-        outfiles = [os.path.join(data_base_path, outfile) for outfile in outfiles]
+        outfiles = self._create_outfile_name(custom_suffix)
+        outfiles = {key: os.path.join(data_base_path, outfile) for key, outfile in outfiles.items()}
 
         # check if dir exists. if not, create it.
-        for outfile in outfiles:
+        # else remove out file if already exists
+        for outfile in outfiles.values():
             if not os.path.exists(os.path.dirname(outfile)):
                 os.makedirs(os.path.dirname(outfile))
+            elif os.path.exists(outfile):
+                os.remove(outfile)
 
-        # remove out file if already exists
-        for file_path in outfiles:
-            if os.path.exists(file_path):
-                os.remove(file_path)
-
-        dataset = self.__init_netcdf(
-            write_all_every=write_all_every,
-            outfile_name=outfiles,
+        datasets = self._init_netcdf(
+            outfile_names=outfiles,
             custom_attrs=custom_attrs
         )
 
         for chunk in np.arange(0, chunks):
             dim = len(self.simulator.system_state.coords)
             t = []
-            data_array = np.empty((chunk_length, dim))
+            data_array = np.empty((self.chunk_length, dim))
             # simulate one chunk
-            for i in np.arange(0, chunk_length):
+            for i in np.arange(0, self.chunk_length):
                 data_array[i, :] = self.simulator.system_state.coords
-                t.append(i+chunk*chunk_length)
+                t.append(i+chunk*self.chunk_length)
                 self.simulator.integrate_one_step()
-            # write
-            dataset[0].variables['var'][(chunk_length * chunk):(chunk_length * (chunk + 1)), 0] = data_array[:, 0]
-            dataset[0].variables['time_step'][(chunk_length * chunk):(chunk_length * (chunk + 1))] = t
-
-            if write_all_every:
-                indices = [i for i in range(0, chunk_length, write_all_every)]
+            # write on file
+            if self.write_one_every_iter:
+                indices = [i for i in range(0, self.chunk_length, self.write_one_every_iter)]
+                data_array_one = data_array[indices, 0]
+                t_one = [t[i] for i in indices]
+                datasets['one'].variables['var'][(len(indices) * chunk):(len(indices) * (chunk + 1)), :] = \
+                    data_array_one
+                datasets['one'].variables['time_step'][(len(indices) * chunk):(len(indices) * (chunk + 1))] = t_one
+            if self.write_all_every_iter:
+                indices = [i for i in range(0, self.chunk_length, self.write_all_every_iter)]
                 data_array_all = data_array[indices, :]
                 t_all = [t[i] for i in indices]
-                dataset[1].variables['var'][(len(indices) * chunk):(len(indices) * (chunk + 1)), :] = data_array_all
-                dataset[1].variables['time_step'][(len(indices) * chunk):(len(indices) * (chunk + 1))] = t_all
+                datasets['all'].variables['var'][(len(indices) * chunk):(len(indices) * (chunk + 1)), :] = \
+                    data_array_all
+                datasets['all'].variables['time_step'][(len(indices) * chunk):(len(indices) * (chunk + 1))] = t_all
 
-        for d in dataset:
-            d.close()
+        if datasets:
+            for dataset in datasets.values():
+                dataset.close()
 
         return outfiles
