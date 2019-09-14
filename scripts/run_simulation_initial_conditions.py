@@ -1,7 +1,7 @@
 import sys
 import os
 
-sys.path.append('../')
+sys.path.append('../devel/phd')
 
 import lab.simulation.simulation as sim
 import lab.simulation.forcings as forcings
