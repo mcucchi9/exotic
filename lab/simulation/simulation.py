@@ -126,7 +126,7 @@ class SimulationRunner:
             self,
             simulator: Simulator = Simulator(),
             integration_time: int = 10000,
-            chunk_length: int = 1000,
+            chunk_length_time: int = 1000,
             write_all_every: float = 0,
             write_one_every: float = None,
     ):
@@ -142,9 +142,11 @@ class SimulationRunner:
         """
         self.simulator = simulator
         self.integration_time = integration_time
-        self.chunk_length = chunk_length
+        self.chunk_length = int(chunk_length_time / self.simulator.increment)
         self.write_all_every = write_all_every
         self.write_one_every = write_one_every
+        if self.write_one_every is None:
+            self.write_one_every = self.simulator.increment
         # write_all_* from time to iterations
         self.write_all_every_iter = int(self.write_all_every / self.simulator.increment)
         self.write_one_every_iter = int(self.write_one_every / self.simulator.increment)
@@ -266,6 +268,8 @@ class SimulationRunner:
             custom_attrs=custom_attrs
         )
 
+        count = 0
+
         for chunk in np.arange(0, chunks):
             dim = len(self.simulator.system_state.coords)
             t = []
@@ -275,21 +279,36 @@ class SimulationRunner:
                 data_array[i, :] = self.simulator.system_state.coords
                 t.append(i+chunk*self.chunk_length)
                 self.simulator.integrate_one_step()
+                count += 1
             # write on file
             if self.write_one_every_iter:
-                indices = [i for i in range(0, self.chunk_length, self.write_one_every_iter)]
-                data_array_one = data_array[indices, 0]
-                t_one = [t[i] for i in indices]
-                datasets['one'].variables['var'][(len(indices) * chunk):(len(indices) * (chunk + 1)), :] = \
-                    data_array_one
-                datasets['one'].variables['time_step'][(len(indices) * chunk):(len(indices) * (chunk + 1))] = t_one
+                if self.chunk_length >= self.write_one_every_iter:
+                    indices = [i for i in range(0, self.chunk_length, self.write_one_every_iter)]
+                    data_array_one = data_array[indices, 0]
+                    t_one = [t[i] for i in indices]
+                    datasets['one'].variables['var'][(len(indices) * chunk):(len(indices) * (chunk + 1)), :] = \
+                        data_array_one
+                    datasets['one'].variables['time_step'][(len(indices) * chunk):(len(indices) * (chunk + 1))] = t_one
+                elif count >= self.write_one_every_iter:
+                    index = self.write_one_every_iter - chunk * self.chunk_length
+                    data_array_one = data_array[index, 0]
+                    t_one = t[index]
+                    datasets['one'].variables['var'][index] = data_array_one
+                    datasets['one'].variables['time_step'][index] = t_one
             if self.write_all_every_iter:
-                indices = [i for i in range(0, self.chunk_length, self.write_all_every_iter)]
-                data_array_all = data_array[indices, :]
-                t_all = [t[i] for i in indices]
-                datasets['all'].variables['var'][(len(indices) * chunk):(len(indices) * (chunk + 1)), :] = \
-                    data_array_all
-                datasets['all'].variables['time_step'][(len(indices) * chunk):(len(indices) * (chunk + 1))] = t_all
+                if self.chunk_length >= self.write_all_every_iter:
+                    indices = [i for i in range(0, self.chunk_length, self.write_all_every_iter)]
+                    data_array_all = data_array[indices, :]
+                    t_all = [t[i] for i in indices]
+                    datasets['all'].variables['var'][(len(indices) * chunk):(len(indices) * (chunk + 1)), :] = \
+                        data_array_all
+                    datasets['all'].variables['time_step'][(len(indices) * chunk):(len(indices) * (chunk + 1))] = t_all
+                elif count >= self.write_all_every_iter:
+                    index = self.write_all_every_iter - chunk * self.chunk_length
+                    data_array_all = data_array[index, 0]
+                    t_all = t[index]
+                    datasets['one'].variables['var'][index] = data_array_all
+                    datasets['one'].variables['time_step'][index] = t_all
 
         if datasets:
             for dataset in datasets.values():
