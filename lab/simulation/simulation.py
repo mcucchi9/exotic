@@ -191,7 +191,7 @@ class SimulationRunner:
             custom_suffix: str = '00000'
     ) -> dict:
 
-        outfile_name_base = 'sim/{system}/{integrator}/{forcing}/t_1_00/sim_{system}_{integrator}_{forcing}'.format(
+        outfile_name_base = 'sim/{system}/{integrator}/t_1_00/{forcing}/sim_{system}_{integrator}_{forcing}'.format(
             system=self.simulator.system.short_name,
             integrator=self.simulator.int_method.short_name,
             forcing=self.simulator.forcing.short_name
