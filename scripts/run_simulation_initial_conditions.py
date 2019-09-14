@@ -1,7 +1,7 @@
 import sys
 import os
 
-sys.path.append('/home/cucchi/phd/devel/phd')
+sys.path.append('../phd')
 
 import lab.simulation.simulation as sim
 import lab.simulation.forcings as forcings
@@ -12,8 +12,7 @@ from slackclient import SlackClient
 # instantiate Slack client
 sc = SlackClient(os.environ.get('SLACK_BOT_TOKEN'))
 
-#DATA_PATH = os.environ.get('BASE_DATA_PATH')
-DATA_PATH = '/home/cucchi/phd/data/'
+DATA_PATH = os.environ.get('BASE_DATA_PATH')
 
 point_const = sim.SystemState(coords=[8]*32)
 point_const.perturbate()
@@ -30,13 +29,15 @@ simulator_const = sim.Simulator(
 
 runner = sim.SimulationRunner(
     simulator=simulator_const,
+    integration_time=1001000,
+    chunk_length_time=1000,
+    write_all_every=10,
+    write_one_every=0
 )
 
 outfiles = runner.run(
-    integration_time=1000,
-    chunk_length=10000,
-    write_all_every=100,
-    data_base_path=DATA_PATH
+    data_base_path=DATA_PATH,
+    custom_suffix='init'
 )
 
 for outfile in outfiles:
