@@ -15,7 +15,7 @@ import lab.simulation.integrators as integrators
 sc = SlackClient(os.environ.get('SLACK_BOT_TOKEN'))
 sp = SlackProgress(os.environ.get('SLACK_BOT_TOKEN'), '#l96lrt')
 
-DATA_PATH = os.environ.get('BASE_DATA_PATH')
+DATA_PATH = '../../data'
 
 initial_conditions = xr.open_dataarray(os.path.join(
     DATA_PATH,
