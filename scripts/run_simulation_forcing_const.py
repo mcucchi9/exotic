@@ -68,5 +68,5 @@ for sim_index in range(sim_start, sim_start + sim_num):
         custom_attrs={'time_step_0_real': time_step_real}
     )
 
-    pbar.pos = round(sim_index/sim_num*100)
+    pbar.pos = round((sim_index-sim_start)/sim_num*100)
 
