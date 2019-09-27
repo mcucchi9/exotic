@@ -83,7 +83,6 @@ dependencies:
   - pixman=0.34.0=h14c3975_1003
   - plotly=3.10.0=py_0
   - prometheus_client=0.6.0=py37_0
-  - prompt_toolkit=2.0.9=py37_0
   - ptyprocess=0.6.0=py37_0
   - pycparser=2.19=py37_0
   - pygments=2.3.1=py37_0
@@ -150,13 +149,16 @@ dependencies:
     - netcdf4==1.4.3.2
     - partd==0.3.9
     - pluggy==0.9.0
+    - prompt-toolkit==1.0.14
     - psutil==5.6.1
     - py==1.8.0
     - pyarrow==0.12.1
+    - pyinquirer==1.0.3
     - pyparsing==2.3.1
     - pytest==4.3.0
     - pytest-cov==2.6.1
     - pyyaml==3.13
+    - regex==2019.8.19
     - requests==2.21.0
     - scipy==1.2.1
     - six==1.12.0
