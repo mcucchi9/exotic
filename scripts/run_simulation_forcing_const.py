@@ -26,6 +26,7 @@ system = systems.Lorenz96()
 int_method = integrators.RungeKutta4()
 force_intensity = float(sys.argv[1])
 sim_num = int(sys.argv[2])
+take_init_every_steps = int(sys.argv[3])
 
 sc.api_call(
     "chat.postMessage",
@@ -37,7 +38,7 @@ pbar = sp.new()
 
 for i in range(sim_num):
 
-    time_step_real = int(i*10/initial_conditions.integration_step)
+    time_step_real = int(i*take_init_every_steps/initial_conditions.integration_step)
 
     point = sim.SystemState(
         coords=initial_conditions.sel(time_step=time_step_real).values,
