@@ -19,7 +19,7 @@ DATA_PATH = os.environ.get('BASE_DATA_PATH')
 
 initial_conditions = xr.open_dataarray(os.path.join(
     DATA_PATH,
-    'sim/lorenz96/rk4/t_1_00/CF_8/sim_lorenz96_rk4_CF_8_all_init.nc'
+    'sim/lorenz96/rk4/t_1_00/CF_8.0/sim_lorenz96_rk4_CF_8.0_all_init.nc'
 ))
 
 system = systems.Lorenz96()
@@ -37,7 +37,7 @@ pbar = sp.new()
 
 for i in range(sim_num):
 
-    time_step_real = int(i*100/initial_conditions.integration_step)
+    time_step_real = int(i*10/initial_conditions.integration_step)
 
     point = sim.SystemState(
         coords=initial_conditions.sel(time_step=time_step_real).values,
