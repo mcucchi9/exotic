@@ -19,7 +19,7 @@ DATA_PATH = os.environ.get('BASE_DATA_PATH')
 
 initial_conditions = xr.open_dataarray(os.path.join(
     DATA_PATH,
-    'sim/lorenz96/rk4/CF_8/sim_lorenz96_rk4_CF_8_all_00000.nc'
+    'sim/lorenz96/rk4/CF_8.0/sim_lorenz96_rk4_CF_8.0_all_00000.nc'
 ))
 
 system = systems.Lorenz96()
