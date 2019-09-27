@@ -2,9 +2,8 @@
 """
 hierarchical prompt usage example
 """
-#from __future__ import print_function, unicode_literals
-from pprint import pprint
 import subprocess
+import os
 
 from PyInquirer import style_from_dict, Token, prompt
 
@@ -22,10 +21,12 @@ FORCINGS = {
     'constant': {'param': ['intensity']},
     'delta': {'param': ['base intensity', 'delta intensity']},
     'step': {'param': ['base intensity', 'delta intensity']},
-    'linear': {'param': []},
-    'sinusoidal': {'param': []}
+    'linear': {'param': ['base intensity', 'linear coefficient']},
+    'sinusoidal': {'param': ['base intensity', 'epsilon', 'omega']}
 }
 
+EXECUTABLES_DIR = '../batch'
+EXECUTABLE = os.path.join(EXECUTABLES_DIR, 'sim.sh')
 
 def ask_forcing():
     forcings_prompt = {
@@ -79,9 +80,20 @@ def main():
             forcing_params.append(input_param)
         sim_start = int(ask_int('sim_start', 'insert sim_start'))
         sim_num = int(ask_int('sim_num', 'insert sim_num'))
-        command = 'sbatch sim.sh {} {} {} {}'.format(forcing, ' '.join(forcing_params), sim_start, sim_num)
+        take_init_every_steps = int(ask_int('take_init_every_steps', 'insert take_init_every_steps'))
+        command = '{cmd} {executable} {forcing} {sim_start} {sim_num} {take_init_every_steps} {forcing_params}'.format(
+            cmd='sbatch',
+            executable=EXECUTABLE,
+            forcing=forcing,
+            sim_start=sim_start,
+            sim_num=sim_num,
+            take_init_every_steps=take_init_every_steps,
+            forcing_params=' '.join(forcing_params)
+        )
         message = "Run the following command: '{}'?".format(command)
         confirmation = ask_confirmation(message)
+
+    subprocess.Popen(command, shell=True, executable='/bin/bash')
 
 
 if __name__ == '__main__':
