@@ -54,10 +54,10 @@ for i in range(sim_num):
 
     runner = sim.SimulationRunner(
         simulator=simulator,
-	integration_time=100,
-	chunk_length_time=1000,
-	write_all_every=1,
-	write_one_every=0
+        integration_time=100,
+        chunk_length_time=1000,
+        write_all_every=1,
+        write_one_every=0
     )
 
     outfiles = runner.run(
