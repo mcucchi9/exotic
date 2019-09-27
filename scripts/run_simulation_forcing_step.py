@@ -36,7 +36,7 @@ sc.api_call(
 
 pbar = sp.new()
 
-for i in range(0, sim_num):
+for i in range(sim_num):
 
     time_step_real = int(i*take_init_every_step/initial_conditions.integration_step)
 
@@ -55,14 +55,15 @@ for i in range(0, sim_num):
 
     runner = sim.SimulationRunner(
         simulator=simulator,
+        integration_time=100,
+        chunk_length_time=1000,
+        write_all_every=1,
+        write_one_every=0
     )
 
     outfiles = runner.run(
-        integration_time=100,
-        chunk_length=10000,
-        write_all_every=0,
         data_base_path=DATA_PATH,
-        custom_suffix='{:05}'.format(i),
+        custom_suffix='{:06}'.format(i),
         custom_attrs={'time_step_0_real': time_step_real}
     )
 
@@ -70,5 +71,4 @@ for i in range(0, sim_num):
         pbar.pos = round(i/sim_num*100)
     except:
         pass
-	
 
