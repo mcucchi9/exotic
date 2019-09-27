@@ -56,8 +56,8 @@ for i in range(0, sim_num):
         )
 
         force = forcings.LinearForcing(
-	    linear_coefficient=force_intensity_linear_coefficient,
-	    deactivation_time = deactivation_time
+            linear_coefficient=force_intensity_linear_coefficient,
+            deactivation_time = deactivation_time
         )
 
         simulator = sim.Simulator(
@@ -84,5 +84,4 @@ for i in range(0, sim_num):
         pbar.pos = round(i/sim_num*100)
     except:
         pass
-	
 
