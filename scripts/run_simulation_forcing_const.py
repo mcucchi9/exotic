@@ -25,8 +25,9 @@ initial_conditions = xr.open_dataarray(os.path.join(
 system = systems.Lorenz96()
 int_method = integrators.RungeKutta4()
 force_intensity = float(sys.argv[1])
-sim_num = int(sys.argv[2])
-take_init_every_steps = int(sys.argv[3])
+sim_start = int(sys.argv[2])
+sim_num = int(sys.argv[3])
+take_init_every_steps = int(sys.argv[4])
 
 sc.api_call(
     "chat.postMessage",
@@ -36,9 +37,9 @@ sc.api_call(
 
 pbar = sp.new()
 
-for i in range(sim_num):
+for sim_index in range(sim_start, sim_start + sim_num):
 
-    time_step_real = int(i*take_init_every_steps/initial_conditions.integration_step)
+    time_step_real = int(sim_index*take_init_every_steps/initial_conditions.integration_step)
 
     point = sim.SystemState(
         coords=initial_conditions.sel(time_step=time_step_real).values,
@@ -63,9 +64,9 @@ for i in range(sim_num):
 
     outfiles = runner.run(
         data_base_path=DATA_PATH,
-        custom_suffix='{:06}'.format(i),
+        custom_suffix='{:06}'.format(sim_index),
         custom_attrs={'time_step_0_real': time_step_real}
     )
 
-    pbar.pos = round(i/sim_num*100)
+    pbar.pos = round(sim_index/sim_num*100)
 
