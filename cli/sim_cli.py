@@ -27,6 +27,7 @@ FORCINGS = {
 
 EXECUTABLES_DIR = '../batch'
 EXECUTABLE = os.path.join(EXECUTABLES_DIR, 'sim.sh')
+EXECUTER = os.environ.get('EXECUTER')
 
 def ask_forcing():
     forcings_prompt = {
@@ -82,7 +83,7 @@ def main():
         sim_num = int(ask_int('sim_num', 'insert sim_num'))
         take_init_every_steps = int(ask_int('take_init_every_steps', 'insert take_init_every_steps'))
         command = '{cmd} {executable} {forcing} {sim_start} {sim_num} {take_init_every_steps} {forcing_params}'.format(
-            cmd='sbatch',
+            cmd=EXECUTER,
             executable=EXECUTABLE,
             forcing=forcing,
             sim_start=sim_start,
