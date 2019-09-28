@@ -10,5 +10,4 @@
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=mcucchi9@gmail.com
 
-source ../devel/phd/set_environ_var.sh
-python3 ../devel/scripts/run_simulation.py
+python3 ../scripts/run_simulation_forcing.py ${1} ${2} ${3} ${4} ${5} ${6}
