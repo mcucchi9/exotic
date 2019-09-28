@@ -5,6 +5,7 @@ from slackclient import SlackClient
 from slack_progress import SlackProgress
 
 sys.path.append('../')
+dirname = os.path.dirname(__file__)
 
 import lab.simulation.simulation as sim
 import lab.simulation.forcings as forcings
@@ -15,7 +16,7 @@ import lab.simulation.integrators as integrators
 sc = SlackClient(os.environ.get('SLACK_BOT_TOKEN'))
 sp = SlackProgress(os.environ.get('SLACK_BOT_TOKEN'), '#l96lrt')
 
-DATA_PATH = '../../data'
+DATA_PATH = os.path.join(dirname, '../../../data')
 
 initial_conditions = xr.open_dataarray(os.path.join(
     DATA_PATH,
@@ -65,10 +66,12 @@ elif forcing_id == 'sinusoidal':
 else:
     raise ValueError('{} forcing not supported!'.format(forcing_id))
 
+print(forcing_id, sim_start, sim_num, take_init_every_steps, force._short_name)
+
 sc.api_call(
     "chat.postMessage",
     channel="#l96lrt",
-    text="Running {} simulations with forcing CF_{}_0".format(sim_num, force_intensity)
+    text="Running {} simulations with forcing {}".format(sim_num, force._short_name)
 )
 
 pbar = sp.new()
