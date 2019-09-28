@@ -32,7 +32,7 @@ FORCINGS = {
 configfile_path = os.path.join(dirname, '../config.yaml')
 try:
     with open(configfile_path) as f:
-        config = yaml.load(f, Loader=yaml.FullLoader)
+        config = yaml.load(f, Loader=yaml.SafeLoader)
 except FileNotFoundError:
     print('config.yaml not found')
 
