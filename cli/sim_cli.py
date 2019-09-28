@@ -4,8 +4,11 @@ hierarchical prompt usage example
 """
 import subprocess
 import os
+import yaml
 
 from PyInquirer import style_from_dict, Token, prompt
+
+dirname = os.path.dirname(__file__)
 
 style = style_from_dict({
     Token.Separator: '#cc5454',
@@ -25,9 +28,21 @@ FORCINGS = {
     'sinusoidal': {'param': ['base intensity', 'epsilon', 'omega']}
 }
 
-EXECUTABLES_DIR = '../batch'
+# Read configuration file
+configfile_path = os.path.join(dirname, '../config.yaml')
+try:
+    with open(configfile_path) as f:
+        config = yaml.load(f, Loader=yaml.FullLoader)
+except FileNotFoundError:
+    print('config.yaml not found')
+
+EXECUTABLES_DIR = os.path.join(dirname, '../batch')
 EXECUTABLE = os.path.join(EXECUTABLES_DIR, 'sim.sh')
-EXECUTER = os.environ.get('EXECUTER')
+try:
+    EXECUTER = config['executer']
+except ValueError:
+    print("config.yaml does not contain configuration for executer")
+
 
 def ask_forcing():
     forcings_prompt = {
