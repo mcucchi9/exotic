@@ -22,10 +22,10 @@ cloudpickle=0.8.0=pypi_0
 coverage=4.5.3=pypi_0
 cryptography=2.7=py37h1ba5d50_0
 cycler=0.10.0=pypi_0
-dask=1.1.4=pypi_0
+dask=2.5.0=pypi_0
 dbus=1.13.6=h746ee38_0
 decorator=4.3.2=py37_0
-distributed=1.26.0=pypi_0
+distributed=2.5.1=pypi_0
 entrypoints=0.3=py37_0
 expat=2.2.6=he6710b0_0
 fontconfig=2.13.0=h9420a91_0
@@ -153,7 +153,7 @@ webencodings=0.5.1=py37_1
 websocket-client=0.54.0=pypi_0
 wheel=0.33.1=py37_0
 widgetsnbextension=3.5.1=py37_0
-xarray=0.11.3=pypi_0
+xarray=0.13.0=pypi_0
 xorg-kbproto=1.0.7=h14c3975_1002
 xorg-libice=1.0.9=h14c3975_1004
 xorg-libsm=1.2.2=h470a237_5

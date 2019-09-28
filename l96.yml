@@ -137,8 +137,8 @@ dependencies:
     - cloudpickle==0.8.0
     - coverage==4.5.3
     - cycler==0.10.0
-    - dask==1.1.4
-    - distributed==1.26.0
+    - dask==2.5.0
+    - distributed==2.5.1
     - heapdict==1.0.0
     - idna==2.8
     - kiwisolver==1.0.1
@@ -170,7 +170,7 @@ dependencies:
     - toolz==0.9.0
     - urllib3==1.24.2
     - websocket-client==0.54.0
-    - xarray==0.11.3
+    - xarray==0.13.0
     - zict==0.1.4
 prefix: /home/marco/miniconda3/envs/l96
 
