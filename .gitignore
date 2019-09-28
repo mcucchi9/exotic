@@ -7,3 +7,4 @@ Untitled.ipynb
 .cache
 set_environ_var.sh
 scripts/*.out
+config.yaml
