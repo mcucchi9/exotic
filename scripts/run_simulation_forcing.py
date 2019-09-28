@@ -1,20 +1,30 @@
 import sys
 import os
+
+import yaml
 import xarray as xr
 from slackclient import SlackClient
 from slack_progress import SlackProgress
 
 sys.path.append('../')
-dirname = os.path.dirname(__file__)
 
 import lab.simulation.simulation as sim
 import lab.simulation.forcings as forcings
 import lab.simulation.systems as systems
 import lab.simulation.integrators as integrators
 
+dirname = os.path.dirname(__file__)
+# Read configuration file
+configfile_path = os.path.join(dirname, '../config.yaml')
+try:
+    with open(configfile_path) as f:
+        config = yaml.load(f, Loader=yaml.SafeLoader)
+except FileNotFoundError:
+    print('config.yaml not found')
+
 # instantiate Slack client
-sc = SlackClient(os.environ.get('SLACK_BOT_TOKEN'))
-sp = SlackProgress(os.environ.get('SLACK_BOT_TOKEN'), '#l96lrt')
+sc = SlackClient(config['slack_bot_token'])
+sp = SlackProgress(config['slack_bot_token'], '#l96lrt')
 
 DATA_PATH = os.path.join(dirname, '../../../data')
 
@@ -65,8 +75,6 @@ elif forcing_id == 'sinusoidal':
     )
 else:
     raise ValueError('{} forcing not supported!'.format(forcing_id))
-
-print(forcing_id, sim_start, sim_num, take_init_every_steps, force._short_name)
 
 sc.api_call(
     "chat.postMessage",
