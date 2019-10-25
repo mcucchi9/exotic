@@ -1,6 +1,6 @@
-# PhD
+# EXOTIC: r**E**sponse of e**X**treme events to external forcings in cha**OTIC** dynamical systems
 
-One Paragraph of project description goes here
+This repository contains the code I use to produce results related to my PhD research work. 
 
 ## Getting Started
 

@@ -1,0 +1,20 @@
+\contentsline {section}{\numberline {1}Introduction}{2}{section.1}
+\contentsline {section}{\numberline {2}EVT and the Lorenz-96 model}{2}{section.2}
+\contentsline {subsection}{\numberline {2.1}Lorenz-96 model simulations}{2}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Statistics of Extreme Events}{3}{subsection.2.2}
+\contentsline {subsubsection}{\numberline {2.2.1}Block-maxima approach}{3}{subsubsection.2.2.1}
+\contentsline {subsubsection}{\numberline {2.2.2}Method of Moments}{4}{subsubsection.2.2.2}
+\contentsline {subsection}{\numberline {2.3}Statistics of Extreme Events: Corrections and Results}{4}{subsection.2.3}
+\contentsline {subsubsection}{\numberline {2.3.1}Block-maxima approach}{4}{subsubsection.2.3.1}
+\contentsline {subsubsection}{\numberline {2.3.2}Method of Moments}{4}{subsubsection.2.3.2}
+\contentsline {section}{\numberline {3}LRT and the Lorenz-96 model}{9}{section.3}
+\contentsline {subsection}{\numberline {3.1}Background}{9}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}The Experiment}{10}{subsection.3.2}
+\contentsline {subsubsection}{\numberline {3.2.1}Energy}{10}{subsubsection.3.2.1}
+\contentsline {subsubsection}{\numberline {3.2.2}Above threshold occurrence of energy values}{10}{subsubsection.3.2.2}
+\contentsline {subsection}{\numberline {3.3}Results}{11}{subsection.3.3}
+\contentsline {subsubsection}{\numberline {3.3.1}Comments}{11}{subsubsection.3.3.1}
+\contentsline {subsection}{\numberline {3.4}A closer look at higher percentiles}{15}{subsection.3.4}
+\contentsline {subsection}{\numberline {3.5}Sinusoidal forcing}{18}{subsection.3.5}
+\contentsline {subsection}{\numberline {3.6}Occurrence of position observable}{19}{subsection.3.6}
+\contentsline {subsection}{\numberline {3.7}Prediction of changes in probability distributions}{22}{subsection.3.7}

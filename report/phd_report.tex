@@ -8,7 +8,7 @@
 \makeatletter
 \newcommand\footnoteref[1]{\protected@xdef\@thefnmark{\ref{#1}}\@footnotemark}
 \makeatother
-\title{PhD Progress}
+\title{PhD Report}
 \author{Marco Cucchi}
 \date{\today}
 \begin{document}
@@ -18,16 +18,21 @@
 
 \section{Introduction}
 
-This document is a log-book for all the work done during my PhD project.
-All code used con be found on github repository \url{https://github.com/mcucchi9/phd}.
+This document is an updated report of my PhD project. \\
+All the code used can be found on github repositories:
+\begin{itemize}
+	\item Section \ref{section_EVT}: \url{https://github.com/mcucchi9/L96gev}.
+	\item Section \ref{section_LRT}: \url{https://github.com/mcucchi9/phd}.
+\end{itemize}
+ 
 
-\section{EVT and the Lorenz-96 model}
+\section{EVT and the Lorenz-96 model} \label{section_EVT}
 
-Aim of this work is to find EVT parameters for observables of the Lorenz-96 (L96) model, and compare them with the bounds provided in \cite{LucariniExtremesBook}.
+This section describes the first part of the work carried out, which consisted in a first exploratory application of Extreme Value Theory \cite{Coles} to the Lorenz-96 model.
 
 \subsection{Lorenz-96 model simulations} \label{gev_sim}
 
-As a first step, a number of independent simulations of the L96 model are performed.
+As a first step, a number of independent simulations of the L96 model have been performed.
 The L96 model is defined as follows. For $i=1,...,N$:
 
 \begin{equation}
@@ -67,8 +72,6 @@ In order to extract information on the statistics of extremes, very long simulat
 
 Following this procedure, for each simulation (initial condition) 6 different files are obtained, each corresponding to one particular aggregation level $A$: each of these files, then, contain $A$ time-series of block-maxima, one for each of the $A$ clusters.
 
-Script: \href{https://github.com/marco-cucchi/L96gev/commit/f3614ce9369484bc5d1f06613fbea6fe26a7dd87#diff-bdb8a6ca7f3a8d1a4753b03a3b753204}{c003e11}.
-
 \subsection{Statistics of Extreme Events}
 \label{subsec:StatExtrEv}
 
@@ -79,14 +82,13 @@ Parameters defining GEV distribution are estimated using three different approac
 	\item Direct fit using \textit{POT} approach (still not described hear);
 	\item Method of \textit{moments} described in \cite{LucariniExtremesBook}.
 \end{itemize}
-Finally, estimates derived with these approaches are compared among them and with bounds related to attractor's dimensions described in \cite{Galfi}.
 
 \subsubsection{Block-maxima approach}
 
 In this approach, each time-series for each different cluster of each simulation is fitted against GEV family of distribution separately. More specifically, for each cluster time-series belonging to a different simulation the following procedure is carried out:
 
 \begin{enumerate}
-	\item Percentiles' orders $p$ of interest are fixed (e.g. 0.99, 0.995, ...), and corresponding percentiles (thresholds) $T_p$ are computed; \footnote{This could be something to think upon; in this way I have (slightly?) different percentiles for different time-series in the same simulation and for different simulations. Is this right? The underlying assumption in this procedure should is that all time-series belonging to all simulations should come from the same distribution. So shouldn't the percentiles be the same for all of them?\label{fn1}}
+	\item Percentiles' orders $p$ of interest are fixed (e.g. 0.99, 0.995, ...), and corresponding percentiles (thresholds) $T_p$ are computed. Percentiles are computed once for al simulations, concatenating the first 80 simulations of the first clusters for each aggregation;
 	\item Time-series is divided in $n$ blocks, where $n=length(\text{time-series})(1-p)$;
 	\item Compute maxima for each block;
 	\item Fit GEVD family to the block-maxima series.
@@ -100,11 +102,11 @@ Location parameter $\mu$ is actually assigned the value $T_p$; the \textit{absol
 \end{equation}
 Error on $\sigma^*$ is estimated via propagation of error.\\
 As explained in \cite{Coles}, in order to find a valid threshold value $T_0$ for excess to follow generalized Pareto distribution (and, consequently, GEV distribution), it is a good practice to plot $\xi$ and $\sigma^*$ against $T_p$ and look for the value where both start to be approximately constant: that value is $T_0$.\\
-Once parameters have been estimated for all clusters in a simulation, a single estimation of each parameter is saved as the average among all estimates.\footnote{The \textit{absolute maximum} is also averaged, and this could be an error. The average of the \textit{location parameter} $\mu$ is also a little disturbing, but this could be solved following reasoning in footnote \ref{1}. Error computation should be checked.\label{fn2}}
+Once parameters have been estimated for all clusters in a simulation, a single estimation of each parameter is saved as the average among all estimates.\footnote{Shape, scale and location parameters from fit procedures are saved for each cluster in each simulation. Averages and computation of derived parameters come after}
 Furthermore, the following parameters are estimated for each simulation:
 
 \begin{itemize}
-	\item \textit{scale parameter} $\sigma$ is computed with inverse of equation \ref{sigma_mod}, and relative error is computed via propagation of errors; \footnote{This sounds very stupid, since $\sigma$ was originally estimated (but not saved) via MLE fit to GEVD.\label{fn3}}
+	\item \textit{scale parameter} $\sigma$ is computed with inverse of equation \ref{sigma_mod}, and relative error is computed via propagation of errors; 
 	\item \textit{upper end-point} is computed as\footnote{Find reference}
 	\begin{equation}
 	\hat{uep}=\hat{\mu}-\frac{\hat{\sigma}}{\hat{\xi}}
@@ -131,59 +133,19 @@ where $A(x)$ is an observable of the system, $T$ is a threshold value and
 being $\Theta$ the Heaviside distribution. This results are exact in the limit for $T \rightarrow A_{max}$.\\
 In order to perform this computation, the following procedure has been adopted. First, for each cluster time-series belonging to a different simulation:
 \begin{enumerate}
-	\item Percentiles' orders $p$ of interest are fixed, and corresponding percentile (thresholds) $T_p$ are computed (footnote \ref{fn1});
+	\item Percentiles' orders $p$ of interest are fixed, and corresponding percentile (thresholds) $T_p$ are computed;
 	\item $\langle\tilde{A}_n^{T_p}\rangle$ for $n=0,1,2$ are computed, using temporal average in place of ensemble average (assuming ergodicity).\footnote{No standard deviation has been computed at this stage!}
 \end{enumerate}
 Once moments have been estimated for all clusters in a simulation, a single estimation of each moment is saved as the average among all estimates, and relative standard deviations are computed.\\
 Using these estimates, \textit{shape} parameter is computed through equation \ref{shape_mom} and estimation of uncertainty is computed via propagation of error. Finally, for each different aggregation, ensemble averages among all simulations are computed.
 
-\subsubsection{Bounds to the \textit{shape} parameter from the attractor's dimensions}
-
-We want to verify relation (8.2.15) in \cite{LucariniExtremesBook}, which states that
-
-\begin{equation}
-\left(d_s +d_u + d_n\right)/2 \leq \delta \leq d_s + \left(d_u + d_n\right)/2,  
-\end{equation}
-where
-\begin{itemize}
-	\item $d_u$ is equal to the number of positive Lyapunov exponents of the system \cite{Ott};
-	\item $d_n$ is equal to the number of zero Lyapunov exponents of the system, and in particular it is 1 for Axiom A systems \footnote{We are taking this for true in our system};
-	\item $d_s = n + \sum_{k=1}^n \lambda_k / \vert \lambda_{n+1} \vert - d_u - d_n$ \cite{Galfi}, with $\lambda_k$ denoting the Lyapunov exponents of the system, in a descending order, and $n$ is such that $\sum_{k=1}^n \lambda_k$ is positive and $\sum_{k=1}^{n+1} \lambda_k$ is negative;
-	\item $\xi = -1/\delta$;
-	\item $\sigma = \left( A_{max} - T\right)/\delta$, with $A_{max}$ and $T$ denoting the maximum observed value of the observable\footnote{or the \textit{upper end point}?} and the threshold value.
-\end{itemize}
-
-Lyapunov exponents have been computed using Benettin algorithm with QR decomposition. Bounds have been computed and averaged over 50 iterations (simulations).
-\\Script:
-\begin{itemize}
-	\item Lyapunov exponents computation: \href{https://github.com/marco-cucchi/L96gev/commit/136afd42b03778e04fe515e517c3e63c406b2043#diff-2a3c128ef27f1e284787331bae1833ea}{136afd4}
-	\item Average bounds computation:
-	
-\end{itemize}
-
 \subsection{Statistics of Extreme Events: Corrections and Results}
 
-In this section results of the analyses reported in Sec. \ref{subsec:StatExtrEv} are described, after issues highlighted in the footnotes \ref{fn1},\ref{fn2},\ref{fn3}.
-\\Script:
-\begin{itemize}
-	\item quantiles computation: \href{https://github.com/marco-cucchi/L96gev/commit/6880d207820a5b5919b3bbd0a034782f34c7bb49#diff-3b01235fe20ba4105fab7b053c2dadfb}{6880d20}
-\end{itemize}
+In this section results of the analyses reported in Sec. \ref{subsec:StatExtrEv} are described
 
 \subsubsection{Block-maxima approach}
 
-The following corrections have been applied:
-
-\begin{itemize}
-	\item Percentiles are computed once, concatenating the first 80 simulations of the first clusters for each aggregation;
-	\item Shape, scale and location parameters from fit procedures are saved for each cluster in each simulation. Averages and computation of derived parameters come after;	
-\end{itemize}
 Results are shown in Fig. \ref{fig:shape_mle} and \ref{fig:modscale_mle}.
-\\Script:
-\begin{itemize}
-	\item fit: \href{https://github.com/marco-cucchi/L96gev/commit/240d6d0471ddc3fc53789e43e03a87013d032b86#diff-9576f7ab149830e9a08339b0fc9f2569}{240d6d0}
-	\item parameters derivation and plots: \href{https://github.com/marco-cucchi/L96gev/commit/97925ef80db61ade1851bb7c41948d7f13f3b91f#diff-9ecb506d1ae86460add99c76d6c9961a}{97925ef}
-\end{itemize}
-
 
 \begin{figure}
 	\includegraphics[width=\linewidth]{fig/shape_gev_mle_RK401_1e7_maxt05_1e7.png}
@@ -199,11 +161,6 @@ Results are shown in Fig. \ref{fig:shape_mle} and \ref{fig:modscale_mle}.
 
 \subsubsection{Method of Moments}
 Results are shown in Fig. \ref{fig:shape_mom} and \ref{fig:modscale_mom}.
-\\Script:
-\begin{itemize}
-	\item moments computation: \href{https://github.com/marco-cucchi/L96gev/commit/240d6d0471ddc3fc53789e43e03a87013d032b86#diff-9576f7ab149830e9a08339b0fc9f2569}{240d6d0}
-	\item parameters derivation and plots: \href{https://github.com/marco-cucchi/L96gev/commit/97925ef80db61ade1851bb7c41948d7f13f3b91f#diff-503bcadc356f924b6a536c1b0796b054}{97925ef}
-\end{itemize}
 
 \begin{figure}
 	\includegraphics[width=\linewidth]{fig/shape_mom_RK401_1e7_maxt05_1e7.png}
@@ -217,10 +174,11 @@ Results are shown in Fig. \ref{fig:shape_mom} and \ref{fig:modscale_mom}.
 	\label{fig:modscale_mom}
 \end{figure}
 
-\section{LRT and the Lorenz-96 model}
+\newpage
 
-We aim to apply Ruelle response theory \cite{Ruelle}\cite{Bodai} to predict the response of different observables to the action of both constant and time-dependent forcings to our Lorenz-96 model.
-Among these observables, we will focus our efforts on ones describing statistics of extreme events.
+\section{LRT and the Lorenz-96 model} \label{section_LRT}
+
+In this section the second part of the work performed is described. The aim was to apply Ruelle response theory \cite{Ruelle}\cite{Bodai} to predict the response of different observables to the action of both constant and time-dependent forcings to the Lorenz-96 model.
 
 \subsection{Background}
 
@@ -265,7 +223,7 @@ We want to make predictions on the average response of observables of the Lorenz
 
 We use as identification forcing \footnote{Never mentioned before. See Par. 2.2 in \cite{Bodai}.\label{fn9}} a \textit{step forcing of unit intensity}, activated at time $t_0=0$. An ensemble of 10000 simulations of length $T=100$ is generated \footnote{Describe more how simulations are generated} with this forcing and for the system at rest ($F=8$), and responses for the different observables are averaged among ensemble members.
 
-The same procedure is repeated using as identification forcing a \textit{step forcing of negative unit intensity}. The semi-difference of the two average responses is then used to compute the DT Green's function $h_{\Psi}[n]$ as described in \eqref{eq:differencing} \footnote{This procedure less noisy (and more accurate?) results. \textbf{Ask Valerio for reference}.}
+The same procedure is repeated using as identification forcing a \textit{step forcing of negative unit intensity}. The semi-difference of the two average responses is then used to compute the DT Green's function $h_{\Psi}[n]$ as described in \eqref{eq:differencing} \footnote{This procedure produces less noisy (and more accurate?) results. \textit{Give reference}.}
 
 Results are compared with the ones obtained using only response to the (positive) unit step forcing to compute response function.
 
@@ -605,6 +563,7 @@ The plots are produced as follows:
 	\caption{Evolution of CDF and PDF of position observable.}
 	\label{fig:pred_position_cdf_pdf}
 \end{figure}
+
 
 
 \clearpage

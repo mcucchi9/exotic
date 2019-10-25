@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.5.17)  11 OCT 2019 10:02
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.5.17)  11 OCT 2019 10:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**phd_logbook.tex
-(./phd_logbook.tex
+**phd_report.tex
+(./phd_report.tex
 LaTeX2e <2017-04-15>
 Babel <3.18> and hyphenation patterns for 7 language(s) loaded.
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
@@ -270,8 +270,8 @@ Package: geometry 2010/09/12 v5.6 Page Geometry
 \Gm@layoutvoffset=\dimen132
 \Gm@dimlist=\toks20
 )
-(./phd_logbook.aux)
-\openout1 = `phd_logbook.aux'.
+(./phd_report.aux)
+\openout1 = `phd_report.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 14.
 LaTeX Font Info:    ... okay on input line 14.
@@ -333,9 +333,9 @@ LaTeX Info: Redefining \ref on input line 14.
 LaTeX Info: Redefining \pageref on input line 14.
 LaTeX Info: Redefining \nameref on input line 14.
 
-(./phd_logbook.out) (./phd_logbook.out)
+(./phd_report.out) (./phd_report.out)
 \@outlinefile=\write3
-\openout3 = `phd_logbook.out'.
+\openout3 = `phd_report.out'.
 
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
@@ -374,71 +374,67 @@ Package caption Info: End \AtBeginDocument code.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-(./phd_logbook.toc)
+(./phd_report.toc)
 \tf@toc=\write4
-\openout4 = `phd_logbook.toc'.
+\openout4 = `phd_report.toc'.
 
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 48.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 24.
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 48.
- [2]
-
-LaTeX Warning: Reference `1' on page 3 undefined on input line 103.
-
-[3] [4]
-<fig/shape_gev_mle_RK401_1e7_maxt05_1e7.png, id=206, 512.6352pt x 384.4764pt>
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 24.
+ [2] [3]
+<fig/shape_gev_mle_RK401_1e7_maxt05_1e7.png, id=166, 512.6352pt x 384.4764pt>
 File: fig/shape_gev_mle_RK401_1e7_maxt05_1e7.png Graphic file (type png)
 <use fig/shape_gev_mle_RK401_1e7_maxt05_1e7.png>
 Package pdftex.def Info: fig/shape_gev_mle_RK401_1e7_maxt05_1e7.png  used on in
-put line 189.
+put line 151.
 (pdftex.def)             Requested size: 469.75502pt x 352.32045pt.
-<fig/modscale_gev_mle_RK401_1e7_maxt05_1e7.png, id=207, 512.6352pt x 384.4764pt
+<fig/modscale_gev_mle_RK401_1e7_maxt05_1e7.png, id=167, 512.6352pt x 384.4764pt
 >
 File: fig/modscale_gev_mle_RK401_1e7_maxt05_1e7.png Graphic file (type png)
 <use fig/modscale_gev_mle_RK401_1e7_maxt05_1e7.png>
 Package pdftex.def Info: fig/modscale_gev_mle_RK401_1e7_maxt05_1e7.png  used on
- input line 195.
+ input line 157.
 (pdftex.def)             Requested size: 469.75502pt x 352.32045pt.
-<fig/shape_mom_RK401_1e7_maxt05_1e7.png, id=212, 569.0058pt x 375.5631pt>
+<fig/shape_mom_RK401_1e7_maxt05_1e7.png, id=170, 569.0058pt x 375.5631pt>
 File: fig/shape_mom_RK401_1e7_maxt05_1e7.png Graphic file (type png)
 <use fig/shape_mom_RK401_1e7_maxt05_1e7.png>
 Package pdftex.def Info: fig/shape_mom_RK401_1e7_maxt05_1e7.png  used on input 
-line 209.
+line 166.
 (pdftex.def)             Requested size: 469.75502pt x 310.0554pt.
-<fig/modscale_mom_RK401_1e7_maxt05_1e7.png, id=213, 569.0058pt x 375.5631pt>
+<fig/modscale_mom_RK401_1e7_maxt05_1e7.png, id=171, 569.0058pt x 375.5631pt>
 File: fig/modscale_mom_RK401_1e7_maxt05_1e7.png Graphic file (type png)
 <use fig/modscale_mom_RK401_1e7_maxt05_1e7.png>
 Package pdftex.def Info: fig/modscale_mom_RK401_1e7_maxt05_1e7.png  used on inp
-ut line 215.
+ut line 172.
 (pdftex.def)             Requested size: 469.75502pt x 310.0554pt.
- [5] [6 <./fig/shape_gev_mle_RK401_1e7_maxt05_1e7.png>] [7 <./fig/modscale_gev_
-mle_RK401_1e7_maxt05_1e7.png>] [8 <./fig/shape_mom_RK401_1e7_maxt05_1e7.png>] [
-9 <./fig/modscale_mom_RK401_1e7_maxt05_1e7.png>] [10]
-<fig/pred_below_S_30.png, id=278, 1084.05pt x 1445.4pt>
+ [4] [5 <./fig/shape_gev_mle_RK401_1e7_maxt05_1e7.png>] [6 <./fig/modscale_gev_
+mle_RK401_1e7_maxt05_1e7.png>] [7 <./fig/shape_mom_RK401_1e7_maxt05_1e7.png>] [
+8 <./fig/modscale_mom_RK401_1e7_maxt05_1e7.png>] [9] [10]
+<fig/pred_below_S_30.png, id=252, 1084.05pt x 1445.4pt>
 File: fig/pred_below_S_30.png Graphic file (type png)
 <use fig/pred_below_S_30.png>
-Package pdftex.def Info: fig/pred_below_S_30.png  used on input line 334.
+Package pdftex.def Info: fig/pred_below_S_30.png  used on input line 292.
 (pdftex.def)             Requested size: 422.77664pt x 563.70374pt.
-<fig/pred_below_L_003_100.png, id=280, 1084.05pt x 1445.4pt>
+<fig/pred_below_L_003_100.png, id=254, 1084.05pt x 1445.4pt>
 File: fig/pred_below_L_003_100.png Graphic file (type png)
 <use fig/pred_below_L_003_100.png>
-Package pdftex.def Info: fig/pred_below_L_003_100.png  used on input line 342.
+Package pdftex.def Info: fig/pred_below_L_003_100.png  used on input line 300.
 (pdftex.def)             Requested size: 422.77664pt x 563.70374pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<fig/pred_below_L_03_10.png, id=281, 1084.05pt x 1445.4pt>
+<fig/pred_below_L_03_10.png, id=255, 1084.05pt x 1445.4pt>
 File: fig/pred_below_L_03_10.png Graphic file (type png)
 <use fig/pred_below_L_03_10.png>
-Package pdftex.def Info: fig/pred_below_L_03_10.png  used on input line 350.
+Package pdftex.def Info: fig/pred_below_L_03_10.png  used on input line 308.
 (pdftex.def)             Requested size: 422.77664pt x 563.70374pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -456,77 +452,77 @@ LaTeX Warning: Text page 13 contains only floats.
 LaTeX Warning: Text page 14 contains only floats.
 
 [14 <./fig/pred_below_L_03_10.png>]
-<fig/pred_energy_bin_00q_099q_S_30.png, id=316, 433.62pt x 289.08pt>
+<fig/pred_energy_bin_00q_099q_S_30.png, id=285, 433.62pt x 289.08pt>
 File: fig/pred_energy_bin_00q_099q_S_30.png Graphic file (type png)
 <use fig/pred_energy_bin_00q_099q_S_30.png>
 Package pdftex.def Info: fig/pred_energy_bin_00q_099q_S_30.png  used on input l
-ine 385.
+ine 343.
 (pdftex.def)             Requested size: 225.4804pt x 150.32245pt.
-<fig/pred_energy_exceed_099q_S_30.png, id=317, 433.62pt x 289.08pt>
+<fig/pred_energy_exceed_099q_S_30.png, id=286, 433.62pt x 289.08pt>
 File: fig/pred_energy_exceed_099q_S_30.png Graphic file (type png)
 <use fig/pred_energy_exceed_099q_S_30.png>
 Package pdftex.def Info: fig/pred_energy_exceed_099q_S_30.png  used on input li
-ne 390.
+ne 348.
 (pdftex.def)             Requested size: 225.4804pt x 150.32245pt.
-<fig/pred_energy_bin_00q_099q_L_03_10.png, id=318, 433.62pt x 289.08pt>
+<fig/pred_energy_bin_00q_099q_L_03_10.png, id=287, 433.62pt x 289.08pt>
 File: fig/pred_energy_bin_00q_099q_L_03_10.png Graphic file (type png)
 <use fig/pred_energy_bin_00q_099q_L_03_10.png>
 Package pdftex.def Info: fig/pred_energy_bin_00q_099q_L_03_10.png  used on inpu
-t line 395.
+t line 353.
 (pdftex.def)             Requested size: 225.4804pt x 150.32245pt.
-<fig/pred_energy_exceed_099q_L_03_10.png, id=319, 433.62pt x 289.08pt>
+<fig/pred_energy_exceed_099q_L_03_10.png, id=288, 433.62pt x 289.08pt>
 File: fig/pred_energy_exceed_099q_L_03_10.png Graphic file (type png)
 <use fig/pred_energy_exceed_099q_L_03_10.png>
 Package pdftex.def Info: fig/pred_energy_exceed_099q_L_03_10.png  used on input
- line 400.
+ line 358.
 (pdftex.def)             Requested size: 225.4804pt x 150.32245pt.
-<fig/pred_energy_bin_00q_099q_L_003_100.png, id=320, 433.62pt x 289.08pt>
+<fig/pred_energy_bin_00q_099q_L_003_100.png, id=289, 433.62pt x 289.08pt>
 File: fig/pred_energy_bin_00q_099q_L_003_100.png Graphic file (type png)
 <use fig/pred_energy_bin_00q_099q_L_003_100.png>
 Package pdftex.def Info: fig/pred_energy_bin_00q_099q_L_003_100.png  used on in
-put line 405.
+put line 363.
 (pdftex.def)             Requested size: 225.4804pt x 150.32245pt.
-<fig/pred_energy_exceed_099q_L_003_100.png, id=321, 433.62pt x 289.08pt>
+<fig/pred_energy_exceed_099q_L_003_100.png, id=290, 433.62pt x 289.08pt>
 File: fig/pred_energy_exceed_099q_L_003_100.png Graphic file (type png)
 <use fig/pred_energy_exceed_099q_L_003_100.png>
 Package pdftex.def Info: fig/pred_energy_exceed_099q_L_003_100.png  used on inp
-ut line 410.
+ut line 368.
 (pdftex.def)             Requested size: 225.4804pt x 150.32245pt.
-<fig/pred_energy_exceed_099q_L_03_10_2.png, id=322, 433.62pt x 289.08pt>
+<fig/pred_energy_exceed_099q_L_03_10_2.png, id=291, 433.62pt x 289.08pt>
 File: fig/pred_energy_exceed_099q_L_03_10_2.png Graphic file (type png)
 <use fig/pred_energy_exceed_099q_L_03_10_2.png>
 Package pdftex.def Info: fig/pred_energy_exceed_099q_L_03_10_2.png  used on inp
-ut line 421.
+ut line 379.
 (pdftex.def)             Requested size: 225.4804pt x 150.32245pt.
-<fig/pred_energy_exceed_099q_L_003_100_2.png, id=323, 433.62pt x 289.08pt>
+<fig/pred_energy_exceed_099q_L_003_100_2.png, id=292, 433.62pt x 289.08pt>
 File: fig/pred_energy_exceed_099q_L_003_100_2.png Graphic file (type png)
 <use fig/pred_energy_exceed_099q_L_003_100_2.png>
 Package pdftex.def Info: fig/pred_energy_exceed_099q_L_003_100_2.png  used on i
-nput line 426.
+nput line 384.
 (pdftex.def)             Requested size: 225.4804pt x 150.32245pt.
-<fig/pred_energy_exceed_099q_L_02_10.png, id=324, 433.62pt x 289.08pt>
+<fig/pred_energy_exceed_099q_L_02_10.png, id=293, 433.62pt x 289.08pt>
 File: fig/pred_energy_exceed_099q_L_02_10.png Graphic file (type png)
 <use fig/pred_energy_exceed_099q_L_02_10.png>
 Package pdftex.def Info: fig/pred_energy_exceed_099q_L_02_10.png  used on input
- line 431.
+ line 389.
 (pdftex.def)             Requested size: 225.4804pt x 150.32245pt.
-<fig/pred_energy_exceed_099q_L_002_100.png, id=325, 433.62pt x 289.08pt>
+<fig/pred_energy_exceed_099q_L_002_100.png, id=294, 433.62pt x 289.08pt>
 File: fig/pred_energy_exceed_099q_L_002_100.png Graphic file (type png)
 <use fig/pred_energy_exceed_099q_L_002_100.png>
 Package pdftex.def Info: fig/pred_energy_exceed_099q_L_002_100.png  used on inp
-ut line 436.
+ut line 394.
 (pdftex.def)             Requested size: 225.4804pt x 150.32245pt.
-<fig/pred_energy_exceed_099q_L_01_10.png, id=326, 433.62pt x 289.08pt>
+<fig/pred_energy_exceed_099q_L_01_10.png, id=295, 433.62pt x 289.08pt>
 File: fig/pred_energy_exceed_099q_L_01_10.png Graphic file (type png)
 <use fig/pred_energy_exceed_099q_L_01_10.png>
 Package pdftex.def Info: fig/pred_energy_exceed_099q_L_01_10.png  used on input
- line 441.
+ line 399.
 (pdftex.def)             Requested size: 225.4804pt x 150.32245pt.
-<fig/pred_energy_exceed_099q_L_001_100.png, id=327, 433.62pt x 289.08pt>
+<fig/pred_energy_exceed_099q_L_001_100.png, id=296, 433.62pt x 289.08pt>
 File: fig/pred_energy_exceed_099q_L_001_100.png Graphic file (type png)
 <use fig/pred_energy_exceed_099q_L_001_100.png>
 Package pdftex.def Info: fig/pred_energy_exceed_099q_L_001_100.png  used on inp
-ut line 446.
+ut line 404.
 (pdftex.def)             Requested size: 225.4804pt x 150.32245pt.
  [15] [16 <./fig/pred_energy_bin_00q_099q_S_30.png> <./fig/pred_energy_exceed_0
 99q_S_30.png> <./fig/pred_energy_bin_00q_099q_L_03_10.png> <./fig/pred_energy_e
@@ -536,26 +532,26 @@ red_energy_exceed_099q_L_003_100.png>]
 q_L_003_100_2.png> <./fig/pred_energy_exceed_099q_L_02_10.png> <./fig/pred_ener
 gy_exceed_099q_L_002_100.png> <./fig/pred_energy_exceed_099q_L_01_10.png> <./fi
 g/pred_energy_exceed_099q_L_001_100.png>]
-<fig/pred_energy_below_SinF_8_10_01_0_100.png, id=357, 1084.05pt x 1445.4pt>
+<fig/pred_energy_below_SinF_8_10_01_0_100.png, id=327, 1084.05pt x 1445.4pt>
 File: fig/pred_energy_below_SinF_8_10_01_0_100.png Graphic file (type png)
 <use fig/pred_energy_below_SinF_8_10_01_0_100.png>
 Package pdftex.def Info: fig/pred_energy_below_SinF_8_10_01_0_100.png  used on 
-input line 469.
+input line 427.
 (pdftex.def)             Requested size: 352.31207pt x 469.75502pt.
  [18
 
  <./fig/pred_energy_below_SinF_8_10_01_0_100.png>]
-<fig/pred_position_below_LF_8_001_0_100.png, id=367, 1084.05pt x 1445.4pt>
+<fig/pred_position_below_LF_8_001_0_100.png, id=337, 1084.05pt x 1445.4pt>
 File: fig/pred_position_below_LF_8_001_0_100.png Graphic file (type png)
 <use fig/pred_position_below_LF_8_001_0_100.png>
 Package pdftex.def Info: fig/pred_position_below_LF_8_001_0_100.png  used on in
-put line 504.
+put line 462.
 (pdftex.def)             Requested size: 422.77664pt x 563.70374pt.
-<fig/pred_position_below_SinF_8_10_01_0_100.png, id=368, 1084.05pt x 1445.4pt>
+<fig/pred_position_below_SinF_8_10_01_0_100.png, id=338, 1084.05pt x 1445.4pt>
 File: fig/pred_position_below_SinF_8_10_01_0_100.png Graphic file (type png)
 <use fig/pred_position_below_SinF_8_10_01_0_100.png>
 Package pdftex.def Info: fig/pred_position_below_SinF_8_10_01_0_100.png  used o
-n input line 512.
+n input line 470.
 (pdftex.def)             Requested size: 422.77664pt x 563.70374pt.
 
 
@@ -572,65 +568,65 @@ LaTeX Warning: Text page 20 contains only floats.
 LaTeX Warning: Text page 21 contains only floats.
 
 [21 <./fig/pred_position_below_SinF_8_10_01_0_100.png>]
-<fig/pred_cdf_energy_below_L_001_100.png, id=389, 433.62pt x 289.08pt>
+<fig/pred_cdf_energy_below_L_001_100.png, id=359, 433.62pt x 289.08pt>
 File: fig/pred_cdf_energy_below_L_001_100.png Graphic file (type png)
 <use fig/pred_cdf_energy_below_L_001_100.png>
 Package pdftex.def Info: fig/pred_cdf_energy_below_L_001_100.png  used on input
- line 549.
+ line 507.
 (pdftex.def)             Requested size: 225.4804pt x 150.32245pt.
-<fig/pred_cdf_energy_below_L_002_100.png, id=390, 433.62pt x 289.08pt>
+<fig/pred_cdf_energy_below_L_002_100.png, id=360, 433.62pt x 289.08pt>
 File: fig/pred_cdf_energy_below_L_002_100.png Graphic file (type png)
 <use fig/pred_cdf_energy_below_L_002_100.png>
 Package pdftex.def Info: fig/pred_cdf_energy_below_L_002_100.png  used on input
- line 554.
+ line 512.
 (pdftex.def)             Requested size: 225.4804pt x 150.32245pt.
-<fig/pred_pdf_energy_below_L_001_100.png, id=391, 433.62pt x 289.08pt>
+<fig/pred_pdf_energy_below_L_001_100.png, id=361, 433.62pt x 289.08pt>
 File: fig/pred_pdf_energy_below_L_001_100.png Graphic file (type png)
 <use fig/pred_pdf_energy_below_L_001_100.png>
 Package pdftex.def Info: fig/pred_pdf_energy_below_L_001_100.png  used on input
- line 559.
+ line 517.
 (pdftex.def)             Requested size: 225.4804pt x 150.32245pt.
-<fig/pred_pdf_energy_below_L_002_100.png, id=392, 433.62pt x 289.08pt>
+<fig/pred_pdf_energy_below_L_002_100.png, id=362, 433.62pt x 289.08pt>
 File: fig/pred_pdf_energy_below_L_002_100.png Graphic file (type png)
 <use fig/pred_pdf_energy_below_L_002_100.png>
 Package pdftex.def Info: fig/pred_pdf_energy_below_L_002_100.png  used on input
- line 564.
+ line 522.
 (pdftex.def)             Requested size: 225.4804pt x 150.32245pt.
-<fig/pred_pdf_zoom_energy_below_L_001_100.png, id=393, 433.62pt x 289.08pt>
+<fig/pred_pdf_zoom_energy_below_L_001_100.png, id=363, 433.62pt x 289.08pt>
 File: fig/pred_pdf_zoom_energy_below_L_001_100.png Graphic file (type png)
 <use fig/pred_pdf_zoom_energy_below_L_001_100.png>
 Package pdftex.def Info: fig/pred_pdf_zoom_energy_below_L_001_100.png  used on 
-input line 569.
+input line 527.
 (pdftex.def)             Requested size: 225.4804pt x 150.32245pt.
-<fig/pred_pdf_zoom_energy_below_L_002_100.png, id=394, 433.62pt x 289.08pt>
+<fig/pred_pdf_zoom_energy_below_L_002_100.png, id=364, 433.62pt x 289.08pt>
 File: fig/pred_pdf_zoom_energy_below_L_002_100.png Graphic file (type png)
 <use fig/pred_pdf_zoom_energy_below_L_002_100.png>
 Package pdftex.def Info: fig/pred_pdf_zoom_energy_below_L_002_100.png  used on 
-input line 574.
+input line 532.
 (pdftex.def)             Requested size: 225.4804pt x 150.32245pt.
-<fig/pred_cdf_position_below_L_001_100.png, id=395, 433.62pt x 289.08pt>
+<fig/pred_cdf_position_below_L_001_100.png, id=365, 433.62pt x 289.08pt>
 File: fig/pred_cdf_position_below_L_001_100.png Graphic file (type png)
 <use fig/pred_cdf_position_below_L_001_100.png>
 Package pdftex.def Info: fig/pred_cdf_position_below_L_001_100.png  used on inp
-ut line 586.
+ut line 544.
 (pdftex.def)             Requested size: 225.4804pt x 150.32245pt.
-<fig/pred_cdf_position_below_L_002_100.png, id=396, 433.62pt x 289.08pt>
+<fig/pred_cdf_position_below_L_002_100.png, id=366, 433.62pt x 289.08pt>
 File: fig/pred_cdf_position_below_L_002_100.png Graphic file (type png)
 <use fig/pred_cdf_position_below_L_002_100.png>
 Package pdftex.def Info: fig/pred_cdf_position_below_L_002_100.png  used on inp
-ut line 591.
+ut line 549.
 (pdftex.def)             Requested size: 225.4804pt x 150.32245pt.
-<fig/pred_pdf_position_below_L_001_100.png, id=397, 433.62pt x 289.08pt>
+<fig/pred_pdf_position_below_L_001_100.png, id=367, 433.62pt x 289.08pt>
 File: fig/pred_pdf_position_below_L_001_100.png Graphic file (type png)
 <use fig/pred_pdf_position_below_L_001_100.png>
 Package pdftex.def Info: fig/pred_pdf_position_below_L_001_100.png  used on inp
-ut line 596.
+ut line 554.
 (pdftex.def)             Requested size: 225.4804pt x 150.32245pt.
-<fig/pred_pdf_position_below_L_002_100.png, id=398, 433.62pt x 289.08pt>
+<fig/pred_pdf_position_below_L_002_100.png, id=368, 433.62pt x 289.08pt>
 File: fig/pred_pdf_position_below_L_002_100.png Graphic file (type png)
 <use fig/pred_pdf_position_below_L_002_100.png>
 Package pdftex.def Info: fig/pred_pdf_position_below_L_002_100.png  used on inp
-ut line 601.
+ut line 559.
 (pdftex.def)             Requested size: 225.4804pt x 150.32245pt.
  [22
 
@@ -640,58 +636,52 @@ gy_below_L_002_100.png> <./fig/pred_pdf_zoom_energy_below_L_001_100.png> <./fig
 /pred_pdf_zoom_energy_below_L_002_100.png>] [24 <./fig/pred_cdf_position_below_
 L_001_100.png> <./fig/pred_cdf_position_below_L_002_100.png> <./fig/pred_pdf_po
 sition_below_L_001_100.png> <./fig/pred_pdf_position_below_L_002_100.png>] (./p
-hd_logbook.bbl)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 615.
+hd_report.bbl)
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 574.
 
 [25
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 615.
- (./phd_logbook.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 615.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 615.
-Package rerunfilecheck Info: File `phd_logbook.out' has not changed.
-(rerunfilecheck)             Checksum: 123A82F30F971B54AECF790DB3F584FD;1614.
-
-
-LaTeX Warning: There were undefined references.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 615.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 574.
+ (./phd_report.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 574.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 574.
+Package rerunfilecheck Info: File `phd_report.out' has not changed.
+(rerunfilecheck)             Checksum: 030D6E3A4AF1ECF96535A9460A092B06;1493.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 574.
  ) 
 Here is how much of TeX's memory you used:
- 9260 strings out of 494847
- 159657 string characters out of 6179080
+ 9246 strings out of 494847
+ 159512 string characters out of 6179080
  244435 words of memory out of 5000000
- 12376 multiletter control sequences out of 15000+600000
- 11694 words of font info for 42 fonts, out of 8000000 for 9000
+ 12370 multiletter control sequences out of 15000+600000
+ 11026 words of font info for 40 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
- 42i,8n,40p,587b,501s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 42i,8n,40p,536b,501s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texli
-ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/texlive/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
-onts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.
-pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></u
-sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texliv
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
-ts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
-mti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.p
-fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on phd_logbook.pdf (25 pages, 3011628 bytes).
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+r17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb>
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/sh
+are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmti8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmtt10.pfb>
+Output written on phd_report.pdf (25 pages, 2977380 bytes).
 PDF statistics:
- 532 PDF objects out of 1000 (max. 8388607)
- 412 compressed objects within 5 object streams
- 114 named destinations out of 1000 (max. 500000)
- 329 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 491 PDF objects out of 1000 (max. 8388607)
+ 375 compressed objects within 4 object streams
+ 108 named destinations out of 1000 (max. 500000)
+ 321 words of extra memory for PDF output out of 10000 (max. 10000000)
 
