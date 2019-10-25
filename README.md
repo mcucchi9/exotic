@@ -1,6 +1,6 @@
 # PhD
 
-One Paragraph of project description goes here
+This repository contains the code I use to produce results related to my PhD research work. 
 
 ## Getting Started
 
