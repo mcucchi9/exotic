@@ -1,4 +1,5 @@
-# PhD
+# exotic
+## R*e*sponse of *ex*treme events to external forcings in cha*otic* dynamical systems
 
 This repository contains the code I use to produce results related to my PhD research work. 
 
