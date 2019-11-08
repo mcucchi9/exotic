@@ -6,7 +6,6 @@ htmlcov
 Untitled.ipynb
 .cache
 set_environ_var.sh
-scripts/*.out
-cli/*.out
+*.out
 config.yaml
 _site
