@@ -26,7 +26,7 @@ except FileNotFoundError:
 sc = SlackClient(config['slack_bot_token'])
 sp = SlackProgress(config['slack_bot_token'], '#l96lrt')
 
-DATA_PATH = os.path.join(dirname, '../../../data')
+DATA_PATH = os.path.join(dirname, '../../../../data')
 
 initial_conditions = xr.open_dataarray(os.path.join(
     DATA_PATH,
@@ -53,7 +53,7 @@ elif forcing_id == 'delta':
         force_intensity_delta=float(sys.argv[6])
     )
 elif forcing_id == 'step':
-    force = forcings.DeltaForcing(
+    force = forcings.StepForcing(
         activation_time=0,
         force_intensity_base=float(sys.argv[5]),
         force_intensity_delta=float(sys.argv[6])
