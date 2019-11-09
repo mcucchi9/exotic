@@ -2,7 +2,7 @@
  
 #SBATCH --ntasks=1 #(default, so here optional)
 #SBATCH --cpus-per-task=1  #(default, so here optional)
-#SBATCH --job-name=simulation_noforcing
+#SBATCH --job-name=simulation_forcing
 #SBATCH --output=sim.out 
 #SBATCH --partition=cluster #(optional, default is cluster)
 #SBATCH --time=24:00:00 #(optional, default is 24 hours)
