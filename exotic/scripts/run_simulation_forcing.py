@@ -61,14 +61,14 @@ elif forcing_id == 'step':
 elif forcing_id == 'linear':
     force = forcings.LinearForcing(
         activation_time=0,
-        deactivation_time=0,
+        deactivation_time=100,
         force_intensity_base=float(sys.argv[5]),
         linear_coefficient=float(sys.argv[6])
     )
 elif forcing_id == 'sinusoidal':
     force = forcings.SinusoidalForcing(
         activation_time=0,
-        deactivation_time=0,
+        deactivation_time=100,
         force_intensity_base=float(sys.argv[5]),
         epsilon=float(sys.argv[6]),
         omega=float(sys.argv[7])
