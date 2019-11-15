@@ -1,7 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-hierarchical prompt usage example
-"""
 import subprocess
 import os
 import yaml
@@ -94,19 +90,13 @@ def main():
         for param in FORCINGS[forcing]['param']:
             input_param = ask_float(param, 'insert ' + param)
             forcing_params.append(input_param)
-        sim_start = int(ask_int('sim_start', 'insert sim_start'))
-        sim_num = int(ask_int('sim_num', 'insert sim_num'))
+        sim_first = int(ask_int('sim_first', 'insert sim_first'))
+        sim_last = int(ask_int('sim_last', 'insert sim_last'))
         take_init_every_steps = int(ask_int('take_init_every_steps', 'insert take_init_every_steps'))
-        command = '{cmd} {executable} {forcing} {sim_start} {sim_num} {take_init_every_steps} {forcing_params}'.format(
-            cmd=EXECUTER,
-            executable=EXECUTABLE,
-            forcing=forcing,
-            sim_start=sim_start,
-            sim_num=sim_num,
-            take_init_every_steps=take_init_every_steps,
-            forcing_params=' '.join(forcing_params)
-        )
-        message = "Run the following command: '{}'?".format(command)
+        sim_num = (sim_last - sim_first) + 1
+        command = f"{EXECUTER} {EXECUTABLE} {forcing} {sim_first} {sim_num} " \
+                  f"{take_init_every_steps} {' '.join(forcing_params)}"
+        message = f"Run the following command: '{command}'?"
         confirmation = ask_confirmation(message)
 
     subprocess.Popen(command, shell=True, executable='/bin/bash')
