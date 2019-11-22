@@ -42,7 +42,7 @@ def main():
         nc_to_concat,
         combine='nested',
         concat_dim='realization',
-        # chunks={'time_step': 100},
+        chunks={'time_step': 100},
         # parallel=True
     )
 
@@ -51,7 +51,7 @@ def main():
     print('saving')
     ds.to_netcdf(
         os.path.join(data_path, netcdf_dir, out_name),
-        encoding={'var': {'zlib': True, 'complevel': 9}}
+        # encoding={'var': {'zlib': True, 'complevel': 9}}
     )
 
 
