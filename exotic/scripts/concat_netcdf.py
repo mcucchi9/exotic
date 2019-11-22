@@ -11,8 +11,8 @@ CONFIG_PATH = os.path.join(DIRNAME, '../config.yaml')
 
 def main():
     netcdf_dir = sys.argv[1]
-    first_netcdf = sys.argv[2]
-    last_netcdf = sys.argv[3]
+    first_netcdf = int(sys.argv[2])
+    last_netcdf = int(sys.argv[3])
 
     # Read configuration file
     try:
@@ -23,18 +23,32 @@ def main():
 
     data_path = '/home/cucchi/phd/data/sim/lorenz96/rk4/t_1_00/'
 
-    cmd = f"ls {os.path.join(data_path, netcdf_dir, f'sim*{{{first_netcdf.zfill(6)}..{last_netcdf.zfill(6)}}}.nc')}"
-    cmd_output = subprocess.check_output(cmd, shell=True, executable='/bin/bash')
-    nc_to_concat = cmd_output.decode("utf-8").split('\n')[:-1]
+    print('listing files')
+    # cmd = f"ls {os.path.join(data_path, netcdf_dir, f'sim*{{{first_netcdf.zfill(6)}..{last_netcdf.zfill(6)}}}.nc')}"
+    # print('executing command')
+    # cmd_output = subprocess.check_output(cmd, shell=True, executable='/bin/bash')
+    # print('decoding output')
+    # nc_to_concat = cmd_output.decode("utf-8").split('\n')[:-1]
+    nc_to_concat = [
+        os.path.join(
+            data_path,
+            netcdf_dir,
+            f'sim_lorenz96_rk4_CF_8.0_all_{str(i).zfill(6)}.nc')
+        for i in range(first_netcdf, last_netcdf + 1)
+    ]
 
+    print('opening')
     ds = xr.open_mfdataset(
         nc_to_concat,
         combine='nested',
-        concat_dim='realization'
+        concat_dim='realization',
+        # chunks={'time_step': 100},
+        # parallel=True
     )
 
-    out_name = f"merged_{first_netcdf.zfill(6)}_{last_netcdf.zfill(6)}.nc"
-    
+    out_name = f"merged_{str(first_netcdf).zfill(6)}_{str(last_netcdf).zfill(6)}.nc"
+
+    print('saving')
     ds.to_netcdf(
         os.path.join(data_path, netcdf_dir, out_name),
         encoding={'var': {'zlib': True, 'complevel': 9}}
