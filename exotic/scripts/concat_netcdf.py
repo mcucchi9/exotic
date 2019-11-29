@@ -10,7 +10,7 @@ CONFIG_PATH = os.path.join(DIRNAME, '../config.yaml')
 
 
 def main():
-    netcdf_dir = sys.argv[1]
+    forcing = sys.argv[1]
     first_netcdf = int(sys.argv[2])
     last_netcdf = int(sys.argv[3])
 
@@ -21,7 +21,7 @@ def main():
     except FileNotFoundError:
         print('config.yaml not found')
 
-    data_path = '/home/cucchi/phd/data/sim/lorenz96/rk4/t_1_00/'
+    data_path = config['data_path']
 
     print('listing files')
     # cmd = f"ls {os.path.join(data_path, netcdf_dir, f'sim*{{{first_netcdf.zfill(6)}..{last_netcdf.zfill(6)}}}.nc')}"
@@ -32,8 +32,8 @@ def main():
     nc_to_concat = [
         os.path.join(
             data_path,
-            netcdf_dir,
-            f'sim_lorenz96_rk4_CF_8.0_all_{str(i).zfill(6)}.nc')
+            forcing,
+            f'sim_lorenz96_rk4_{forcing}_all_{str(i).zfill(6)}.nc')
         for i in range(first_netcdf, last_netcdf + 1)
     ]
 
@@ -50,8 +50,8 @@ def main():
 
     print('saving')
     ds.to_netcdf(
-        os.path.join(data_path, netcdf_dir, out_name),
-        # encoding={'var': {'zlib': True, 'complevel': 9}}
+        os.path.join(data_path, forcing, out_name),
+        encoding={'var': {'zlib': True, 'complevel': 9}}
     )
 
 
