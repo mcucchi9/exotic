@@ -12,4 +12,4 @@
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=mcucchi9@gmail.com
 
-python3 ../scripts/concat_netcdf.py ${1} ${2} ${3}
+python3 ../scripts/concat_netcdf.py ${1} ${2} ${3} ${4}
