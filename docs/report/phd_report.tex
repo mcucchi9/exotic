@@ -116,7 +116,7 @@ Furthermore, the following parameters are estimated for each simulation:
 \end{itemize}
 Finally, for each different aggregation, ensemble averages of \textit{shape} and \textit{modified scale} among all simulations are computed.
 
-\subsubsection{Method of Moments}
+\subsubsection{Method of Moments} \label{subsubsection_mom}
 
 Following theory described in \cite{LucariniExtremesBook}, we want to estimate \textit{shape} and \textit{scale} parameters using the following equations (Par 8.2.6 in \cite{LucariniExtremesBook}):
 
@@ -563,6 +563,14 @@ The plots are produced as follows:
 	\caption{Evolution of CDF and PDF of position observable.}
 	\label{fig:pred_position_cdf_pdf}
 \end{figure}
+
+\section{Predicting changes in extreme events distribution} \label{section_LRT+EVT}
+
+In this section I'm going to explore the possibility of predicting changes in Lorenz96 model extreme events distribution in the framework of classical EVT using LRT.
+
+The plan is to use predictability of moments of observables, explored in \ref{section_LRT}, and results described in \ref{subsubsection_mom} to "translate" prediction of moments into predictions of GEVD parameters.
+
+\textbf{Which moments need to be predicted?}
 
 
 
