@@ -564,6 +564,16 @@ The plots are produced as follows:
 	\label{fig:pred_position_cdf_pdf}
 \end{figure}
 
+\subsection{What next?}
+
+\begin{itemize}
+	\item Systematically explore higher quantiles (.9, .95, .99, .995, ...)
+	\item Vary amplitude (different from amplitude of identification forcing)
+	\item Explore local (done) and global variables
+	\item For local variables put together statistics of different sites to lower error by order $\sqrt{N}$
+	\item Find appealing graphical representation
+\end{itemize}
+
 \section{Predicting changes in extreme events distribution} \label{section_LRT+EVT}
 
 In this section I'm going to explore the possibility of predicting changes in Lorenz96 model extreme events distribution in the framework of classical EVT using LRT.
@@ -571,6 +581,20 @@ In this section I'm going to explore the possibility of predicting changes in Lo
 The plan is to use predictability of moments of observables, explored in \ref{section_LRT}, and results described in \ref{subsubsection_mom} to "translate" prediction of moments into predictions of GEVD parameters.
 
 \textbf{Which moments need to be predicted?}
+
+Here it is \textbf{what needs to be done}:
+\begin{enumerate}
+	\item With many ($\sim 10^6/10^7$?) realizations of the system at rest (constant forcing = 8), estimate GPD parameters via:
+	\begin{itemize}
+		\item fit (mle? lmom?)
+		\item formulas in \ref{subsubsection_mom}
+	\end{itemize}
+	\item Do the same for a non autonomous system (e.g. linear forcing)
+	\item Explore prediction with LRT. Protocol:
+	\begin{itemize}
+		\item Do the same that was done in part 1, but taking as observables moments in \ref{subsubsection_mom}
+	\end{itemize}
+\end{enumerate}
 
 
 
