@@ -28,6 +28,7 @@ sp = SlackProgress(config['slack_bot_token'], '#l96lrt')
 
 DATA_PATH = os.path.join(dirname, '../../../../data')
 
+# TODO: rewrite so to load the only init file (which is the one from t_1_00)
 initial_conditions = xr.open_dataarray(os.path.join(
     DATA_PATH,
     'sim/lorenz96/rk4/t_1_00/CF_8.0/sim_lorenz96_rk4_CF_8.0_all_init.nc'
@@ -99,6 +100,7 @@ for sim_index in range(sim_start, sim_start + sim_num):
         system=system
     )
 
+    # TODO: make general
     runner = sim.SimulationRunner(
         simulator=simulator,
         integration_time=100,
