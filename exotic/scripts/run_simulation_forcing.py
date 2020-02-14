@@ -101,7 +101,6 @@ for sim_index in range(sim_start, sim_start + sim_num):
         system=system
     )
 
-    # TODO: make general
     runner = sim.SimulationRunner(
         simulator=simulator,
         integration_time=integration_time,
