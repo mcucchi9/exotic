@@ -28,10 +28,9 @@ sp = SlackProgress(config['slack_bot_token'], '#l96lrt')
 
 DATA_PATH = os.path.join(dirname, '../../../../data')
 
-# TODO: rewrite so to load the only init file (which is the one from t_1_00)
 initial_conditions = xr.open_dataarray(os.path.join(
     DATA_PATH,
-    'sim/lorenz96/rk4/t_1_00/CF_8.0/sim_lorenz96_rk4_CF_8.0_all_init.nc'
+    'sim/lorenz96/rk4/init/sim_lorenz96_rk4_CF_8.0_all_init.nc'
 ))
 
 system = systems.Lorenz96()
@@ -41,38 +40,40 @@ forcing_id = (sys.argv[1])
 
 sim_start = int(sys.argv[2])
 sim_num = int(sys.argv[3])
-take_init_every_steps = int(sys.argv[4])
+time_between_init_cond = int(sys.argv[4])
+integration_time = float(sys.argv[5])
+time_between_complete_records = float(sys.argv[6])
 
 if forcing_id == 'constant':
     force = forcings.ConstantForcing(
-        force_intensity=float(sys.argv[5])
+        force_intensity=float(sys.argv[7])
     )
 elif forcing_id == 'delta':
     force = forcings.DeltaForcing(
         activation_time=0,
-        force_intensity_base=float(sys.argv[5]),
-        force_intensity_delta=float(sys.argv[6])
+        force_intensity_base=float(sys.argv[7]),
+        force_intensity_delta=float(sys.argv[8])
     )
 elif forcing_id == 'step':
     force = forcings.StepForcing(
         activation_time=0,
-        force_intensity_base=float(sys.argv[5]),
-        force_intensity_delta=float(sys.argv[6])
+        force_intensity_base=float(sys.argv[7]),
+        force_intensity_delta=float(sys.argv[8])
     )
 elif forcing_id == 'linear':
     force = forcings.LinearForcing(
         activation_time=0,
         deactivation_time=100,
-        force_intensity_base=float(sys.argv[5]),
-        linear_coefficient=float(sys.argv[6])
+        force_intensity_base=float(sys.argv[7]),
+        linear_coefficient=float(sys.argv[8])
     )
 elif forcing_id == 'sinusoidal':
     force = forcings.SinusoidalForcing(
         activation_time=0,
         deactivation_time=100,
-        force_intensity_base=float(sys.argv[5]),
-        epsilon=float(sys.argv[6]),
-        omega=float(sys.argv[7])
+        force_intensity_base=float(sys.argv[7]),
+        epsilon=float(sys.argv[8]),
+        omega=float(sys.argv[9])
     )
 else:
     raise ValueError('{} forcing not supported!'.format(forcing_id))
@@ -87,7 +88,7 @@ pbar = sp.new()
 
 for sim_index in range(sim_start, sim_start + sim_num):
 
-    time_step_real = int(sim_index*take_init_every_steps/initial_conditions.integration_step)
+    time_step_real = int(sim_index*time_between_init_cond/initial_conditions.integration_step)
 
     point = sim.SystemState(
         coords=initial_conditions.sel(time_step=time_step_real).values,
@@ -103,9 +104,9 @@ for sim_index in range(sim_start, sim_start + sim_num):
     # TODO: make general
     runner = sim.SimulationRunner(
         simulator=simulator,
-        integration_time=100,
+        integration_time=integration_time,
         chunk_length_time=1000,
-        write_all_every=1,
+        write_all_every=time_between_complete_records,
         write_one_every=0
     )
 

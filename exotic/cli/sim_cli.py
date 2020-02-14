@@ -92,10 +92,15 @@ def main():
             forcing_params.append(input_param)
         sim_first = int(ask_int('sim_first', 'insert sim_first'))
         sim_last = int(ask_int('sim_last', 'insert sim_last'))
-        take_init_every_steps = int(ask_int('take_init_every_steps', 'insert take_init_every_steps'))
+        time_between_init_cond = int(ask_int('time_between_init_cond', 'insert time_between_init_cond'))
+        integration_time = float(ask_float('integration_time', 'insert integration_time'))
+        time_between_complete_records = float(
+            ask_float('time_between_complete_records', 'insert time_between_complete_records')
+        )
         sim_num = (sim_last - sim_first) + 1
         command = f"{EXECUTER} {EXECUTABLE} {forcing} {sim_first} {sim_num} " \
-                  f"{take_init_every_steps} {' '.join(forcing_params)}"
+                  f"{time_between_init_cond} {integration_time} {time_between_complete_records} " \
+                  f"{' '.join(forcing_params)}"
         message = f"Run the following command: '{command}'?"
         confirmation = ask_confirmation(message)
 
