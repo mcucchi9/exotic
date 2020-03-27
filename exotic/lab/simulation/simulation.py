@@ -192,20 +192,19 @@ class SimulationRunner:
     ) -> dict:
 
         outfile_name_base = \
-            'sim/{system}/{integrator}/{forcing}/tbr{time}/sim_{system}_{integrator}_{forcing}_tbr{time}'.format(
+            'sim/{system}/{integrator}/{forcing}/sim_{system}_{integrator}_{forcing}'.format(
                 system=self.simulator.system.short_name,
                 integrator=self.simulator.int_method.short_name,
-                forcing=self.simulator.forcing.short_name,
-                time=self.write_all_every
+                forcing=self.simulator.forcing.short_name
             )
 
         outfile_name = {}
 
         if self.write_one_every_iter:
-            outfile_name_one = '{}_one_{}.nc'.format(outfile_name_base, custom_suffix)
+            outfile_name_one = f'{outfile_name_base}_tbr{self.write_one_every}_one_{custom_suffix}.nc'
             outfile_name['one'] = outfile_name_one
         if self.write_all_every_iter:
-            outfile_name_all = '{}_all_{}.nc'.format(outfile_name_base, custom_suffix)
+            outfile_name_all = f'{outfile_name_base}_tbr{self.write_all_every}_all_{custom_suffix}.nc'
             outfile_name['all'] = outfile_name_all
 
         return outfile_name

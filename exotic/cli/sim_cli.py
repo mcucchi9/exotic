@@ -88,19 +88,26 @@ def main():
         forcing = ask_forcing()
         forcing_params = []
         for param in FORCINGS[forcing]['param']:
-            input_param = ask_float(param, 'insert ' + param)
+            input_param = ask_float(param, param)
             forcing_params.append(input_param)
-        sim_first = int(ask_int('sim_first', 'insert sim_first'))
-        sim_last = int(ask_int('sim_last', 'insert sim_last'))
-        time_between_init_cond = int(ask_int('time_between_init_cond', 'insert time_between_init_cond'))
-        integration_time = float(ask_float('integration_time', 'insert integration_time'))
+        sim_first = int(ask_int('sim_first', 'first sim'))
+        sim_last = int(ask_int('sim_last', 'last sim'))
+        time_between_init_cond = int(
+            ask_int('time_between_init_cond', 'time between consecutive initial conditions')
+        )
+        integration_time = float(
+            ask_float('integration_time', 'time length of each simulation')
+        )
+        time_between_single_records = float(
+            ask_float('time_between_single_records', 'time between records of one (first) node')
+        )
         time_between_complete_records = float(
-            ask_float('time_between_complete_records', 'insert time_between_complete_records')
+            ask_float('time_between_complete_records', 'time between records of all nodes')
         )
         sim_num = (sim_last - sim_first) + 1
         command = f"{EXECUTER} {EXECUTABLE} {forcing} {sim_first} {sim_num} " \
-                  f"{time_between_init_cond} {integration_time} {time_between_complete_records} " \
-                  f"{' '.join(forcing_params)}"
+                  f"{time_between_init_cond} {integration_time} {time_between_single_records} " \
+                  f"{time_between_complete_records} {' '.join(forcing_params)}"
         message = f"Run the following command: '{command}'?"
         confirmation = ask_confirmation(message)
 

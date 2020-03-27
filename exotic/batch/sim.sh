@@ -10,4 +10,4 @@
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=mcucchi9@gmail.com
 
-python3 ../scripts/run_simulation_forcing.py "${1}" "${2}" "${3}" "${4}" "${5}" "${6}" "${7}" "${8}" "${9}"
+python3 ../scripts/run_simulation_forcing.py "${1}" "${2}" "${3}" "${4}" "${5}" "${6}" "${7}" "${8}" "${9}" "${10}"
