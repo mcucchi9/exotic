@@ -35,7 +35,7 @@ if obs_stat in ('bin', 'below'):
 
     quantiles = xr.open_dataarray(os.path.join(
         DATA_PATH,
-        'obs/lorenz96/rk4/CF_8/quantiles/obs_lorenz96_rk4_CF_8_quantiles_{}.nc'.format(obs_main))
+        f'obs/lorenz96/rk4/CF_8/quantiles/obs_lorenz96_rk4_CF_8_quantiles_{obs_main}.nc')
     )
     quantile_orders = np.round(quantiles.quantile_order.values, 2)
     quantiles.quantile_order.values = quantile_orders
@@ -53,7 +53,7 @@ data_noforcing_path = os.path.join(
 )
 data_forcing_path = os.path.join(
     DATA_PATH,
-    'sim/lorenz96/rk4/{}/'.format(forcing_sn)
+    f'sim/lorenz96/rk4/{forcing_sn}/'
 )
 
 num_forcing_sim = len(os.listdir(data_forcing_path))
@@ -61,12 +61,12 @@ num_forcing_sim = len(os.listdir(data_forcing_path))
 counter = 0
 for i in range(1, num_forcing_sim):
     # compute observation forcing
-    file_name_forcing = 'sim_lorenz96_rk4_{}_one_{:05}.nc'.format(forcing_sn, i)
+    file_name_forcing = f'sim_lorenz96_rk4_{forcing_sn}_one_{i:05}.nc'
     data_forcing = xr.open_dataarray(os.path.join(data_forcing_path, file_name_forcing))
     obs_forcing = observable(data_forcing)
     obs_forcing.attrs = data_forcing.attrs
     # compute observation no forcing
-    file_name_noforcing = 'sim_lorenz96_rk4_CF_8_one_{:05}.nc'.format(i)
+    file_name_noforcing = f'sim_lorenz96_rk4_CF_8_one_{i:05}.nc'
     data_noforcing = xr.open_dataarray(os.path.join(data_noforcing_path, file_name_noforcing))
     obs_noforcing = observable(data_noforcing)
     obs_noforcing.attrs = data_noforcing.attrs
@@ -88,8 +88,8 @@ response_avg.attrs['ensemble'] = num_forcing_sim - 1
 
 out_name = os.path.join(
     DATA_PATH,
-    'response/lorenz96/rk4/{}/{}/{}'.format(forcing_sn, obs_main, obs_stat),
-    'response_lorenz96_rk4_{}_{}.nc'.format(observable.short_name, forcing_sn)
+    f'response/lorenz96/rk4/{forcing_sn}/{obs_main}/{obs_stat}'
+    f'response_lorenz96_rk4_{observable.short_name}_{forcing_sn}.nc'
 )
 
 if not os.path.exists(os.path.dirname(out_name)):
