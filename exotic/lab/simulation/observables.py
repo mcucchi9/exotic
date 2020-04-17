@@ -71,14 +71,9 @@ class Bin:
     @property
     def short_name(self):
 
-        if len(self.threshold) == 1:
-            return '{}_exceed_{:.2f}q'.format(self.observable.short_name, np.round(self.threshold_q[0], 3))
-        else:
-            return '{}_bin_{:.2f}q_{:.2f}q'.format(
-                self.observable.short_name,
-                np.round(self.threshold_q[0], 3),
-                np.round(self.threshold_q[1], 3)
-            )
+        return f'{self.observable.short_name}_bin' \
+               f'_{np.round(self.threshold_q[0], 3):02}q' \
+               f'_{np.round(self.threshold_q[1], 3):02}q'
 
 
 class Below:
@@ -109,5 +104,35 @@ class Below:
     @property
     def short_name(self):
 
-        if len(self.threshold) == 1:
-            return '{}_below_{:.2f}q'.format(self.observable.short_name, np.round(self.threshold_q[0], 3))
+        return f'{self.observable.short_name}_below_{np.round(self.threshold_q, 3):02}q'
+
+
+class Exceed:
+
+    def __init__(
+            self,
+            threshold: float,
+            threshold_q: float,
+            observable
+    ):
+
+        self.threshold = threshold
+        self.threshold_q = threshold_q
+        self.observable = observable
+
+    def __call__(
+            self,
+            data=xr.DataArray
+    ):
+
+        data = self.observable(data)
+        ones = xr.ones_like(data)
+
+        obs = ones.where(data > self.threshold[0], 0)
+
+        return obs
+
+    @property
+    def short_name(self):
+
+        return f'{self.observable.short_name}_exceed_{np.round(self.threshold_q, 3):02}q'
