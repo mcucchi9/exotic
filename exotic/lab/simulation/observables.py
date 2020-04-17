@@ -52,7 +52,7 @@ class Bin:
 
     def __call__(
             self,
-            data=xr.DataArray
+            data: xr.DataArray
     ):
 
         data = self.observable(data)
@@ -80,8 +80,8 @@ class Below:
 
     def __init__(
             self,
-            threshold: float,
-            threshold_q: float,
+            threshold: T.List[float],
+            threshold_q: T.List[float],
             observable
     ):
 
@@ -91,7 +91,7 @@ class Below:
 
     def __call__(
             self,
-            data=xr.DataArray
+            data: xr.DataArray
     ):
 
         data = self.observable(data)
@@ -104,15 +104,15 @@ class Below:
     @property
     def short_name(self):
 
-        return f'{self.observable.short_name}_below_{np.round(self.threshold_q, 3):02}q'
+        return f'{self.observable.short_name}_below_{np.round(self.threshold_q[0], 3):02}q'
 
 
 class Exceed:
 
     def __init__(
             self,
-            threshold: float,
-            threshold_q: float,
+            threshold: T.List[float],
+            threshold_q: T.List[float],
             observable
     ):
 
@@ -122,7 +122,7 @@ class Exceed:
 
     def __call__(
             self,
-            data=xr.DataArray
+            data: xr.DataArray
     ):
 
         data = self.observable(data)
@@ -135,4 +135,4 @@ class Exceed:
     @property
     def short_name(self):
 
-        return f'{self.observable.short_name}_exceed_{np.round(self.threshold_q, 3):02}q'
+        return f'{self.observable.short_name}_exceed_{np.round(self.threshold_q[0], 3):02}q'
