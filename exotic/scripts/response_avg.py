@@ -1,15 +1,17 @@
 import sys
 import os
+import glob
 import xarray as xr
 import numpy as np
 from slack_progress import SlackProgress
 from slackclient import SlackClient
 
-sys.path.append('../devel/phd/')
+sys.path.append('../')
 
 from lab.simulation import observables
 
-DATA_PATH = os.environ.get('BASE_DATA_PATH')
+dirname = os.path.dirname(__file__)
+DATA_PATH = os.path.join(dirname, '../../../../data')
 
 OBS_DICT = {
     'energy': observables.Energy,
@@ -38,38 +40,39 @@ if obs_stat in ('bin', 'below', 'exceed'):
 
     quantiles = xr.open_dataarray(os.path.join(
         DATA_PATH,
-        f'obs/lorenz96/rk4/CF_8/quantiles/obs_lorenz96_rk4_CF_8_quantiles_{obs_main}.nc')
+        f'obs/lorenz96/rk4/CF_8.0/quantiles/obs_lorenz96_rk4_CF_8.0_quantiles_{obs_main}.nc')
     )
-    quantile_orders = np.round(quantiles.quantile_order.values, 2)
-    quantiles.quantile_order.values = quantile_orders
+    quantiles_orders = np.round(quantiles.quantile_order.values, 2)
+    quantiles.quantile_order.values = quantiles_orders
     threshold = [quantiles.sel(quantile_order=tq).values for tq in threshold_q]
 
 observable_class = OBS_DICT[obs_stat]
-if obs_stat in ('bin', 'below'):
+if obs_stat in ('bin', 'below', 'exceed'):
     observable = observable_class(threshold, threshold_q, OBS_DICT[obs_main]())
 else:
     observable = observable_class()
 
 data_noforcing_path = os.path.join(
     DATA_PATH,
-    'sim/lorenz96/rk4/CF_8/'
+    'sim/lorenz96/rk4/CF_8.0/'
 )
 data_forcing_path = os.path.join(
     DATA_PATH,
     f'sim/lorenz96/rk4/{forcing_sn}/'
 )
 
-num_forcing_sim = len(os.listdir(data_forcing_path))
+num_forcing_sim = len(glob.glob(f'{data_forcing_path}/*tbr0.01*'))
 
+# TODO: make tbr0.01 a user input
 counter = 0
 for i in range(1, num_forcing_sim):
     # compute observation forcing
-    file_name_forcing = f'sim_lorenz96_rk4_{forcing_sn}_one_{i:05}.nc'
+    file_name_forcing = f'sim_lorenz96_rk4_{forcing_sn}_tbr0.01_one_{i:05}.nc'
     data_forcing = xr.open_dataarray(os.path.join(data_forcing_path, file_name_forcing))
     obs_forcing = observable(data_forcing)
     obs_forcing.attrs = data_forcing.attrs
     # compute observation no forcing
-    file_name_noforcing = f'sim_lorenz96_rk4_CF_8_one_{i:05}.nc'
+    file_name_noforcing = f'sim_lorenz96_rk4_CF_8.0_tbr0.01_one_{i:05}.nc'
     data_noforcing = xr.open_dataarray(os.path.join(data_noforcing_path, file_name_noforcing))
     obs_noforcing = observable(data_noforcing)
     obs_noforcing.attrs = data_noforcing.attrs
