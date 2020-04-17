@@ -15,18 +15,21 @@ OBS_DICT = {
     'energy': observables.Energy,
     'position': observables.Position,
     'bin': observables.Bin,
-    'below': observables.Below
+    'below': observables.Below,
+    'exceed': observables.Exceed
 }
 
 forcing_sn = sys.argv[1]
 obs_sn = sys.argv[2]
 
+# this is the actual observable (e.g. energy, position)
 obs_main = obs_sn.split('_')[0]
+# this is the statistics (e.g. freq of values below a certain threshold)
 obs_stat = obs_sn.split('_')[1]
 
-if obs_stat in ('bin', 'below'):
+if obs_stat in ('bin', 'below', 'exceed'):
 
-    threshold_q = []
+    threshold_q = list()
     threshold_q.append(round(float(sys.argv[3]), 2))
     try:
         threshold_q.append(round(float(sys.argv[4]), 2))
