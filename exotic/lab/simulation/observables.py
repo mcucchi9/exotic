@@ -126,9 +126,7 @@ class Exceed:
     ):
 
         data = self.observable(data)
-        ones = xr.ones_like(data)
-
-        obs = ones.where(data > self.threshold[0], 0)
+        obs = xr.where(data > self.threshold[0], 1, 0)
 
         return obs
 
