@@ -43,7 +43,7 @@ if obs_stat in ('bin', 'below', 'exceed'):
         f'obs/lorenz96/rk4/CF_8.0/quantiles/obs_lorenz96_rk4_CF_8.0_quantiles_{obs_main}.nc')
     )
     quantiles_orders = np.round(quantiles.quantile_order.values, 2)
-    quantiles.quantile_order.values = quantiles_orders
+    quantiles.assign_coords(coords={'quantile_order': quantiles_orders})
     threshold = [quantiles.sel(quantile_order=tq).values for tq in threshold_q]
 
 observable_class = OBS_DICT[obs_stat]
@@ -65,6 +65,7 @@ num_forcing_sim = len(glob.glob(f'{data_forcing_path}/*tbr0.01*'))
 
 # TODO: make tbr0.01 a user input
 counter = 0
+# NOTE: I ignore the 00000 simulation (not yet on attractor)
 for i in range(1, num_forcing_sim):
     # compute observation forcing
     file_name_forcing = f'sim_lorenz96_rk4_{forcing_sn}_tbr0.01_one_{i:05}.nc'
@@ -86,15 +87,15 @@ for i in range(1, num_forcing_sim):
 
 response_avg = response_avg/counter
 
-response_avg.attrs['forcing'] = forcing_sn
-response_avg.attrs['observable'] = observable.short_name
-response_avg.attrs['ensemble'] = num_forcing_sim - 1
+response_avg['var'].attrs['forcing'] = forcing_sn
+response_avg['var'].attrs['observable'] = observable.short_name
+response_avg['var'].attrs['ensemble'] = num_forcing_sim - 1
 
 # Save Average Response
 
 out_name = os.path.join(
     DATA_PATH,
-    f'response/lorenz96/rk4/{forcing_sn}/{obs_main}/{obs_stat}'
+    f'response/lorenz96/rk4/{forcing_sn}/{obs_main}/'
     f'response_lorenz96_rk4_{observable.short_name}_{forcing_sn}.nc'
 )
 
