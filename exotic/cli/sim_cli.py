@@ -2,7 +2,7 @@ import subprocess
 import os
 import yaml
 
-from PyInquirer import style_from_dict, Token, prompt
+from PyInquirer import style_from_dict, prompt, Token
 
 dirname = os.path.dirname(__file__)
 
