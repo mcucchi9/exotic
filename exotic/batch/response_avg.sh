@@ -16,5 +16,4 @@
 # {3}: q1
 # {4}: q2
 
-source ../devel/phd/set_environ_var.sh
 python3 ../scripts/response_avg.py ${1} ${2} ${3} ${4}
