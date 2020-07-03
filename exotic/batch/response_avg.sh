@@ -2,7 +2,7 @@
  
 #SBATCH --ntasks=1 #(default, so here optional)
 #SBATCH --cpus-per-task=1  #(default, so here optional)
-#SBATCH --job-name=response_avg_SF
+#SBATCH --job-name=response_avg
 #SBATCH --output=response_avg.out 
 #SBATCH --partition=cluster #(optional, default is cluster)
 #SBATCH --time=6:00:00 #(optional, default is 24 hours)
@@ -17,4 +17,4 @@
 # {4}: q2
 
 source ../devel/phd/set_environ_var.sh
-python3 ../devel/phd/scripts/response_avg.py ${1} ${2} ${3} ${4}
+python3 ../scripts/response_avg.py ${1} ${2} ${3} ${4}
