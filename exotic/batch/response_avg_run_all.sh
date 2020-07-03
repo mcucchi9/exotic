@@ -23,7 +23,7 @@ while [ "$decision_made" != "y" ]; do
 
 done;
 
-main_data_path="data/response/lorenz96/rk4/"$forcing"/"$obs_main"/"$obs_sec
+main_data_path="data/response/lorenz96/rk4/"$forcing"/"$obs_main
 
 for q in $(seq 0.0 0.01 1.001); do
 
