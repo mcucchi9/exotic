@@ -86,10 +86,11 @@ for i in range(1, num_forcing_sim):
     counter += 1
 
 response_avg = response_avg/counter
+print(response_avg)
 
-response_avg['var'].attrs['forcing'] = forcing_sn
-response_avg['var'].attrs['observable'] = observable.short_name
-response_avg['var'].attrs['ensemble'] = num_forcing_sim - 1
+response_avg.attrs['forcing'] = forcing_sn
+response_avg.attrs['observable'] = observable.short_name
+response_avg.attrs['ensemble'] = num_forcing_sim - 1
 
 # Save Average Response
 
