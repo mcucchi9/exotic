@@ -32,9 +32,9 @@ obs_stat = obs_sn.split('_')[1]
 if obs_stat in ('bin', 'below', 'exceed'):
 
     threshold_q = list()
-    threshold_q.append(round(float(sys.argv[3]), 2))
+    threshold_q.append(f'{round(float(sys.argv[3]), 2):.2f}')
     try:
-        threshold_q.append(round(float(sys.argv[4]), 2))
+        threshold_q.append(f'{round(float(sys.argv[4]), 2):.2f}')
     except:
         print('only one threshold selected')
 
@@ -42,7 +42,7 @@ if obs_stat in ('bin', 'below', 'exceed'):
         DATA_PATH,
         f'obs/lorenz96/rk4/CF_8.0/quantiles/obs_lorenz96_rk4_CF_8.0_quantiles_{obs_main}.nc')
     )
-    quantiles_orders = np.round(quantiles.quantile_order.values, 2)
+    quantiles_orders = [f'{np.round(q, 2):.2f}' for q in quantiles.quantile_order.values]
     quantiles.assign_coords(coords={'quantile_order': quantiles_orders})
     threshold = [quantiles.sel(quantile_order=tq).values for tq in threshold_q]
 
