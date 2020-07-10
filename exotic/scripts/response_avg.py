@@ -43,7 +43,7 @@ if obs_stat in ('bin', 'below', 'exceed'):
         f'obs/lorenz96/rk4/CF_8.0/quantiles/obs_lorenz96_rk4_CF_8.0_quantiles_{obs_main}.nc')
     )
     quantiles_orders = [f'{np.round(q, 2):.2f}' for q in quantiles.quantile_order.values]
-    quantiles.assign_coords(coords={'quantile_order': quantiles_orders})
+    quantiles = quantiles.assign_coords(coords={'quantile_order': quantiles_orders})
     threshold = [quantiles.sel(quantile_order=tq).values for tq in threshold_q]
 
 observable_class = OBS_DICT[obs_stat]
